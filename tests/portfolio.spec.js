@@ -62,6 +62,33 @@ test.describe("portfolio page", () => {
 
     await page.locator(".nav-links").getByRole("link", { name: "Publications", exact: true }).click();
     await expect(page).toHaveURL(/#publications$/);
+    await page.waitForFunction(() => {
+      const nav = document.querySelector(".nav");
+      const publicationSection = document.querySelector("#publications");
+      if (!nav || !publicationSection) {
+        return false;
+      }
+
+      const navHeight = nav.getBoundingClientRect().height;
+      const top = publicationSection.getBoundingClientRect().top;
+      return top >= navHeight - 4 && top <= navHeight + 60;
+    });
+
+    const anchorState = await page.evaluate(() => {
+      const nav = document.querySelector(".nav");
+      const publicationSection = document.querySelector("#publications");
+      const activeLink = document.querySelector(".nav-links a.active");
+
+      return {
+        navHeight: nav.getBoundingClientRect().height,
+        publicationTop: publicationSection.getBoundingClientRect().top,
+        activeHref: activeLink?.getAttribute("href") || null,
+      };
+    });
+
+    expect(anchorState.publicationTop).toBeGreaterThanOrEqual(anchorState.navHeight - 4);
+    expect(anchorState.publicationTop).toBeLessThanOrEqual(anchorState.navHeight + 60);
+    expect(anchorState.activeHref).toBe("#publications");
 
     await expect(page.getByRole("link", { name: "Google Scholar" }).first()).toHaveAttribute(
       "href",
@@ -112,6 +139,24 @@ test.describe("portfolio page", () => {
       expect(image.complete, `${image.src} should complete loading`).toBeTruthy();
       expect(image.naturalWidth, `${image.src} should have width`).toBeGreaterThan(0);
     }
+  });
+
+  test("hero-adjacent content is visibly rendered on first load", async ({ page }) => {
+    await page.goto(pageUrl);
+
+    const metrics = page.locator(".metrics");
+    await expect(metrics).toBeVisible();
+
+    const styles = await metrics.evaluate((node) => {
+      const computed = window.getComputedStyle(node);
+      return {
+        opacity: computed.opacity,
+        transform: computed.transform,
+      };
+    });
+
+    expect(styles.opacity).toBe("1");
+    expect(styles.transform === "none" || styles.transform.includes("matrix")).toBeTruthy();
   });
 
   test("layout stays within the viewport on phone, tablet, and laptop", async ({ page }) => {
