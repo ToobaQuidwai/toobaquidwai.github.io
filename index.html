@@ -524,10 +524,8 @@
 
     .publication-dossier {
       display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-      gap: 1.6rem;
+      gap: 1.8rem;
       margin-bottom: 1.8rem;
-      align-items: start;
     }
 
     .publication-lead h3 {
@@ -542,8 +540,15 @@
       border-top: 1px solid var(--line);
     }
 
-    .publication-gallery {
+    .publication-gallery,
+    .publication-inline-figures {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .publication-inline-figures {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
     }
 
     .figure-card {
@@ -1068,72 +1073,61 @@
         </div>
 
         <div class="publication-dossier">
-          <div>
-            <article class="publication-lead">
-              <h3>WDR35-dependent transport of ciliary membrane cargo</h3>
-              <ul class="meta-list">
-                <li><span class="meta-chip">eLife</span></li>
-                <li><span class="meta-chip">2021</span></li>
-                <li><span class="meta-chip">First author</span></li>
-              </ul>
-              <p class="publication-meta">This study showed that WDR35/IFT121 functions in a coat protein-like system involved in delivering membrane cargo to cilia.</p>
-            </article>
-
-            <article class="publication-lead">
-              <h3>Caged fluorophores for dual-color and live-cell PALM</h3>
-              <ul class="meta-list">
-                <li><span class="meta-chip">Chemical Science</span></li>
-                <li><span class="meta-chip">2017</span></li>
-                <li><span class="meta-chip">Co-author</span></li>
-              </ul>
-              <p class="publication-meta">This methods paper developed specific labeling strategies for dual-color and super-resolution microscopy in living cells.</p>
-            </article>
-          </div>
-
-          <div class="publication-gallery">
-            <figure class="figure-card">
-              <img src="assets/paper-previews/wdr35-main-localization.png" alt="Main localization figure from the 2021 eLife WDR35 paper showing membrane protein localization at cilia.">
-              <figcaption class="figure-caption">
-                <h4>Membrane cargo localization</h4>
-                <p>A core result figure showing failed ciliary localization in the Wdr35 mutant context.</p>
-              </figcaption>
-            </figure>
-            <figure class="figure-card">
-              <img src="assets/paper-previews/wdr35-main-em.png" alt="Main electron microscopy figure from the WDR35 paper showing coated and coatless vesicles near the cilium.">
-              <figcaption class="figure-caption">
-                <h4>Ultrastructural vesicle evidence</h4>
-                <p>Electron microscopy highlighting coated and coatless vesicles near the cilium.</p>
-              </figcaption>
-            </figure>
-            <figure class="figure-card">
-              <img src="assets/paper-previews/caged-main-activation.png" alt="Main activation figure from the Chemical Science paper showing photoactivation in living cells.">
-              <figcaption class="figure-caption">
-                <h4>Photoactivation in living cells</h4>
-                <p>A main figure showing mono- and dual-color photoactivation workflows in live-cell imaging.</p>
-              </figcaption>
-            </figure>
-            <figure class="figure-card">
-              <img src="assets/paper-previews/caged-main-palm.png" alt="Main PALM figure from the Chemical Science paper showing diffraction-limited and PALM imaging close-ups.">
-              <figcaption class="figure-caption">
-                <h4>PALM super-resolution detail</h4>
-                <p>A tighter crop focused on the central PALM result rather than the full page scan.</p>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-
-        <div class="publication-list">
-          <p class="subsection-label">Peer-reviewed articles</p>
-          <article class="publication-item">
-            <h3 class="publication-title"><a href="https://elifesciences.org/articles/69786" target="_blank" rel="noreferrer">A WDR35-dependent coat protein complex transports ciliary membrane cargo vesicles to cilia</a></h3>
-            <p class="publication-authors"><strong>Tooba Quidwai</strong>, Jiaolong Wang, Emma A. Hall, Narcis Adrian Petriman, Weihua Leng, Petra Kiesel, Jonathan N. Wells, Laura C. Murphy, Margaret A. Keighren, Joseph A. Marsh, Esben Lorentzen, Gaia Pigino, Pleasantine Mill</p>
+          <article class="publication-lead">
+            <h3>WDR35-dependent transport of ciliary membrane cargo</h3>
             <ul class="meta-list">
               <li><span class="meta-chip">eLife</span></li>
               <li><span class="meta-chip">2021</span></li>
               <li><span class="meta-chip">First author</span></li>
             </ul>
-            <p class="publication-meta">Mechanistic analysis of ciliary membrane cargo transport mediated by WDR35/IFT121.</p>
+            <p class="publication-meta">This study showed that WDR35/IFT121 functions in a coat protein-like system involved in delivering membrane cargo to cilia.</p>
+            <div class="publication-inline-figures">
+              <figure class="figure-card">
+                <img src="assets/paper-previews/wdr35-main-localization.png" alt="Main localization figure from the 2021 eLife WDR35 paper showing membrane protein localization at cilia.">
+                <figcaption class="figure-caption">
+                  <h4>Membrane cargo localization</h4>
+                  <p>A core result figure showing failed ciliary localization in the Wdr35 mutant context.</p>
+                </figcaption>
+              </figure>
+              <figure class="figure-card">
+                <img src="assets/paper-previews/wdr35-main-em.png" alt="Main electron microscopy figure from the WDR35 paper showing coated and coatless vesicles near the cilium.">
+                <figcaption class="figure-caption">
+                  <h4>Ultrastructural vesicle evidence</h4>
+                  <p>Electron microscopy highlighting coated and coatless vesicles near the cilium.</p>
+                </figcaption>
+              </figure>
+            </div>
           </article>
+
+          <article class="publication-lead">
+            <h3>Caged fluorophores for dual-color and live-cell PALM</h3>
+            <ul class="meta-list">
+              <li><span class="meta-chip">Chemical Science</span></li>
+              <li><span class="meta-chip">2017</span></li>
+              <li><span class="meta-chip">Co-author</span></li>
+            </ul>
+            <p class="publication-meta">This methods paper developed specific labeling strategies for dual-color and super-resolution microscopy in living cells.</p>
+            <div class="publication-inline-figures">
+              <figure class="figure-card">
+                <img src="assets/paper-previews/caged-main-activation.png" alt="Main activation figure from the Chemical Science paper showing photoactivation in living cells.">
+                <figcaption class="figure-caption">
+                  <h4>Photoactivation in living cells</h4>
+                  <p>A main figure showing mono- and dual-color photoactivation workflows in live-cell imaging.</p>
+                </figcaption>
+              </figure>
+              <figure class="figure-card">
+                <img src="assets/paper-previews/caged-main-palm.png" alt="Main PALM figure from the Chemical Science paper showing diffraction-limited and PALM imaging close-ups.">
+                <figcaption class="figure-caption">
+                  <h4>PALM super-resolution detail</h4>
+                  <p>A tighter crop focused on the central PALM result rather than the full page scan.</p>
+                </figcaption>
+              </figure>
+            </div>
+          </article>
+        </div>
+
+        <div class="publication-list">
+          <p class="subsection-label">Peer-reviewed articles</p>
           <article class="publication-item">
             <h3 class="publication-title"><a href="https://elifesciences.org/articles/79299" target="_blank" rel="noreferrer">Centriolar satellites expedite mother centriole remodeling to promote ciliogenesis</a></h3>
             <p class="publication-authors">Emma A. Hall, Dhivya Kumar, Suzanna L. Prosser, Patricia L. Yeyati, Vicente Herranz-Perez, Jose Manuel Garcia-Verdugo, Lorraine Rose, Lisa McKie, Daniel O. Dodd, Peter A. Tennant, Roly Megaw, Laura C. Murphy, Marisa F. Ferreira, Graeme Grimes, Lucy Williams, <strong>Tooba Quidwai</strong>, Laurence Pelletier, Jeremy F. Reiter, Pleasantine Mill</p>
@@ -1145,14 +1139,14 @@
             <p class="publication-meta">Contributing-author work on ciliogenesis and centriole remodeling.</p>
           </article>
           <article class="publication-item">
-            <h3 class="publication-title"><a href="https://pubs.rsc.org/en/content/articlelanding/2017/sc/c6sc02088g" target="_blank" rel="noreferrer">Specific protein labeling with caged fluorophores for dual-color imaging and super-resolution microscopy in living cells</a></h3>
-            <p class="publication-authors">Sebastian Hauke, Alexander Von Appen, <strong>Tooba Quidwai</strong>, Jonas Ries, Richard Wombacher</p>
+            <h3 class="publication-title"><a href="https://elifesciences.org/articles/69786" target="_blank" rel="noreferrer">A WDR35-dependent coat protein complex transports ciliary membrane cargo vesicles to cilia</a></h3>
+            <p class="publication-authors"><strong>Tooba Quidwai</strong>, Jiaolong Wang, Emma A. Hall, Narcis Adrian Petriman, Weihua Leng, Petra Kiesel, Jonathan N. Wells, Laura C. Murphy, Margaret A. Keighren, Joseph A. Marsh, Esben Lorentzen, Gaia Pigino, Pleasantine Mill</p>
             <ul class="meta-list">
-              <li><span class="meta-chip">Chemical Science</span></li>
-              <li><span class="meta-chip">2017</span></li>
-              <li><span class="meta-chip">Co-author</span></li>
+              <li><span class="meta-chip">eLife</span></li>
+              <li><span class="meta-chip">2021</span></li>
+              <li><span class="meta-chip">First author</span></li>
             </ul>
-            <p class="publication-meta">Methods-driven imaging work focused on specific labeling and live-cell super-resolution microscopy.</p>
+            <p class="publication-meta">Mechanistic analysis of ciliary membrane cargo transport mediated by WDR35/IFT121.</p>
           </article>
           <article class="publication-item">
             <h3 class="publication-title"><a href="https://doi.org/10.1016/j.ajhg.2017.03.008" target="_blank" rel="noreferrer">PLAA Mutations Cause a Lethal Infantile Epileptic Encephalopathy by Disrupting Ubiquitin-Mediated Endolysosomal Degradation of Synaptic Proteins</a></h3>
@@ -1164,27 +1158,17 @@
             </ul>
             <p class="publication-meta">Disease-mechanism work connecting molecular dysfunction with severe clinical phenotype.</p>
           </article>
+          <article class="publication-item">
+            <h3 class="publication-title"><a href="https://pubs.rsc.org/en/content/articlelanding/2017/sc/c6sc02088g" target="_blank" rel="noreferrer">Specific protein labeling with caged fluorophores for dual-color imaging and super-resolution microscopy in living cells</a></h3>
+            <p class="publication-authors">Sebastian Hauke, Alexander Von Appen, <strong>Tooba Quidwai</strong>, Jonas Ries, Richard Wombacher</p>
+            <ul class="meta-list">
+              <li><span class="meta-chip">Chemical Science</span></li>
+              <li><span class="meta-chip">2017</span></li>
+              <li><span class="meta-chip">Co-author</span></li>
+            </ul>
+            <p class="publication-meta">Methods-driven imaging work focused on specific labeling and live-cell super-resolution microscopy.</p>
+          </article>
           <p class="subsection-label">Preprints and other scholarly outputs</p>
-          <article class="publication-item">
-            <h3 class="publication-title"><a href="https://www.biorxiv.org/content/10.1101/413377v1" target="_blank" rel="noreferrer">Cytoskeleton mechanics determine resting size and activation dynamics of platelets</a></h3>
-            <p class="publication-authors">Aastha Mathur, Sandra Raquel Correia, Serge Dmitrieff, Romain Gibeaux, Iana Kalinina, <strong>Tooba Quidwai</strong>, Jonas Ries, Francois Nedelec</p>
-            <ul class="meta-list">
-              <li><span class="meta-chip">bioRxiv</span></li>
-              <li><span class="meta-chip">2018</span></li>
-              <li><span class="meta-chip">Preprint</span></li>
-            </ul>
-            <p class="publication-meta">Preprint on platelet cytoskeleton mechanics informed by advanced imaging analysis.</p>
-          </article>
-          <article class="publication-item">
-            <h3 class="publication-title"><a href="https://www.biorxiv.org/content/10.1101/2020.12.22.423978v1" target="_blank" rel="noreferrer">A WDR35-dependent coatomer transports ciliary membrane proteins from the Golgi to the cilia</a></h3>
-            <p class="publication-authors"><strong>Tooba Quidwai</strong>, Emma A. Hall, Margaret A. Keighren, Weihua Leng, Petra Kiesel, Jonathan N. Wells, Laura C. Murphy, et al.</p>
-            <ul class="meta-list">
-              <li><span class="meta-chip">bioRxiv</span></li>
-              <li><span class="meta-chip">2020</span></li>
-              <li><span class="meta-chip">Preprint</span></li>
-            </ul>
-            <p class="publication-meta">Preprint version of the WDR35 trafficking study published later in eLife.</p>
-          </article>
           <article class="publication-item">
             <h3 class="publication-title">A WDR35-dependent coat protein complex transports ciliary membrane cargo vesicles to cilia</h3>
             <p class="publication-authors"><strong>Tooba Quidwai</strong>, Jiaolong Wang, Emma A. Hall, Narcis Adrian Petriman, Weihua Leng, Petra Kiesel, Jonathan N. Wells, et al.</p>
@@ -1205,6 +1189,26 @@
             </ul>
             <p class="publication-meta">Doctoral thesis on WDR35 function in ciliary biogenesis and trafficking.</p>
           </article>
+          <article class="publication-item">
+            <h3 class="publication-title"><a href="https://www.biorxiv.org/content/10.1101/2020.12.22.423978v1" target="_blank" rel="noreferrer">A WDR35-dependent coatomer transports ciliary membrane proteins from the Golgi to the cilia</a></h3>
+            <p class="publication-authors"><strong>Tooba Quidwai</strong>, Emma A. Hall, Margaret A. Keighren, Weihua Leng, Petra Kiesel, Jonathan N. Wells, Laura C. Murphy, et al.</p>
+            <ul class="meta-list">
+              <li><span class="meta-chip">bioRxiv</span></li>
+              <li><span class="meta-chip">2020</span></li>
+              <li><span class="meta-chip">Preprint</span></li>
+            </ul>
+            <p class="publication-meta">Preprint version of the WDR35 trafficking study published later in eLife.</p>
+          </article>
+          <article class="publication-item">
+            <h3 class="publication-title"><a href="https://www.biorxiv.org/content/10.1101/413377v1" target="_blank" rel="noreferrer">Cytoskeleton mechanics determine resting size and activation dynamics of platelets</a></h3>
+            <p class="publication-authors">Aastha Mathur, Sandra Raquel Correia, Serge Dmitrieff, Romain Gibeaux, Iana Kalinina, <strong>Tooba Quidwai</strong>, Jonas Ries, Francois Nedelec</p>
+            <ul class="meta-list">
+              <li><span class="meta-chip">bioRxiv</span></li>
+              <li><span class="meta-chip">2018</span></li>
+              <li><span class="meta-chip">Preprint</span></li>
+            </ul>
+            <p class="publication-meta">Preprint on platelet cytoskeleton mechanics informed by advanced imaging analysis.</p>
+          </article>
         </div>
       </section>
 
@@ -1217,10 +1221,11 @@
           <article class="stack-column">
             <h3>Selected talks</h3>
             <ul>
+              <li>National Institute of Oceanography, India - invited talk, July 31, 2025.</li>
+              <li>BITS Pilani Goa, India - invited talk, July 30, 2025.</li>
               <li>ASCB Cell Biology Conference, Washington, DC - selected talk, 2022.</li>
               <li>International Virtual Membrane Trafficking Seminar - invited talk, 2021.</li>
               <li>BSCB GenSoc UK Cilia Spring Meeting - selected talk, 2020.</li>
-              <li>National Institute of Oceanography and BITS Pilani Goa - invited talks, July 2025.</li>
             </ul>
           </article>
           <article class="stack-column">
@@ -1235,9 +1240,9 @@
           <article class="stack-column">
             <h3>Teaching and outreach</h3>
             <ul>
-              <li>Trained peers and senior researchers in electron microscopy and advanced imaging.</li>
-              <li>Supported STORM microscopy teaching at the EMBO Single Molecule Course at EMBL.</li>
-              <li>Contributed to public-facing ciliopathy content and interdisciplinary outreach.</li>
+              <li>Trained peers and senior researchers in electron microscopy and advanced imaging in Professor Yanick Crow's lab.</li>
+              <li>Supported STORM microscopy teaching at the EMBO Single Molecule Course at EMBL in Professor Jonas Ries' lab.</li>
+              <li>Contributed to public-facing ciliopathy content and interdisciplinary outreach through <a href="https://www.cilialab.co.uk" target="_blank" rel="noreferrer">Cilia Lab, University of Edinburgh</a>.</li>
             </ul>
           </article>
         </div>
@@ -1253,7 +1258,7 @@
             <h3>Imaging</h3>
             <p>Microscopy workflows used as primary tools for biological discovery.</p>
             <h4>Methods</h4>
-            <p>STORM, PALM, STED, SIM, CLEM, 3D-TEM, Airyscan, Hyvolution, deconvolution, FRAP, FRET.</p>
+            <p>STORM, PALM, STED, SIM, CLEM, 3D-TEM, Airyscan, Hyvolution, deconvolution, FRAP, FRET, FLIM.</p>
             <h4>Software</h4>
             <p>ImageJ, Imaris, Huygens, IMOD, tomography, segmentation, and image processing pipelines.</p>
           </article>
@@ -1263,13 +1268,13 @@
             <h4>Core workflows</h4>
             <p>CRISPR, cloning, PCR and RT-PCR, immunoprecipitation, mass spectrometry, western blotting, ELISA, mutagenesis, protein purification.</p>
             <h4>Model systems</h4>
-            <p>MEF, human fibroblasts, IMCD3, MDCK, HepG2, RP2, platelets, stem-cell related systems, and Chlamydomonas culture.</p>
+            <p>MEF, human fibroblasts, IMCD3, MDCK, HepG2, RP2, platelets, stem-cell related systems, Chlamydomonas culture, mouse kidney, and Plasmodium falciparum culture.</p>
           </article>
           <article class="stack-column">
             <h3>Computation and analysis</h3>
             <p>Structural and quantitative support for image-heavy and proteomics-heavy biology.</p>
             <h4>Analysis tools</h4>
-            <p>AlphaFold, Swiss Model, Phyre2, HHblits, PyMOL, Coot, MATLAB, and basic Python.</p>
+            <p>AlphaFold, Swiss Model, Phyre2, HHblits, PyMOL, Coot, MATLAB, basic Python, BioRender, and scientific visualization tools.</p>
             <h4>Communication tools</h4>
             <p>Adobe Photoshop, Illustrator, InDesign, Office tools, and science communication coursework.</p>
           </article>
@@ -1303,7 +1308,7 @@
             <h3>Research identity</h3>
             <ul>
               <li>International track record across India, Germany, the UK, and the USA.</li>
-              <li>Methods spanning molecular biology, imaging, structural interpretation, and disease models.</li>
+              <li>Methods spanning molecular biology, imaging, proteomics, genomics, and a wide range of disease models.</li>
               <li>Work positioned between foundational cell biology and disease mechanism.</li>
             </ul>
           </article>

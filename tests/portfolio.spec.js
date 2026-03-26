@@ -6,6 +6,7 @@ const externalExpectations = {
   "https://scholar.google.com/citations?user=z7wjJ34AAAAJ&hl=en": ["scholar.google.com/citations"],
   "https://www.linkedin.com/in/tooba-quidwai/": ["linkedin.com/in/tooba-quidwai"],
   "https://www.researchgate.net/scientific-contributions/Tooba-Quidwai-2126076413": ["researchgate.net/scientific-contributions/Tooba-Quidwai-2126076413"],
+  "https://www.cilialab.co.uk": ["cilialab.co.uk"],
   "https://elifesciences.org/articles/69786": ["elifesciences.org/articles/69786"],
   "https://elifesciences.org/articles/79299": ["elifesciences.org/articles/79299"],
   "https://pubs.rsc.org/en/content/articlelanding/2017/sc/c6sc02088g": ["pubs.rsc.org/en/content/articlelanding/2017/sc/c6sc02088g"],
@@ -41,13 +42,33 @@ test.describe("portfolio page", () => {
   test("shows publication evidence and separates publication types clearly", async ({ page }) => {
     await page.goto(pageUrl);
 
-    await expect(page.locator("#publications img[src*='wdr35-main-localization.png']")).toBeVisible();
-    await expect(page.locator("#publications img[src*='wdr35-main-em.png']")).toBeVisible();
-    await expect(page.locator("#publications img[src*='caged-main-activation.png']")).toBeVisible();
-    await expect(page.locator("#publications img[src*='caged-main-palm.png']")).toBeVisible();
+    const publicationLeads = page.locator(".publication-lead");
+    await expect(publicationLeads).toHaveCount(2);
+    await expect(publicationLeads.nth(0).locator("img[src*='wdr35-main-localization.png']")).toBeVisible();
+    await expect(publicationLeads.nth(0).locator("img[src*='wdr35-main-em.png']")).toBeVisible();
+    await expect(publicationLeads.nth(1).locator("img[src*='caged-main-activation.png']")).toBeVisible();
+    await expect(publicationLeads.nth(1).locator("img[src*='caged-main-palm.png']")).toBeVisible();
     await expect(page.getByText("Peer-reviewed articles")).toBeVisible();
     await expect(page.getByText("Preprints and other scholarly outputs")).toBeVisible();
     await expect(page.getByText("WDR35-dependent transport of ciliary membrane cargo")).toBeVisible();
+
+    const peerReviewedTitles = await page.locator(".publication-list .publication-item .publication-title").evaluateAll((nodes) =>
+      nodes.slice(0, 4).map((node) => node.textContent.trim())
+    );
+    expect(peerReviewedTitles[0]).toContain("Centriolar satellites");
+    expect(peerReviewedTitles[1]).toContain("A WDR35-dependent coat protein complex");
+  });
+
+  test("selected talks are listed newest first", async ({ page }) => {
+    await page.goto(pageUrl);
+
+    const talks = await page.locator("#talks-awards .stack-column").nth(0).locator("li").evaluateAll((nodes) =>
+      nodes.map((node) => node.textContent.trim())
+    );
+
+    expect(talks[0]).toContain("July 31, 2025");
+    expect(talks[1]).toContain("July 30, 2025");
+    expect(talks[2]).toContain("2022");
   });
 
   test("navigation links and external profile links are wired correctly", async ({ page }) => {
