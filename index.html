@@ -6,7 +6,7 @@
   <title>Dr. Tooba Quidwai | Cilia Biology, Imaging, and Disease Mechanisms</title>
   <meta
     name="description"
-    content="Academic research website for Dr. Tooba Quidwai, featuring cilia biology, advanced imaging, disease mechanisms, publications, figures, and translational research."
+    content="Academic research website for Dr. Tooba Quidwai, featuring cilia biology, advanced imaging, disease mechanisms, publications, and figure-led research highlights."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
       --muted: #9caeb4;
       --soft: #e2dbcf;
       --accent: #80c8bb;
-      --accent-gold: #c89a5b;
+      --accent-gold: #a78b63;
       --paper: #f0e6d5;
       --line: rgba(240, 230, 213, 0.12);
       --line-strong: rgba(240, 230, 213, 0.24);
@@ -97,9 +97,8 @@
       gap: 1rem;
       padding: 0.92rem 1rem;
       border: 1px solid var(--line);
-      border-radius: 999px;
-      background:
-        linear-gradient(180deg, rgba(9, 17, 23, 0.86), rgba(6, 12, 17, 0.72));
+      border-radius: 28px;
+      background: rgba(9, 17, 23, 0.84);
       backdrop-filter: blur(18px);
       box-shadow: var(--shadow);
     }
@@ -120,7 +119,7 @@
     }
 
     .brand-name {
-      font-size: 0.98rem;
+      font-size: 1.08rem;
       font-weight: 700;
       white-space: nowrap;
     }
@@ -210,6 +209,24 @@
     .hero-copy {
       max-width: 34rem;
       animation: hero-rise 900ms cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .scholar-name {
+      display: block;
+      margin-bottom: 0.45rem;
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 2.5vw, 2.35rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .scholar-role {
+      display: block;
+      margin-bottom: 1rem;
+      color: var(--soft);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
     }
 
     @keyframes hero-rise {
@@ -307,12 +324,6 @@
       color: var(--soft);
     }
 
-    .hero-microcopy {
-      max-width: 34rem;
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-
     .hero-side {
       align-self: end;
       margin-left: auto;
@@ -381,8 +392,24 @@
       font-size: 0.74rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
       color: var(--muted);
+    }
+
+    .section-intro {
+      max-width: 46rem;
+      margin-bottom: 1.25rem;
+      color: var(--soft);
+      font-size: 1.02rem;
+    }
+
+    .subsection-label {
+      margin: 0 0 0.85rem;
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
     }
 
     .page-shell {
@@ -396,39 +423,12 @@
       scroll-margin-top: calc(var(--nav-offset) + 18px);
     }
 
-    .metrics,
     .themes-grid,
     .publication-gallery,
     .stack-grid,
     .index-grid {
       display: grid;
       gap: 1rem;
-    }
-
-    .metrics {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      margin-bottom: 1.4rem;
-    }
-
-    .metric {
-      padding: 1.1rem 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .metric-value {
-      display: block;
-      margin-bottom: 0.25rem;
-      font-family: var(--display);
-      color: var(--accent);
-      font-size: clamp(1.9rem, 3vw, 2.9rem);
-      line-height: 1;
-    }
-
-    .metric-label {
-      color: var(--muted);
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
     }
 
     .section-card {
@@ -782,7 +782,6 @@
         grid-template-columns: 1fr;
       }
 
-      .metrics,
       .themes-grid,
       .publication-gallery,
       .stack-grid,
@@ -887,7 +886,6 @@
         padding-top: 1rem;
       }
 
-      .metrics,
       .themes-grid,
       .publication-gallery,
       .stack-grid,
@@ -905,17 +903,17 @@
   <header class="topbar">
     <nav class="nav" aria-label="Primary">
       <div class="brand">
-        <span class="brand-kicker">Academic Website</span>
+        <span class="brand-kicker">Cilia Biology | Imaging</span>
         <span class="brand-name">Dr. Tooba Quidwai</span>
       </div>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
       <div class="nav-links" id="nav-links">
-        <a href="#about">About</a>
-        <a href="#highlights">Research</a>
-        <a href="#experience">Experience</a>
+        <a href="#about">Profile</a>
+        <a href="#highlights">Programs</a>
+        <a href="#experience">Appointments</a>
         <a href="#publications">Publications</a>
-        <a href="#talks-awards">Talks &amp; Awards</a>
-        <a href="#skills">Skills</a>
+        <a href="#talks-awards">Talks</a>
+        <a href="#skills">Methods</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -930,41 +928,38 @@
     <div class="hero-inner">
       <div class="hero-copy">
         <div class="eyebrow">Cell Biology | Imaging | Disease Mechanisms</div>
-        <h1>Researching cilia, imaging cellular architecture, and linking mechanism to disease.</h1>
+        <span class="scholar-name">Dr. Tooba Quidwai</span>
+        <span class="scholar-role">Molecular and cell biologist working across cilia biology, advanced imaging, and disease-relevant cell architecture.</span>
+        <h1>I study cilia, membrane trafficking, and disease mechanisms using advanced imaging.</h1>
         <p class="hero-summary">
-          Dr. Tooba Quidwai is a molecular and cell biologist with <strong>more than a decade of international research experience</strong>
-          across India, Germany, the United Kingdom, and the United States. Her work integrates
-          <strong>cilia biology, vesicular trafficking, proteomics, genomics, super-resolution microscopy, and translational disease models</strong>
-          to study how cellular architecture shapes pathology in kidney disease, metabolic disorders, and related ciliopathies.
+          I am a molecular and cell biologist with more than a decade of research experience across India, Germany, the United Kingdom, and the United States. My work combines
+          <strong>cilia biology, vesicular trafficking, proteomics, genomics, super-resolution microscopy, CLEM, and 3D-TEM</strong>
+          to understand how cellular organization shapes disease-relevant phenotypes.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="mailto:tooba.quidwai@bio.ku.dk">Contact by email</a>
           <a class="btn btn-secondary" href="#publications">View selected publications</a>
         </div>
-        <p class="hero-microcopy">
-          The first view is intentionally image-led: a scientific homepage that behaves like a research poster rather than a generic portfolio.
-        </p>
       </div>
 
       <aside class="hero-side">
         <div class="hero-side-block">
-          <h2>Advanced imaging meets cilia biology.</h2>
-          <p>From WDR35-mediated cargo transport to live-cell PALM workflows, the site is organized around the science, the images, and the methods.</p>
+          <h2>Current focus</h2>
+          <p>My research has centered on ciliary transport, super-resolution imaging, and disease mechanisms in kidney and ciliopathy-related systems, with current work extending into grant development and cross-institution collaboration.</p>
         </div>
         <div class="hero-side-block">
           <ul class="inline-links">
             <li><a href="mailto:tooba.quidwai@bio.ku.dk">tooba.quidwai@bio.ku.dk</a></li>
             <li><a href="https://scholar.google.com/citations?user=z7wjJ34AAAAJ&amp;hl=en" target="_blank" rel="noreferrer">Google Scholar</a></li>
             <li><a href="https://www.linkedin.com/in/tooba-quidwai/" target="_blank" rel="noreferrer">LinkedIn</a></li>
-            <li><a href="https://www.researchgate.net/scientific-contributions/Tooba-Quidwai-2126076413" target="_blank" rel="noreferrer">ResearchGate</a></li>
           </ul>
         </div>
         <div class="hero-side-block">
           <ul class="tag-list" aria-label="Research areas">
             <li><span>Cilia biology</span></li>
-            <li><span>Super-resolution</span></li>
-            <li><span>Vesicle trafficking</span></li>
-            <li><span>Disease models</span></li>
+            <li><span>Membrane trafficking</span></li>
+            <li><span>Super-resolution imaging</span></li>
+            <li><span>Kidney and ciliopathy biology</span></li>
           </ul>
         </div>
       </aside>
@@ -973,49 +968,29 @@
 
   <div class="page-shell">
     <main>
-      <section class="metrics" aria-label="Key metrics" data-reveal>
-        <article class="metric">
-          <span class="metric-value">218</span>
-          <span class="metric-label">Google Scholar citations</span>
-        </article>
-        <article class="metric">
-          <span class="metric-value">4</span>
-          <span class="metric-label">Google Scholar h-index</span>
-        </article>
-        <article class="metric">
-          <span class="metric-value">4</span>
-          <span class="metric-label">Google Scholar i10-index</span>
-        </article>
-        <article class="metric">
-          <span class="metric-value">8</span>
-          <span class="metric-label">Works listed on profile</span>
-        </article>
-      </section>
-
       <section class="section-card" id="about" data-reveal>
         <div class="section-heading">
-          <h2>Research profile</h2>
-          <p>A concise research statement focused on ciliary transport, imaging-led biology, and disease-relevant cell architecture.</p>
+          <h2>Research</h2>
+          <p>I study how ciliary structure and trafficking shape cell function and disease-related phenotypes.</p>
         </div>
         <div class="about-grid">
           <div>
             <p class="lede">
-              During her PhD at the University of Edinburgh, Dr. Quidwai identified a <strong>coatomer-like role for WDR35/IFT121 in ciliary membrane cargo transport</strong>,
-              integrating 3D-TEM, correlative microscopy, mouse genetics, and proteomics to explain how membrane cargo reaches the cilium.
+              During my PhD at the University of Edinburgh, I identified a <strong>coatomer-like role for WDR35/IFT121 in ciliary membrane cargo transport</strong>,
+              using 3D-TEM, correlative microscopy, mouse genetics, and proteomics to examine how membrane cargo reaches the cilium.
             </p>
             <p class="lede">
-              Her postdoctoral work at UMass Chan Medical School expanded that framework into <strong>kidney cystogenesis, ADAMTS9-mediated TMEM67 biology,
-              central apparatus function, and Chlamydomonas-based systems</strong>, while earlier appointments at EMBL Heidelberg and the Max Planck Institute
-              established a strong foundation in super-resolution imaging, signaling, and quantitative cell biology.
+              My postdoctoral work at UMass Chan Medical School expanded that framework into <strong>kidney cystogenesis, ADAMTS9-mediated TMEM67 biology,
+              central apparatus function, and Chlamydomonas-based systems</strong>, while earlier work at EMBL Heidelberg and the Max Planck Institute built my foundation in super-resolution imaging, signaling, and quantitative cell biology.
             </p>
           </div>
           <aside class="aside-note">
-            <h3>What defines the work</h3>
+            <h3>Research areas</h3>
             <ul class="research-bullets">
               <li>Mechanistic cilia biology tied directly to disease phenotypes.</li>
-              <li>Imaging as a discovery tool, not just a visualization layer.</li>
+              <li>Advanced imaging including STORM, PALM, CLEM, and 3D-TEM.</li>
               <li>Cross-system work spanning mammalian cells, mouse models, and Chlamydomonas.</li>
-              <li>International collaboration across India, Germany, the UK, the USA, and Copenhagen-linked grant efforts.</li>
+              <li>International collaborations across India, Germany, the UK, and the USA.</li>
             </ul>
           </aside>
         </div>
@@ -1023,37 +998,32 @@
 
       <section class="section-card" id="highlights" data-reveal>
         <div class="section-heading">
-          <h2>Research themes</h2>
-          <p>Each theme has one job: clarify the major scientific questions rather than simply listing output categories.</p>
+          <h2>Research programs</h2>
+          <p>My work brings together cilia biology, imaging, and disease-oriented cell biology.</p>
         </div>
         <div class="themes-grid">
           <article class="theme-card">
             <span class="theme-label">Ciliary transport</span>
-            <h3>How proteins and membranes reach the cilium</h3>
-            <p class="body-copy">Including the WDR35/IFT121 trafficking story that linked ciliary transport to a coatomer-like transport logic.</p>
+            <h3>Trafficking to and within the cilium</h3>
+            <p class="body-copy">I study how WDR35/IFT121 and related transport pathways control membrane delivery to the cilium.</p>
           </article>
           <article class="theme-card">
-            <span class="theme-label">Imaging innovation</span>
-            <h3>Microscopy as a mechanistic language</h3>
-            <p class="body-copy">From STORM and PALM optimization to CLEM and 3D-TEM, imaging is part of the biological argument itself.</p>
+            <span class="theme-label">Advanced imaging</span>
+            <h3>Super-resolution and correlative microscopy</h3>
+            <p class="body-copy">I use imaging methods to connect ultrastructure, protein localization, and cell biological mechanism.</p>
           </article>
           <article class="theme-card">
             <span class="theme-label">Disease biology</span>
-            <h3>From structure to pathology</h3>
-            <p class="body-copy">Kidney cyst formation, metabolic disorders, and ciliopathy mechanisms anchor the translational reach of the work.</p>
-          </article>
-          <article class="theme-card">
-            <span class="theme-label">Collaborative science</span>
-            <h3>Interdisciplinary and international by design</h3>
-            <p class="body-copy">Projects draw on microscopy, proteomics, structural interpretation, genetics, and grant-linked collaborations across institutions.</p>
+            <h3>Ciliopathies and kidney disease mechanisms</h3>
+            <p class="body-copy">My disease-focused work includes kidney cystogenesis, TMEM67 biology, and related cilia-linked phenotypes.</p>
           </article>
         </div>
       </section>
 
       <section class="section-card" id="experience" data-reveal>
         <div class="section-heading">
-          <h2>Experience timeline</h2>
-          <p>Appointments arranged as a scientific arc, from signaling and immunology through imaging methods and cilia-centered disease biology.</p>
+          <h2>Selected appointments</h2>
+          <p>Academic appointments across cilia biology, imaging, signaling, and cell biology.</p>
         </div>
         <div class="timeline">
           <article class="timeline-item">
@@ -1130,32 +1100,30 @@
 
       <section class="section-card" id="publications" data-reveal>
         <div class="section-heading">
-          <h2>Publications and paper figures</h2>
-          <p>A figure-led publication dossier that gives each paper one visual job and one scientific takeaway.</p>
+          <h2>Selected publications</h2>
+          <p>Peer-reviewed work in cilia biology, imaging, and disease mechanism, with figures from two papers shown below.</p>
         </div>
 
         <div class="publication-dossier">
           <div>
             <article class="publication-lead">
-              <h3>Featured study: WDR35 and ciliary cargo transport</h3>
+              <h3>WDR35-dependent transport of ciliary membrane cargo</h3>
               <ul class="meta-list">
                 <li><span class="meta-chip">eLife</span></li>
                 <li><span class="meta-chip">2021</span></li>
                 <li><span class="meta-chip">First author</span></li>
-                <li><span class="meta-chip">43 citations</span></li>
               </ul>
-              <p class="publication-meta">A mechanistic study showing that WDR35/IFT121 behaves like part of a coat protein system involved in delivering membrane cargo to cilia.</p>
+              <p class="publication-meta">This study showed that WDR35/IFT121 functions in a coat protein-like system involved in delivering membrane cargo to cilia.</p>
             </article>
 
             <article class="publication-lead">
-              <h3>Featured study: Caged fluorophores and live-cell PALM</h3>
+              <h3>Caged fluorophores for dual-color and live-cell PALM</h3>
               <ul class="meta-list">
                 <li><span class="meta-chip">Chemical Science</span></li>
                 <li><span class="meta-chip">2017</span></li>
                 <li><span class="meta-chip">Co-author</span></li>
-                <li><span class="meta-chip">69 citations</span></li>
               </ul>
-              <p class="publication-meta">A methods-centered paper on specific protein labeling with caged fluorophores for dual-color and super-resolution microscopy in living cells.</p>
+              <p class="publication-meta">This methods paper developed specific labeling strategies for dual-color and super-resolution microscopy in living cells.</p>
             </article>
           </div>
 
@@ -1192,6 +1160,7 @@
         </div>
 
         <div class="publication-list">
+          <p class="subsection-label">Peer-reviewed articles</p>
           <article class="publication-item">
             <h3 class="publication-title"><a href="https://elifesciences.org/articles/69786" target="_blank" rel="noreferrer">A WDR35-dependent coat protein complex transports ciliary membrane cargo vesicles to cilia</a></h3>
             <p class="publication-authors"><strong>Tooba Quidwai</strong>, Jiaolong Wang, Emma A. Hall, Narcis Adrian Petriman, Weihua Leng, Petra Kiesel, Jonathan N. Wells, Laura C. Murphy, Margaret A. Keighren, Joseph A. Marsh, Esben Lorentzen, Gaia Pigino, Pleasantine Mill</p>
@@ -1199,9 +1168,8 @@
               <li><span class="meta-chip">eLife</span></li>
               <li><span class="meta-chip">2021</span></li>
               <li><span class="meta-chip">First author</span></li>
-              <li><span class="meta-chip">43 citations</span></li>
             </ul>
-            <p class="publication-meta">A mechanistic cilia paper that anchors the site visually and scientifically.</p>
+            <p class="publication-meta">Mechanistic analysis of ciliary membrane cargo transport mediated by WDR35/IFT121.</p>
           </article>
           <article class="publication-item">
             <h3 class="publication-title"><a href="https://elifesciences.org/articles/79299" target="_blank" rel="noreferrer">Centriolar satellites expedite mother centriole remodeling to promote ciliogenesis</a></h3>
@@ -1210,7 +1178,6 @@
               <li><span class="meta-chip">eLife</span></li>
               <li><span class="meta-chip">2023</span></li>
               <li><span class="meta-chip">Contributing author</span></li>
-              <li><span class="meta-chip">50 citations</span></li>
             </ul>
             <p class="publication-meta">Contributing-author work on ciliogenesis and centriole remodeling.</p>
           </article>
@@ -1221,21 +1188,20 @@
               <li><span class="meta-chip">Chemical Science</span></li>
               <li><span class="meta-chip">2017</span></li>
               <li><span class="meta-chip">Co-author</span></li>
-              <li><span class="meta-chip">69 citations</span></li>
             </ul>
             <p class="publication-meta">Methods-driven imaging work focused on specific labeling and live-cell super-resolution microscopy.</p>
           </article>
           <article class="publication-item">
             <h3 class="publication-title"><a href="https://doi.org/10.1016/j.ajhg.2017.03.008" target="_blank" rel="noreferrer">PLAA Mutations Cause a Lethal Infantile Epileptic Encephalopathy by Disrupting Ubiquitin-Mediated Endolysosomal Degradation of Synaptic Proteins</a></h3>
-            <p class="publication-authors">Emma A. Hall, Michael S. Nahorski, Lyndsay M. Murray, Ranad Shaheen, Emma Perkins, Kosala N. Dissanayake, Yosua Kristaryanto, Ross A. Jones, Julie Vogt, Manon Rivagorda, Mark T. Handley, Girish R. Mali, <strong>Tooba Quidwai</strong> and collaborators</p>
+            <p class="publication-authors">Emma A. Hall, Michael S. Nahorski, Lyndsay M. Murray, Ranad Shaheen, Emma Perkins, Kosala N. Dissanayake, Yosua Kristaryanto, Ross A. Jones, Julie Vogt, Manon Rivagorda, Mark T. Handley, Girish R. Mali, <strong>Tooba Quidwai</strong>, Dinesh C. Soares, Margaret A. Keighren, Lisa McKie, Richard L. Mort, Noor Gammoh, Amaya Garcia-Munoz, Tracey Davey, Matthieu Vermeren, Diana Walsh, Peter Budd, Irene A. Aligianis, Eissa Faqeih, Alan J. Quigley, Ian J. Jackson, Yogesh Kulathu, Mandy Jackson, Richard R. Ribchester, Alex von Kriegsheim, Fowzan S. Alkuraya, C. Geoffrey Woods, Eamonn R. Maher, Pleasantine Mill</p>
             <ul class="meta-list">
               <li><span class="meta-chip">AJHG</span></li>
               <li><span class="meta-chip">2017</span></li>
               <li><span class="meta-chip">Contributing author</span></li>
-              <li><span class="meta-chip">50 citations</span></li>
             </ul>
             <p class="publication-meta">Disease-mechanism work connecting molecular dysfunction with severe clinical phenotype.</p>
           </article>
+          <p class="subsection-label">Preprints and other scholarly outputs</p>
           <article class="publication-item">
             <h3 class="publication-title"><a href="https://www.biorxiv.org/content/10.1101/413377v1" target="_blank" rel="noreferrer">Cytoskeleton mechanics determine resting size and activation dynamics of platelets</a></h3>
             <p class="publication-authors">Aastha Mathur, Sandra Raquel Correia, Serge Dmitrieff, Romain Gibeaux, Iana Kalinina, <strong>Tooba Quidwai</strong>, Jonas Ries, Francois Nedelec</p>
@@ -1243,24 +1209,22 @@
               <li><span class="meta-chip">bioRxiv</span></li>
               <li><span class="meta-chip">2018</span></li>
               <li><span class="meta-chip">Preprint</span></li>
-              <li><span class="meta-chip">3 citations</span></li>
             </ul>
             <p class="publication-meta">Preprint on platelet cytoskeleton mechanics informed by advanced imaging analysis.</p>
           </article>
           <article class="publication-item">
             <h3 class="publication-title"><a href="https://www.biorxiv.org/content/10.1101/2020.12.22.423978v1" target="_blank" rel="noreferrer">A WDR35-dependent coatomer transports ciliary membrane proteins from the Golgi to the cilia</a></h3>
-            <p class="publication-authors"><strong>Tooba Quidwai</strong>, Emma A. Hall, Margaret A. Keighren, Weihua Leng, Petra Kiesel, Jonathan N. Wells, Laura C. Murphy and collaborators</p>
+            <p class="publication-authors"><strong>Tooba Quidwai</strong>, Emma A. Hall, Margaret A. Keighren, Weihua Leng, Petra Kiesel, Jonathan N. Wells, Laura C. Murphy, et al.</p>
             <ul class="meta-list">
               <li><span class="meta-chip">bioRxiv</span></li>
               <li><span class="meta-chip">2020</span></li>
               <li><span class="meta-chip">Preprint</span></li>
-              <li><span class="meta-chip">3 citations</span></li>
             </ul>
-            <p class="publication-meta">Preprint version of the WDR35 trafficking story before journal publication.</p>
+            <p class="publication-meta">Preprint version of the WDR35 trafficking study published later in eLife.</p>
           </article>
           <article class="publication-item">
             <h3 class="publication-title">A WDR35-dependent coat protein complex transports ciliary membrane cargo vesicles to cilia</h3>
-            <p class="publication-authors"><strong>Tooba Quidwai</strong>, Jiaolong Wang, Emma A. Hall, Narcis Adrian Petriman, Weihua Leng, Petra Kiesel, Jonathan N. Wells and collaborators</p>
+            <p class="publication-authors"><strong>Tooba Quidwai</strong>, Jiaolong Wang, Emma A. Hall, Narcis Adrian Petriman, Weihua Leng, Petra Kiesel, Jonathan N. Wells, et al.</p>
             <ul class="meta-list">
               <li><span class="meta-chip">Molecular Biology of the Cell</span></li>
               <li><span class="meta-chip">2023</span></li>
@@ -1283,8 +1247,8 @@
 
       <section class="section-card" id="talks-awards" data-reveal>
         <div class="section-heading">
-          <h2>Talks, awards, and scholarly visibility</h2>
-          <p>Academic visibility framed through invited talks, fellowships, and training contributions.</p>
+          <h2>Talks, honors, and teaching</h2>
+          <p>Selected presentations, fellowship support, and teaching-related contributions.</p>
         </div>
         <div class="stack-grid">
           <article class="stack-column">
@@ -1297,9 +1261,9 @@
             </ul>
           </article>
           <article class="stack-column">
-            <h3>Fellowships and awards</h3>
+            <h3>Fellowships and distinctions</h3>
             <ul>
-              <li>MSCA postdoctoral fellowship Seal of Excellence, 2026.</li>
+              <li>MSCA postdoctoral fellowship application, Seal of Excellence, 2026.</li>
               <li>EMBO Short-Term Fellowship, 2018.</li>
               <li>Howard Hughes and Helmsley travel awards, 2016.</li>
               <li>ESRIC and MRC PhD fellowship support, 2015 to 2018.</li>
@@ -1318,8 +1282,8 @@
 
       <section class="section-card" id="skills" data-reveal>
         <div class="section-heading">
-          <h2>Technical platforms</h2>
-          <p>Capabilities grouped into research platforms rather than a flat keyword wall.</p>
+          <h2>Methods</h2>
+          <p>Experimental and analytical methods used across cilia biology, imaging, and cell biology.</p>
         </div>
         <div class="stack-grid">
           <article class="stack-column">
@@ -1351,8 +1315,8 @@
 
       <section class="section-card" id="education-status" data-reveal>
         <div class="section-heading">
-          <h2>Education and current trajectory</h2>
-          <p>Training context and current grant-linked trajectory placed near the end of the page for academic completeness.</p>
+          <h2>Education and current work</h2>
+          <p>Academic training and current proposal-stage collaborations.</p>
         </div>
         <div class="stack-grid">
           <article class="stack-column">
@@ -1366,7 +1330,8 @@
           <article class="stack-column">
             <h3>Current status</h3>
             <ul>
-              <li>Contributing remotely to grant development, including DFF1-2025 and MSCA-linked projects with collaborators at the University of Copenhagen.</li>
+              <li>Contributing remotely to grant development, including DFF1-2025 and MSCA-related proposals with collaborators at the University of Copenhagen.</li>
+              <li>Related work with University of Copenhagen collaborators remains at the grant proposal stage.</li>
               <li>Continuing public and scientific outreach through invited seminars and interdisciplinary dialogue.</li>
               <li>Expanding expertise through coursework in computational biology, disease mechanisms, imaging, and science communication.</li>
             </ul>
@@ -1376,59 +1341,18 @@
             <ul>
               <li>International track record across India, Germany, the UK, and the USA.</li>
               <li>Methods spanning molecular biology, imaging, structural interpretation, and disease models.</li>
-              <li>Work positioned between foundational cell biology and translational mechanism.</li>
+              <li>Work positioned between foundational cell biology and disease mechanism.</li>
             </ul>
           </article>
         </div>
       </section>
 
-      <section class="section-card" id="site-index" data-reveal>
-        <div class="section-heading">
-          <h2>Site index</h2>
-          <p>A compact webmaster-style map of internal sections, profiles, and canonical paper links.</p>
-        </div>
-        <div class="index-grid">
-          <article class="index-column">
-            <h3>Internal sections</h3>
-            <ul>
-              <li><a href="#about">Research profile</a></li>
-              <li><a href="#highlights">Research themes</a></li>
-              <li><a href="#experience">Experience timeline</a></li>
-              <li><a href="#publications">Publications and paper figures</a></li>
-              <li><a href="#talks-awards">Talks, awards, and scholarly visibility</a></li>
-              <li><a href="#skills">Technical platforms</a></li>
-              <li><a href="#education-status">Education and current trajectory</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </article>
-          <article class="index-column">
-            <h3>Profiles and contact</h3>
-            <ul>
-              <li><a href="mailto:tooba.quidwai@bio.ku.dk">Email contact</a></li>
-              <li><a href="https://scholar.google.com/citations?user=z7wjJ34AAAAJ&amp;hl=en" target="_blank" rel="noreferrer">Google Scholar</a></li>
-              <li><a href="https://www.linkedin.com/in/tooba-quidwai/" target="_blank" rel="noreferrer">LinkedIn</a></li>
-              <li><a href="https://www.researchgate.net/scientific-contributions/Tooba-Quidwai-2126076413" target="_blank" rel="noreferrer">ResearchGate</a></li>
-            </ul>
-          </article>
-          <article class="index-column">
-            <h3>Canonical paper links</h3>
-            <ul>
-              <li><a href="https://elifesciences.org/articles/69786" target="_blank" rel="noreferrer">WDR35 eLife paper</a></li>
-              <li><a href="https://elifesciences.org/articles/79299" target="_blank" rel="noreferrer">Centriolar satellites eLife paper</a></li>
-              <li><a href="https://pubs.rsc.org/en/content/articlelanding/2017/sc/c6sc02088g" target="_blank" rel="noreferrer">Chemical Science paper</a></li>
-              <li><a href="https://doi.org/10.1016/j.ajhg.2017.03.008" target="_blank" rel="noreferrer">AJHG paper</a></li>
-              <li><a href="https://www.biorxiv.org/content/10.1101/413377v1" target="_blank" rel="noreferrer">Platelet mechanics preprint</a></li>
-              <li><a href="https://www.biorxiv.org/content/10.1101/2020.12.22.423978v1" target="_blank" rel="noreferrer">WDR35 preprint</a></li>
-            </ul>
-          </article>
-        </div>
-      </section>
     </main>
 
     <footer class="section-card" id="contact" data-reveal>
       <div class="section-heading">
         <h2>Contact</h2>
-        <p>A concise academic contact block with public links and a clear way to continue the conversation.</p>
+        <p>Please reach out for collaborations, invited talks, or research discussions.</p>
       </div>
       <div class="contact-grid">
         <article class="contact-card">
@@ -1442,9 +1366,9 @@
           </ul>
         </article>
         <article class="contact-card">
-          <h3>Site notes</h3>
-          <p>This homepage is structured as a compact research exhibition: one dominant visual thesis, one publication dossier, one support layer of experience and methods, and one visible site index to keep the web structure legible.</p>
-          <p class="small-note">Last updated March 26, 2026.</p>
+          <h3>Current work</h3>
+          <p>I am currently contributing to grant development and continuing research outreach through invited seminars and interdisciplinary dialogue.</p>
+          <p class="small-note">Last updated March 25, 2026.</p>
         </article>
       </div>
     </footer>

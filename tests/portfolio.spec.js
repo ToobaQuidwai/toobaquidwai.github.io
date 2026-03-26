@@ -25,31 +25,29 @@ test.describe("portfolio page", () => {
 
     await expect(page).toHaveTitle(/Tooba Quidwai/i);
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "Researching cilia"
+      "I study cilia"
     );
+    await expect(page.getByText("Dr. Tooba Quidwai").first()).toBeVisible();
     await expect(page.getByRole("link", { name: /contact by email/i })).toBeVisible();
     await expect(page.locator("#about")).toBeVisible();
     await expect(page.locator("#highlights")).toBeVisible();
     await expect(page.locator("#experience")).toBeVisible();
     await expect(page.locator("#publications")).toBeVisible();
     await expect(page.locator("#skills")).toBeVisible();
-    await expect(page.locator("#site-index")).toBeVisible();
+    await expect(page.locator("#education-status")).toBeVisible();
     await expect(page.locator("#contact")).toBeVisible();
   });
 
-  test("shows updated scholar metrics and publication evidence", async ({ page }) => {
+  test("shows publication evidence and separates publication types clearly", async ({ page }) => {
     await page.goto(pageUrl);
 
-    await expect(page.getByText("218").first()).toBeVisible();
-    await expect(page.getByText("Google Scholar h-index")).toBeVisible();
-    await expect(page.getByText("Google Scholar i10-index")).toBeVisible();
-    await expect(page.getByText("43 citations").first()).toBeVisible();
-    await expect(page.getByText("69 citations").first()).toBeVisible();
     await expect(page.locator("#publications img[src*='wdr35-main-localization.png']")).toBeVisible();
     await expect(page.locator("#publications img[src*='wdr35-main-em.png']")).toBeVisible();
     await expect(page.locator("#publications img[src*='caged-main-activation.png']")).toBeVisible();
     await expect(page.locator("#publications img[src*='caged-main-palm.png']")).toBeVisible();
-    await expect(page.getByText("Featured study: WDR35 and ciliary cargo transport")).toBeVisible();
+    await expect(page.getByText("Peer-reviewed articles")).toBeVisible();
+    await expect(page.getByText("Preprints and other scholarly outputs")).toBeVisible();
+    await expect(page.getByText("WDR35-dependent transport of ciliary membrane cargo")).toBeVisible();
   });
 
   test("navigation links and external profile links are wired correctly", async ({ page }) => {
@@ -114,7 +112,7 @@ test.describe("portfolio page", () => {
     const toggle = page.getByRole("button", { name: "Menu" });
     if (await toggle.isVisible()) {
       await toggle.click();
-      await page.getByRole("link", { name: "Talks & Awards" }).click();
+      await page.getByRole("link", { name: "Talks" }).click();
       await expect(page).toHaveURL(/#talks-awards$/);
     } else {
       await expect(page.locator(".nav-links")).toBeVisible();
@@ -141,13 +139,13 @@ test.describe("portfolio page", () => {
     }
   });
 
-  test("hero-adjacent content is visibly rendered on first load", async ({ page }) => {
+  test("hero content is visibly rendered on first load", async ({ page }) => {
     await page.goto(pageUrl);
 
-    const metrics = page.locator(".metrics");
-    await expect(metrics).toBeVisible();
+    const heroSummary = page.locator(".hero-summary");
+    await expect(heroSummary).toBeVisible();
 
-    const styles = await metrics.evaluate((node) => {
+    const styles = await heroSummary.evaluate((node) => {
       const computed = window.getComputedStyle(node);
       return {
         opacity: computed.opacity,
