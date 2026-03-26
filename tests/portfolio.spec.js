@@ -26,10 +26,11 @@ test.describe("portfolio page", () => {
     await expect(page.getByText("218").first()).toBeVisible();
     await expect(page.getByText("Google Scholar h-index")).toBeVisible();
     await expect(page.getByText("Google Scholar i10-index")).toBeVisible();
-    await expect(page.getByText("43 citations")).toBeVisible();
-    await expect(page.getByText("69 citations")).toBeVisible();
+    await expect(page.getByText("43 citations").first()).toBeVisible();
+    await expect(page.getByText("69 citations").first()).toBeVisible();
     await expect(page.locator('img[src*="wdr35-fig-02.png"]')).toBeVisible();
     await expect(page.locator('img[src*="caged-fig-03.png"]')).toBeVisible();
+    await expect(page.getByText("Featured study: WDR35 and ciliary cargo transport")).toBeVisible();
   });
 
   test("desktop navigation links and external profile links are wired correctly", async ({ page, isMobile }) => {
@@ -76,7 +77,7 @@ test.describe("portfolio page", () => {
     await page.goto(pageUrl);
 
     const images = page.locator("img");
-    await expect(images).toHaveCount(2);
+    await expect(images).toHaveCount(4);
 
     const imageStates = await images.evaluateAll((nodes) =>
       nodes.map((node) => ({
