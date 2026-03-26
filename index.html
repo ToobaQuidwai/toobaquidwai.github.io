@@ -16,17 +16,18 @@
   >
   <style>
     :root {
-      --bg: #071017;
-      --bg-soft: #0d1820;
-      --text: #eff5f6;
-      --muted: #9ab0bb;
-      --soft: #dce7eb;
-      --accent: #92d8ca;
-      --accent-gold: #d9b16f;
-      --line: rgba(214, 230, 236, 0.12);
-      --line-strong: rgba(214, 230, 236, 0.22);
-      --surface: rgba(255, 255, 255, 0.035);
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+      --bg: #071015;
+      --bg-soft: #0c181c;
+      --text: #f2eee6;
+      --muted: #9caeb4;
+      --soft: #e2dbcf;
+      --accent: #80c8bb;
+      --accent-gold: #c89a5b;
+      --paper: #f0e6d5;
+      --line: rgba(240, 230, 213, 0.12);
+      --line-strong: rgba(240, 230, 213, 0.24);
+      --surface: rgba(240, 230, 213, 0.04);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
       --max: 1220px;
       --display: "Newsreader", Georgia, serif;
       --body: "Manrope", sans-serif;
@@ -47,9 +48,10 @@
       font-family: var(--body);
       color: var(--text);
       background:
-        radial-gradient(circle at 12% 10%, rgba(146, 216, 202, 0.12), transparent 24%),
-        radial-gradient(circle at 86% 18%, rgba(217, 177, 111, 0.1), transparent 22%),
-        linear-gradient(180deg, #050d13 0%, #09131b 48%, #0a141c 100%);
+        radial-gradient(circle at 12% 10%, rgba(128, 200, 187, 0.13), transparent 24%),
+        radial-gradient(circle at 86% 18%, rgba(200, 154, 91, 0.12), transparent 22%),
+        radial-gradient(circle at 50% 120%, rgba(240, 230, 213, 0.05), transparent 30%),
+        linear-gradient(180deg, #050c11 0%, #091219 46%, #0b1418 100%);
       line-height: 1.6;
     }
 
@@ -59,8 +61,8 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+        linear-gradient(rgba(240, 230, 213, 0.013) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240, 230, 213, 0.013) 1px, transparent 1px);
       background-size: 32px 32px;
       mask-image: radial-gradient(circle at center, black 38%, transparent 85%);
       opacity: 0.28;
@@ -94,7 +96,8 @@
       padding: 0.92rem 1rem;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(5, 13, 19, 0.68);
+      background:
+        linear-gradient(180deg, rgba(9, 17, 23, 0.86), rgba(6, 12, 17, 0.72));
       backdrop-filter: blur(18px);
       box-shadow: var(--shadow);
     }
@@ -147,7 +150,7 @@
 
     .nav-links a:hover,
     .nav-links a:focus-visible {
-      background: rgba(146, 216, 202, 0.08);
+      background: rgba(240, 230, 213, 0.07);
       color: var(--text);
       transform: translateY(-1px);
     }
@@ -173,15 +176,15 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(4, 9, 13, 0.86) 0%, rgba(4, 9, 13, 0.72) 32%, rgba(4, 9, 13, 0.4) 58%, rgba(4, 9, 13, 0.2) 100%),
-        linear-gradient(180deg, rgba(4, 9, 13, 0.22) 0%, rgba(4, 9, 13, 0.45) 100%);
+        linear-gradient(90deg, rgba(5, 10, 13, 0.9) 0%, rgba(5, 10, 13, 0.76) 32%, rgba(5, 10, 13, 0.46) 58%, rgba(5, 10, 13, 0.24) 100%),
+        linear-gradient(180deg, rgba(200, 154, 91, 0.08) 0%, rgba(5, 10, 13, 0.5) 100%);
     }
 
     .hero-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: saturate(0.95) contrast(1.04);
+      filter: saturate(0.84) contrast(1.05) sepia(0.08);
     }
 
     .hero-media .secondary {
@@ -292,12 +295,12 @@
 
     .btn-primary {
       border: 1px solid rgba(217, 177, 111, 0.34);
-      background: linear-gradient(135deg, rgba(146, 216, 202, 0.16), rgba(217, 177, 111, 0.16));
+      background: linear-gradient(135deg, rgba(128, 200, 187, 0.16), rgba(200, 154, 91, 0.18));
     }
 
     .btn-secondary {
       border: 1px solid var(--line-strong);
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(240, 230, 213, 0.04);
       color: var(--soft);
     }
 
@@ -364,7 +367,7 @@
       padding: 0.62rem 0.82rem;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(240, 230, 213, 0.04);
       text-decoration: none;
       color: var(--soft);
       font-size: 0.87rem;
@@ -423,6 +426,15 @@
     .section-card {
       padding: 2.1rem 0;
       border-top: 1px solid var(--line);
+      position: relative;
+    }
+
+    .section-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(240, 230, 213, 0.018), transparent 48%);
+      pointer-events: none;
     }
 
     .section-heading {
@@ -497,6 +509,17 @@
     .theme-card {
       padding: 0.95rem 0 0;
       border-top: 1px solid var(--line);
+      position: relative;
+    }
+
+    .theme-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -1px;
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
     }
 
     .theme-label {
@@ -543,7 +566,8 @@
       position: relative;
       overflow: hidden;
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.025);
+      background:
+        linear-gradient(180deg, rgba(240, 230, 213, 0.035), rgba(240, 230, 213, 0.015));
     }
 
     .figure-card img {
@@ -560,6 +584,7 @@
     .figure-caption {
       padding: 0.95rem 0 0;
       border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(240, 230, 213, 0.025), transparent);
     }
 
     .figure-caption h4 {
@@ -576,6 +601,17 @@
     .publication-item {
       padding-top: 1rem;
       border-top: 1px solid var(--line);
+      position: relative;
+    }
+
+    .publication-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -1px;
+      width: 56px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-gold), transparent);
     }
 
     .publication-title {
@@ -650,6 +686,19 @@
     .contact-card {
       padding-top: 0.95rem;
       border-top: 1px solid var(--line);
+      position: relative;
+    }
+
+    .stack-column::before,
+    .index-column::before,
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -1px;
+      width: 42px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
     }
 
     .stack-column h3,
