@@ -45,10 +45,10 @@ test.describe("portfolio page", () => {
     await expect(page.getByText("Google Scholar i10-index")).toBeVisible();
     await expect(page.getByText("43 citations").first()).toBeVisible();
     await expect(page.getByText("69 citations").first()).toBeVisible();
-    await expect(page.locator('img[src*="wdr35-main-localization.png"]')).toBeVisible();
-    await expect(page.locator('img[src*="wdr35-main-em.png"]')).toBeVisible();
-    await expect(page.locator('img[src*="caged-main-activation.png"]')).toBeVisible();
-    await expect(page.locator('img[src*="caged-main-palm.png"]')).toBeVisible();
+    await expect(page.locator("#publications img[src*='wdr35-main-localization.png']")).toBeVisible();
+    await expect(page.locator("#publications img[src*='wdr35-main-em.png']")).toBeVisible();
+    await expect(page.locator("#publications img[src*='caged-main-activation.png']")).toBeVisible();
+    await expect(page.locator("#publications img[src*='caged-main-palm.png']")).toBeVisible();
     await expect(page.getByText("Featured study: WDR35 and ciliary cargo transport")).toBeVisible();
   });
 
@@ -98,7 +98,7 @@ test.describe("portfolio page", () => {
     await page.goto(pageUrl);
 
     const images = page.locator("img");
-    await expect(images).toHaveCount(4);
+    await expect(images).toHaveCount(6);
 
     const imageStates = await images.evaluateAll((nodes) =>
       nodes.map((node) => ({
