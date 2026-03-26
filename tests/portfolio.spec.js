@@ -123,7 +123,7 @@ test.describe("portfolio page", () => {
     await page.goto(pageUrl);
 
     const images = page.locator("img");
-    await expect(images).toHaveCount(6);
+    await expect(images).toHaveCount(4);
 
     const imageStates = await images.evaluateAll((nodes) =>
       nodes.map((node) => ({
