@@ -12,15 +12,22 @@ module.exports = defineConfig({
   },
   projects: [
     {
-      name: "chromium-desktop",
+      name: "laptop-chrome",
       use: {
         ...devices["Desktop Chrome"],
       },
     },
     {
+      name: "ipad-pro",
+      use: {
+        ...devices["iPad Pro 11"],
+        browserName: "chromium",
+      },
+    },
+    {
       name: "mobile-chrome",
       use: {
-        ...devices["Pixel 5"],
+        ...devices["Pixel 7"],
       },
     },
   ],
