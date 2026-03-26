@@ -164,9 +164,22 @@
       overflow: clip;
       border-bottom: 1px solid var(--line);
       background:
-        radial-gradient(circle at 15% 18%, rgba(128, 200, 187, 0.12), transparent 26%),
-        radial-gradient(circle at 84% 24%, rgba(167, 139, 99, 0.12), transparent 24%),
-        linear-gradient(180deg, rgba(7, 16, 21, 0.96) 0%, rgba(7, 16, 21, 0.92) 100%);
+        radial-gradient(circle at 18% 18%, rgba(128, 200, 187, 0.16), transparent 24%),
+        radial-gradient(circle at 78% 24%, rgba(167, 139, 99, 0.12), transparent 20%),
+        radial-gradient(circle at 52% 80%, rgba(240, 230, 213, 0.035), transparent 28%),
+        linear-gradient(180deg, rgba(7, 16, 21, 0.98) 0%, rgba(7, 16, 21, 0.94) 56%, rgba(8, 18, 24, 0.96) 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(transparent 0, transparent calc(100% - 1px), rgba(240, 230, 213, 0.05) calc(100% - 1px)),
+        repeating-linear-gradient(90deg, transparent 0 118px, rgba(240, 230, 213, 0.025) 118px 119px);
+      mask-image: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.72) 60%, transparent 100%);
+      opacity: 0.42;
     }
 
     .hero-inner {
@@ -176,32 +189,33 @@
       margin: 0 auto;
       min-height: calc(100svh - 5.6rem);
       display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(280px, 0.52fr);
-      align-items: end;
-      gap: 1.5rem;
-      padding-bottom: 2.2rem;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.58fr);
+      align-items: center;
+      gap: 3rem;
+      padding: 2.2rem 0 2.8rem;
     }
 
     .hero-copy {
-      max-width: 34rem;
+      max-width: 41rem;
       animation: hero-rise 900ms cubic-bezier(.2,.8,.2,1) both;
     }
 
     .scholar-name {
       display: block;
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.55rem;
       font-family: var(--display);
-      font-size: clamp(1.6rem, 2.5vw, 2.35rem);
+      font-size: clamp(1.95rem, 3vw, 2.8rem);
       line-height: 1;
       letter-spacing: -0.03em;
     }
 
     .scholar-role {
       display: block;
-      margin-bottom: 1rem;
+      max-width: 40rem;
+      margin-bottom: 1.15rem;
       color: var(--soft);
-      font-size: 0.95rem;
-      font-weight: 600;
+      font-size: 1rem;
+      font-weight: 500;
       letter-spacing: 0.01em;
     }
 
@@ -247,17 +261,17 @@
     }
 
     h1 {
-      max-width: 10ch;
-      margin-bottom: 1rem;
-      font-size: clamp(3.15rem, 7vw, 6.4rem);
+      max-width: 8.5ch;
+      margin-bottom: 1.1rem;
+      font-size: clamp(3.25rem, 6vw, 5.7rem);
       font-weight: 500;
     }
 
     .hero-summary {
-      max-width: 40rem;
-      margin-bottom: 1.3rem;
+      max-width: 35rem;
+      margin-bottom: 1.5rem;
       color: var(--soft);
-      font-size: 1.06rem;
+      font-size: 1.04rem;
     }
 
     .hero-summary strong {
@@ -301,23 +315,46 @@
     }
 
     .hero-side {
-      align-self: end;
-      margin-left: auto;
-      width: min(100%, 360px);
-      padding: 1.05rem 0 0;
+      align-self: center;
+      margin-left: 0;
+      width: 100%;
+      max-width: 390px;
+      padding: 0;
       animation: hero-rise 1100ms cubic-bezier(.2,.8,.2,1) both;
     }
 
     .hero-side-block {
-      border-top: 1px solid var(--line-strong);
-      padding-top: 1rem;
+      padding: 1.1rem 0 1rem;
       margin-bottom: 1rem;
+      border-top: 1px solid var(--line-strong);
+    }
+
+    .hero-side-block:first-child {
+      padding-top: 0;
+      border-top: 0;
     }
 
     .hero-side h2 {
-      margin-bottom: 0.4rem;
-      font-size: 1.65rem;
+      margin-bottom: 0.55rem;
+      font-size: 1.42rem;
       font-weight: 500;
+    }
+
+    .hero-panel {
+      padding: 1.45rem 1.35rem;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(240, 230, 213, 0.045), rgba(240, 230, 213, 0.018));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-list {
+      margin: 0;
+      padding-left: 1rem;
+      color: var(--muted);
+    }
+
+    .hero-list li + li {
+      margin-top: 0.6rem;
     }
 
     .hero-side p,
@@ -780,11 +817,13 @@
 
       .hero-inner {
         padding-bottom: 1.6rem;
+        gap: 1.8rem;
       }
 
       .hero-side {
         margin-left: 0;
         width: 100%;
+        max-width: none;
       }
     }
 
@@ -837,12 +876,12 @@
       .hero-inner {
         width: min(calc(100% - 1rem), var(--max));
         min-height: calc(100svh - 5.2rem);
-        padding-bottom: 1.2rem;
+        padding: 1.3rem 0 1.2rem;
       }
 
       h1 {
         max-width: none;
-        font-size: clamp(2.65rem, 14vw, 4rem);
+        font-size: clamp(2.85rem, 12vw, 4.4rem);
       }
 
       .hero-actions {
@@ -910,24 +949,26 @@
       </div>
 
       <aside class="hero-side">
-        <div class="hero-side-block">
-          <h2>Current focus</h2>
-          <p>My research has centered on ciliary transport, super-resolution imaging, and disease mechanisms in kidney and ciliopathy-related systems, with current work extending into grant development and cross-institution collaboration.</p>
-        </div>
-        <div class="hero-side-block">
-          <ul class="inline-links">
-            <li><a href="mailto:tooba.quidwai@bio.ku.dk">tooba.quidwai@bio.ku.dk</a></li>
-            <li><a href="https://scholar.google.com/citations?user=z7wjJ34AAAAJ&amp;hl=en" target="_blank" rel="noreferrer">Google Scholar</a></li>
-            <li><a href="https://www.linkedin.com/in/tooba-quidwai/" target="_blank" rel="noreferrer">LinkedIn</a></li>
-          </ul>
-        </div>
-        <div class="hero-side-block">
-          <ul class="tag-list" aria-label="Research areas">
-            <li><span>Cilia biology</span></li>
-            <li><span>Membrane trafficking</span></li>
-            <li><span>Super-resolution imaging</span></li>
-            <li><span>Kidney and ciliopathy biology</span></li>
-          </ul>
+        <div class="hero-panel">
+          <div class="hero-side-block">
+            <h2>Current focus</h2>
+            <p>My research centers on ciliary transport, super-resolution imaging, and disease mechanisms in kidney and ciliopathy-related systems.</p>
+          </div>
+          <div class="hero-side-block">
+            <h2>Current work</h2>
+            <ul class="hero-list">
+              <li>Grant development and proposal-stage collaboration with University of Copenhagen researchers.</li>
+              <li>Selected publications in eLife, Chemical Science, and AJHG.</li>
+              <li>Experience across India, Germany, the United Kingdom, and the United States.</li>
+            </ul>
+          </div>
+          <div class="hero-side-block">
+            <ul class="inline-links">
+              <li><a href="mailto:tooba.quidwai@bio.ku.dk">tooba.quidwai@bio.ku.dk</a></li>
+              <li><a href="https://scholar.google.com/citations?user=z7wjJ34AAAAJ&amp;hl=en" target="_blank" rel="noreferrer">Google Scholar</a></li>
+              <li><a href="https://www.linkedin.com/in/tooba-quidwai/" target="_blank" rel="noreferrer">LinkedIn</a></li>
+            </ul>
+          </div>
         </div>
       </aside>
     </div>
