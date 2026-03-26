@@ -3,1670 +3,1263 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tooba Quidwai, PhD — Cilia · Imaging · Genomics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Dr. Tooba Quidwai | Cilia Biology, Imaging, and Translational Disease Models</title>
+  <meta
+    name="description"
+    content="Portfolio of Dr. Tooba Quidwai, a molecular and cell biologist focused on cilia biology, advanced imaging, vesicular trafficking, and translational disease models."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,700&amp;family=Manrope:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap"
+    rel="stylesheet"
+  >
   <style>
     :root {
-      --bg-primary: #0a0f0d;
-      --bg-secondary: #0f1613;
-      --bg-card: #131c18;
-      --bg-card-hover: #172320;
-      --border: #1e3029;
-      --border-light: #264035;
-      --accent: #3ecf8e;
-      --accent-dim: #2a9d6c;
-      --accent-glow: rgba(62, 207, 142, 0.12);
-      --accent-glow-strong: rgba(62, 207, 142, 0.25);
-      --text-primary: #e8ede9;
-      --text-secondary: #8fa698;
-      --text-muted: #5c7a69;
-      --text-accent: #3ecf8e;
-      --highlight: #f0c674;
-      --highlight-dim: rgba(240, 198, 116, 0.15);
-      --coral: #e06c75;
-      --lavender: #b4a7d6;
-      --sky: #6cc3d5;
-      --font-display: 'Newsreader', Georgia, serif;
-      --font-body: 'DM Sans', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --bg: #071119;
+      --bg-soft: #0d1823;
+      --panel: rgba(13, 24, 35, 0.86);
+      --panel-strong: rgba(17, 31, 44, 0.94);
+      --line: rgba(141, 173, 189, 0.18);
+      --line-strong: rgba(141, 173, 189, 0.35);
+      --text: #ebf0f4;
+      --muted: #9eb2c0;
+      --soft: #c9d6de;
+      --accent: #86d5c2;
+      --accent-strong: #d8ad67;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1180px;
+      --display: "Newsreader", Georgia, serif;
+      --body: "Manrope", sans-serif;
+      --mono: "IBM Plex Mono", monospace;
     }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      font-family: var(--font-body);
-      font-size: 15px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--body);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(134, 213, 194, 0.12), transparent 34%),
+        radial-gradient(circle at 85% 15%, rgba(216, 173, 103, 0.1), transparent 28%),
+        linear-gradient(180deg, #061018 0%, #071119 46%, #09141e 100%);
+      line-height: 1.6;
     }
 
-    /* ── Noise overlay ── */
     body::before {
-      content: '';
+      content: "";
       position: fixed;
       inset: 0;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
       pointer-events: none;
-      z-index: 9999;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(circle at center, black 38%, transparent 92%);
+      opacity: 0.32;
     }
 
-    /* ── Jekyll-style layout shell ── */
-    .jekyll-shell {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      min-height: 100vh;
+    a {
+      color: inherit;
     }
 
-    /* ── Sidebar ── */
-    .sidebar {
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page-shell {
+      width: min(calc(100% - 2.4rem), var(--max));
+      margin: 0 auto;
+      padding: 1.2rem 0 4rem;
+    }
+
+    .topbar {
       position: sticky;
       top: 0;
-      height: 100vh;
-      overflow-y: auto;
-      background: var(--bg-secondary);
-      border-right: 1px solid var(--border);
-      padding: 2.5rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      scrollbar-width: none;
+      z-index: 20;
+      margin: 0 auto 2rem;
+      padding-top: 0.8rem;
     }
-    .sidebar::-webkit-scrollbar { display: none; }
 
-    .sidebar-avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-dim), var(--sky));
+    .nav {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 2.2rem;
-      font-weight: 600;
-      color: var(--bg-primary);
-      margin: 0 auto 1.2rem;
-      box-shadow: 0 0 30px var(--accent-glow);
-      animation: pulse-glow 4s ease-in-out infinite;
-    }
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 30px var(--accent-glow); }
-      50% { box-shadow: 0 0 50px var(--accent-glow-strong); }
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.95rem 1rem;
+      background: rgba(6, 16, 24, 0.78);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
     }
 
-    .sidebar-name {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 600;
-      text-align: center;
-      line-height: 1.3;
-      margin-bottom: 0.3rem;
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.12rem;
+      min-width: 0;
     }
-    .sidebar-title {
-      font-size: 0.72rem;
+
+    .brand-kicker {
+      font: 500 0.68rem/1 var(--mono);
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: var(--text-muted);
-      text-align: center;
+      color: var(--accent);
+    }
+
+    .brand-name {
+      font: 600 0.96rem/1.2 var(--body);
+      white-space: nowrap;
+    }
+
+    .nav-toggle {
+      display: none;
+      border: 1px solid var(--line-strong);
+      background: transparent;
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.65rem 0.95rem;
+      font: 600 0.82rem/1 var(--body);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.55rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background: rgba(134, 213, 194, 0.08);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.78fr);
+      gap: 1.4rem;
       margin-bottom: 1.4rem;
     }
 
-    .sidebar-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      justify-content: center;
-      margin-bottom: 1.8rem;
-    }
-    .sidebar-tags span {
-      font-size: 0.65rem;
-      font-family: var(--font-mono);
-      padding: 3px 8px;
-      border-radius: 3px;
-      background: var(--accent-glow);
-      color: var(--accent);
-      border: 1px solid rgba(62, 207, 142, 0.15);
+    .hero-main,
+    .hero-side,
+    .section-card,
+    .highlight-card,
+    .timeline-item,
+    .publication-item,
+    .stack-card,
+    .spotlight-card,
+    .contact-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
     }
 
-    .sidebar-links {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 2rem;
-    }
-    .sidebar-links a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      text-decoration: none;
-      padding: 6px 10px;
-      border-radius: 6px;
-      transition: all 0.2s;
-    }
-    .sidebar-links a:hover {
-      background: var(--accent-glow);
-      color: var(--accent);
-    }
-    .sidebar-links a svg { flex-shrink: 0; }
-
-    .sidebar-nav {
-      margin-top: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .sidebar-nav a {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 7px 12px;
-      border-radius: 5px;
-      border-left: 2px solid transparent;
-      transition: all 0.2s;
-      font-weight: 500;
-    }
-    .sidebar-nav a:hover,
-    .sidebar-nav a.active {
-      color: var(--text-primary);
-      border-left-color: var(--accent);
-      background: var(--accent-glow);
-    }
-
-    /* ── Main content ── */
-    .main {
-      padding: 3rem 4rem 5rem;
-      max-width: 900px;
-    }
-
-    /* ── Hero ── */
-    .hero {
-      margin-bottom: 3.5rem;
-      animation: fadeUp 0.8s ease-out;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .hero-label {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: var(--accent);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .hero-label::before {
-      content: '';
-      width: 28px;
-      height: 1px;
-      background: var(--accent);
-    }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: 2.6rem;
-      font-weight: 300;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-    }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
-      font-weight: 400;
-    }
-    .hero-summary {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--text-secondary);
-      max-width: 600px;
-    }
-
-    /* ── Section headings ── */
-    .section {
-      margin-bottom: 3.5rem;
-      animation: fadeUp 0.8s ease-out both;
-    }
-    .section:nth-child(2) { animation-delay: 0.1s; }
-    .section:nth-child(3) { animation-delay: 0.15s; }
-    .section:nth-child(4) { animation-delay: 0.2s; }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 1.8rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .section-header h2 {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-    }
-    .section-header .count {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      padding: 2px 8px;
-      border-radius: 10px;
-      background: var(--accent-glow);
-      color: var(--accent);
-    }
-
-    /* ── Experience cards ── */
-    .exp-card {
+    .hero-main {
       position: relative;
-      padding: 1.4rem 1.6rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      transition: all 0.3s;
-      cursor: default;
+      padding: 3rem;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      isolation: isolate;
     }
-    .exp-card:hover {
-      border-color: var(--border-light);
-      background: var(--bg-card-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-    }
-    .exp-card-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.6rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .exp-role {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      font-weight: 600;
-    }
-    .exp-dates {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-    .exp-org {
-      font-size: 0.82rem;
-      margin-bottom: 0.5rem;
-    }
-    .exp-org a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px dotted var(--accent-dim);
-    }
-    .exp-org a:hover { border-bottom-style: solid; }
-    .exp-location {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-bottom: 0.8rem;
-    }
-    .exp-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .exp-bullets li {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      padding-left: 16px;
-      position: relative;
-    }
-    .exp-bullets li::before {
-      content: '›';
+
+    .hero-main::after {
+      content: "";
       position: absolute;
-      left: 0;
-      color: var(--accent-dim);
-      font-weight: 700;
+      inset: auto -8% -22% 25%;
+      height: 260px;
+      background: radial-gradient(circle, rgba(134, 213, 194, 0.16), transparent 68%);
+      z-index: -1;
     }
 
-    /* ── Current status badge ── */
-    .status-badge {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      padding: 3px 10px;
-      border-radius: 12px;
-      background: var(--highlight-dim);
-      color: var(--highlight);
-      margin-bottom: 0.6rem;
-    }
-    .status-badge::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--highlight);
-      animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+      font: 500 0.74rem/1 var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
     }
 
-    /* ── Timeline connector ── */
-    .timeline {
-      position: relative;
-      padding-left: 20px;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 12px;
-      bottom: 12px;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--accent), var(--border), transparent);
-    }
-    .timeline .exp-card {
-      margin-left: 0;
-    }
-    .timeline .exp-card::before {
-      content: '';
-      position: absolute;
-      left: -24px;
-      top: 24px;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 10px var(--accent-glow-strong);
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.7;
     }
 
-    /* ── Publications ── */
-    .pub-item {
-      padding: 1.2rem 1.4rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 0.8rem;
-      transition: all 0.3s;
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--display);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
     }
-    .pub-item:hover {
-      border-color: var(--border-light);
+
+    h1 {
+      max-width: 12ch;
+      margin-bottom: 1.2rem;
+      font-size: clamp(3rem, 5.7vw, 5.6rem);
+      font-weight: 500;
+    }
+
+    .hero-copy {
+      max-width: 62ch;
+      margin-bottom: 1.7rem;
+      color: var(--soft);
+      font-size: 1.06rem;
+    }
+
+    .hero-copy strong {
+      color: var(--text);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0.8rem 1.15rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
       transform: translateY(-1px);
     }
-    .pub-title {
-      font-family: var(--font-display);
-      font-size: 0.92rem;
-      font-weight: 500;
-      line-height: 1.5;
-      margin-bottom: 0.4rem;
-    }
-    .pub-title a {
-      color: var(--text-primary);
-      text-decoration: none;
-    }
-    .pub-title a:hover { color: var(--accent); }
-    .pub-authors {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-bottom: 0.4rem;
-      line-height: 1.5;
-    }
-    .pub-authors strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-    .pub-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .pub-journal {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-    }
-    .pub-year {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--text-muted);
-    }
-    .pub-cited {
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      padding: 2px 8px;
-      border-radius: 10px;
-      background: var(--highlight-dim);
-      color: var(--highlight);
-    }
-    .pub-type {
-      font-family: var(--font-mono);
-      font-size: 0.6rem;
-      padding: 2px 7px;
-      border-radius: 3px;
-      background: rgba(108, 195, 213, 0.12);
-      color: var(--sky);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(134, 213, 194, 0.18), rgba(216, 173, 103, 0.16));
+      color: var(--text);
+      border: 1px solid rgba(216, 173, 103, 0.34);
     }
 
-    /* ── Metrics row ── */
+    .btn-secondary {
+      border: 1px solid var(--line-strong);
+      color: var(--soft);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 1rem;
+      padding: 1.25rem;
+      border-radius: var(--radius-xl);
+      align-content: start;
+    }
+
+    .profile-badge {
+      padding: 1.1rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .profile-badge h2 {
+      font-size: 2rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .profile-badge p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .contact-list,
+    .tag-list,
+    .meta-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .contact-list a,
+    .tag-list span,
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0.65rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--soft);
+      text-decoration: none;
+      font-size: 0.88rem;
+    }
+
+    .tag-list span {
+      color: var(--muted);
+      font: 500 0.76rem/1.2 var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
     .metrics {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 1rem;
-      margin-bottom: 3.5rem;
+      margin: 0 0 1.4rem;
     }
-    .metric-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.4rem;
-      text-align: center;
-      transition: all 0.3s;
+
+    .metric {
+      padding: 1.3rem 1.2rem;
+      border-radius: var(--radius-lg);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
     }
-    .metric-card:hover {
-      border-color: var(--accent-dim);
-      box-shadow: 0 0 25px var(--accent-glow);
-    }
+
     .metric-value {
-      font-family: var(--font-display);
-      font-size: 2.2rem;
-      font-weight: 600;
-      color: var(--accent);
+      display: block;
+      margin-bottom: 0.35rem;
+      font-family: var(--display);
+      font-size: clamp(2rem, 3vw, 2.9rem);
       line-height: 1;
-      margin-bottom: 0.3rem;
+      color: var(--accent);
     }
+
     .metric-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-    }
-
-    /* ── Fellowships ── */
-    .fellowship-item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      padding: 0.9rem 1.2rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 8px;
-      transition: all 0.3s;
-    }
-    .fellowship-item:hover {
-      border-color: var(--border-light);
-      background: var(--bg-card-hover);
-    }
-    .fellowship-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: var(--highlight-dim);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--highlight);
-      font-size: 1rem;
-    }
-    .fellowship-body { flex: 1; }
-    .fellowship-name {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.85rem;
-      margin-bottom: 0.1rem;
-    }
-    .fellowship-detail {
-      font-size: 0.73rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-    .fellowship-year {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--text-muted);
-    }
-
-    /* ── Skills grid ── */
-    .skills-group {
-      margin-bottom: 1.6rem;
-    }
-    .skills-group-title {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
+      color: var(--muted);
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin-bottom: 0.7rem;
-    }
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .skill-tag {
-      font-size: 0.73rem;
-      padding: 5px 12px;
-      border-radius: 5px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      transition: all 0.2s;
-      cursor: default;
-    }
-    .skill-tag:hover {
-      border-color: var(--accent-dim);
-      color: var(--accent);
-      background: var(--accent-glow);
-    }
-    .skill-tag.highlight {
-      border-color: var(--accent-dim);
-      color: var(--accent);
     }
 
-    /* ── Conferences ── */
-    .conf-item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      padding: 1rem 1.2rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 8px;
-      transition: all 0.3s;
-    }
-    .conf-item:hover {
-      border-color: var(--border-light);
-      background: var(--bg-card-hover);
-    }
-    .conf-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: var(--accent-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--accent);
-    }
-    .conf-icon.talk { background: var(--highlight-dim); color: var(--highlight); }
-    .conf-icon.poster { background: rgba(108, 195, 213, 0.12); color: var(--sky); }
-    .conf-icon.course { background: rgba(180, 167, 214, 0.12); color: var(--lavender); }
-    .conf-body { flex: 1; }
-    .conf-name {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.88rem;
-      margin-bottom: 0.15rem;
-    }
-    .conf-name a {
-      color: var(--text-primary);
-      text-decoration: none;
-      border-bottom: 1px dotted var(--accent-dim);
-    }
-    .conf-name a:hover { color: var(--accent); border-bottom-style: solid; }
-    .conf-detail {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: var(--text-muted);
-      margin-bottom: 0.3rem;
-    }
-    .conf-desc {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-    .conf-tag {
-      font-family: var(--font-mono);
-      font-size: 0.58rem;
-      padding: 2px 6px;
-      border-radius: 3px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-left: 6px;
-    }
-    .conf-tag.invited { background: var(--highlight-dim); color: var(--highlight); }
-    .conf-tag.selected { background: rgba(108, 195, 213, 0.12); color: var(--sky); }
-    .conf-tag.poster-tag { background: rgba(180, 167, 214, 0.12); color: var(--lavender); }
-
-    /* ── Education ── */
-    .edu-item {
-      display: flex;
-      gap: 1.2rem;
-      align-items: flex-start;
-      padding: 1rem 0;
-    }
-    .edu-item + .edu-item { border-top: 1px solid var(--border); }
-    .edu-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 8px;
-      background: var(--accent-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .edu-icon svg { color: var(--accent); }
-    .edu-degree {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 0.15rem;
-    }
-    .edu-school {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-    .edu-school a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .edu-years {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: var(--text-muted);
-    }
-    .edu-thesis {
-      font-size: 0.73rem;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-top: 0.2rem;
+    .section-card {
+      margin-bottom: 1.4rem;
+      padding: 2rem;
+      border-radius: var(--radius-xl);
     }
 
-    /* ── Collaborators ── */
-    .collab-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-    }
-    .collab-item {
+    .section-heading {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: all 0.2s;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--line);
     }
-    .collab-item:hover {
-      border-color: var(--border-light);
-      background: var(--bg-card-hover);
-    }
-    .collab-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .collab-name {
-      font-size: 0.82rem;
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 500;
     }
-    .collab-aff {
-      font-size: 0.68rem;
-      color: var(--text-muted);
+
+    .section-heading p {
+      margin: 0;
+      max-width: 38ch;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: right;
     }
 
-    /* ── Recommendations ── */
-    .rec-card {
-      padding: 1.4rem 1.6rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.9fr);
+      gap: 1.3rem;
+    }
+
+    .lede {
+      font-size: 1.05rem;
+      color: var(--soft);
       margin-bottom: 1rem;
-      position: relative;
     }
-    .rec-card::before {
-      content: '\201C';
-      font-family: var(--font-display);
-      font-size: 3rem;
-      color: var(--accent-dim);
-      position: absolute;
-      top: 8px;
-      left: 16px;
-      opacity: 0.4;
+
+    .lede strong {
+      color: var(--text);
     }
-    .rec-text {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: 0.9rem;
-      line-height: 1.7;
-      color: var(--text-secondary);
-      padding-left: 24px;
-      margin-bottom: 0.8rem;
+
+    .note-panel {
+      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.07);
     }
-    .rec-author {
-      font-size: 0.78rem;
+
+    .note-panel h3 {
+      margin-bottom: 0.65rem;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    .note-panel p,
+    .note-panel li,
+    .text-block p,
+    .stack-card p,
+    .spotlight-card p,
+    .timeline-body p,
+    .publication-meta,
+    .list-block li,
+    .contact-card p {
+      color: var(--muted);
+    }
+
+    .list-block,
+    .timeline-points,
+    .spotlight-list,
+    .contact-list-plain {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+
+    .list-block li,
+    .timeline-points li,
+    .spotlight-list li,
+    .contact-list-plain li {
+      margin-bottom: 0.55rem;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .highlight-card {
+      padding: 1.35rem;
+      border-radius: var(--radius-lg);
+    }
+
+    .highlight-label {
+      display: inline-block;
+      margin-bottom: 0.65rem;
+      font: 500 0.72rem/1 var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-strong);
+    }
+
+    .highlight-card h3 {
+      margin-bottom: 0.7rem;
+      font-size: 1.55rem;
+      font-weight: 500;
+    }
+
+    .timeline-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 1.2rem;
+      padding: 1.4rem;
+      border-radius: var(--radius-lg);
+    }
+
+    .timeline-date {
+      font: 500 0.78rem/1.5 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .timeline-role {
+      margin-bottom: 0.25rem;
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+
+    .timeline-org {
+      margin-bottom: 0.7rem;
+      color: var(--soft);
       font-weight: 600;
-      padding-left: 24px;
-    }
-    .rec-role {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      padding-left: 24px;
     }
 
-    /* ── Outreach ── */
-    .outreach-item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      padding: 0.9rem 1.2rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 8px;
-      transition: all 0.3s;
-    }
-    .outreach-item:hover {
-      border-color: var(--border-light);
-      background: var(--bg-card-hover);
-    }
-    .outreach-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: rgba(224, 108, 117, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--coral);
+    .publication-list {
+      display: grid;
+      gap: 1rem;
     }
 
-    /* ── Footer ── */
-    .footer {
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .publication-visuals {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.2rem;
     }
-    .footer-text {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-    }
-    .footer-theme {
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .footer-theme svg { opacity: 0.5; }
 
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .jekyll-shell {
+    .publication-figure {
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .publication-figure img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: top center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .publication-figure figcaption {
+      padding: 1rem 1.1rem 1.1rem;
+    }
+
+    .publication-figure h3 {
+      margin-bottom: 0.45rem;
+      font-size: 1.35rem;
+      font-weight: 500;
+    }
+
+    .publication-figure p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .publication-item {
+      padding: 1.35rem 1.45rem;
+      border-radius: var(--radius-lg);
+    }
+
+    .publication-title {
+      margin-bottom: 0.45rem;
+      font-size: 1.45rem;
+      font-weight: 500;
+    }
+
+    .publication-title a {
+      text-decoration: none;
+    }
+
+    .publication-title a:hover,
+    .publication-title a:focus-visible {
+      color: var(--accent);
+    }
+
+    .publication-authors {
+      margin-bottom: 0.8rem;
+      color: var(--soft);
+      font-size: 0.96rem;
+    }
+
+    .publication-authors strong {
+      color: var(--accent);
+    }
+
+    .meta-list {
+      margin-bottom: 0.65rem;
+    }
+
+    .meta-chip {
+      font: 500 0.75rem/1.2 var(--mono);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .spotlight-grid,
+    .stack-grid,
+    .status-grid,
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .spotlight-card,
+    .stack-card,
+    .contact-card {
+      padding: 1.35rem;
+      border-radius: var(--radius-lg);
+    }
+
+    .spotlight-card h3,
+    .stack-card h3,
+    .contact-card h3 {
+      margin-bottom: 0.7rem;
+      font-size: 1.45rem;
+      font-weight: 500;
+    }
+
+    .stack-card h4 {
+      margin: 1rem 0 0.4rem;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
+
+    .stack-card h4:first-of-type {
+      margin-top: 0;
+    }
+
+    .status-grid {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    }
+
+    .footer-grid {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    }
+
+    .small-note {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    footer {
+      padding-bottom: 1rem;
+    }
+
+    @media (max-width: 1080px) {
+      .hero,
+      .about-layout,
+      .spotlight-grid,
+      .status-grid,
+      .footer-grid {
         grid-template-columns: 1fr;
       }
-      .sidebar {
-        position: relative;
-        height: auto;
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding: 1.5rem;
-        gap: 1rem;
-        align-items: center;
-        justify-content: center;
+
+      .metrics,
+      .highlights-grid,
+      .stack-grid,
+      .publication-visuals {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      .sidebar-avatar { margin: 0; }
-      .sidebar-nav { flex-direction: row; flex-wrap: wrap; margin-top: 0; }
-      .sidebar-tags { max-width: 100%; }
-      .main { padding: 2rem 1.5rem; }
-      .hero h1 { font-size: 1.8rem; }
-      .collab-grid { grid-template-columns: 1fr; }
-      .metrics { grid-template-columns: 1fr; }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .section-heading p {
+        text-align: left;
+      }
     }
 
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-primary); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--border-light); }
+    @media (max-width: 760px) {
+      .page-shell {
+        width: min(calc(100% - 1.1rem), var(--max));
+        padding-top: 0.5rem;
+      }
+
+      .nav {
+        align-items: start;
+        border-radius: 28px;
+        padding: 1rem;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        padding-top: 0.85rem;
+        border-top: 1px solid var(--line);
+        margin-top: 0.85rem;
+        justify-content: flex-start;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero-main,
+      .section-card {
+        padding: 1.35rem;
+      }
+
+      h1 {
+        max-width: none;
+        font-size: clamp(2.4rem, 11vw, 3.6rem);
+      }
+
+      .metrics,
+      .highlights-grid,
+      .stack-grid,
+      .spotlight-grid,
+      .publication-visuals {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
-
-<div class="jekyll-shell">
-
-  <!-- ═══════ SIDEBAR ═══════ -->
-  <aside class="sidebar">
-    <div class="sidebar-avatar">TQ</div>
-    <div class="sidebar-name">Tooba Quidwai, PhD</div>
-    <div class="sidebar-title">Cell &amp; Molecular Biologist</div>
-
-    <div class="sidebar-tags">
-      <span>cilia</span>
-      <span>imaging</span>
-      <span>genomics</span>
-      <span>cytoskeleton</span>
-      <span>kidney</span>
-      <span>obesity</span>
-      <span>drug dev</span>
-      <span>microtubules</span>
-    </div>
-
-    <div class="sidebar-links">
-      <a href="mailto:tquidwaiunipune@gmail.com">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
-        tquidwaiunipune@gmail.com
-      </a>
-      <a href="https://www.linkedin.com/in/tooba-quidwai-9a0a9b18a/" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://scholar.google.com/citations?user=z7wjJ34AAAAJ&hl=en" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-        Google Scholar
-      </a>
-      <a href="https://www.researchgate.net/scientific-contributions/Tooba-Quidwai-2126076413" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
-        ResearchGate
-      </a>
-      <a href="https://twitter.com/ToobaQuidwai" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
-        Twitter/X
-      </a>
-      <a href="https://bsky.app/profile/toobaquidwai.bsky.social" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M8 12l3 3 5-5"/></svg>
-        BlueSky
-      </a>
-      <a href="https://www.cilianetwork.org.uk/people/tquidwai" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-        UK Cilia Network
-      </a>
-      <a href="#">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        India · Open to Europe
-      </a>
-    </div>
-
-    <nav class="sidebar-nav">
-      <a href="#about" class="active">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#publications">Publications</a>
-      <a href="#fellowships">Fellowships</a>
-      <a href="#conferences">Talks &amp; Conferences</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-      <a href="#outreach">Outreach</a>
-      <a href="#collaborators">Collaborators</a>
-      <a href="#recommendations">Recommendations</a>
-    </nav>
-  </aside>
-
-  <!-- ═══════ MAIN CONTENT ═══════ -->
-  <main class="main">
-
-    <!-- HERO -->
-    <header class="hero" id="about">
-      <div class="hero-label">Research Portfolio</div>
-      <h1>Decoding <em>Cilia</em> — from molecular architecture to disease</h1>
-      <p class="hero-summary">
-        Biomedical scientist with over a decade of international research experience across India, the UK, Germany, and the USA. Expertise in ciliary biology, vesicular trafficking, proteomics, genomics, and advanced imaging (super-resolution microscopy, CLEM, 3D-TEM, STORM, SIM, FRAP, FRET). Focused on understanding defective cilia-associated disease mechanisms — from kidney cysts and obesity to blindness and cancer. Published in <em>eLife</em>, <em>AJHG</em>, and <em>Chemical Science</em>, with 258 total citations.
-      </p>
+  <div class="page-shell">
+    <header class="topbar">
+      <nav class="nav" aria-label="Primary">
+        <div class="brand">
+          <span class="brand-kicker">Research Portfolio</span>
+          <span class="brand-name">Dr. Tooba Quidwai</span>
+        </div>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+          Menu
+        </button>
+        <div class="nav-links" id="nav-links">
+          <a href="#about">About</a>
+          <a href="#highlights">Highlights</a>
+          <a href="#experience">Experience</a>
+          <a href="#publications">Publications</a>
+          <a href="#talks-awards">Talks &amp; Awards</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
     </header>
 
-    <!-- CITATION METRICS -->
-    <div class="metrics" id="metrics">
-      <div class="metric-card">
-        <div class="metric-value">258</div>
-        <div class="metric-label">Total Citations</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">5</div>
-        <div class="metric-label">h-index</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">7</div>
-        <div class="metric-label">Publications</div>
-      </div>
-    </div>
-
-    <!-- EXPERIENCE -->
-    <section class="section" id="experience">
-      <div class="section-header">
-        <h2>Experience</h2>
-        <span class="count">7 positions</span>
-      </div>
-
-      <div class="timeline">
-
-        <!-- Current status -->
-        <div class="exp-card">
-          <div class="status-badge">Current</div>
-          <div class="exp-card-head">
-            <div class="exp-role">Remote Research Contributor</div>
-            <div class="exp-dates">2023 – Present</div>
+    <main>
+      <section class="hero" id="top">
+        <div class="hero-main">
+          <div class="eyebrow">Molecular and Cell Biology</div>
+          <h1>Researching cilia, imaging cellular architecture, and translating disease mechanisms.</h1>
+          <p class="hero-copy">
+            Dr. Tooba Quidwai is a molecular and cell biologist with <strong>over a decade of international research experience</strong>
+            across India, Germany, the United Kingdom, and the United States. Her work brings together
+            <strong>cilia biology, vesicular trafficking, proteomics, genomics, and advanced imaging</strong> to study kidney disease,
+            obesity, metabolic disorders, and other ciliopathy-linked conditions.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:tooba.quidwai@bio.ku.dk">Contact by email</a>
+            <a class="btn btn-secondary" href="#publications">View selected publications</a>
           </div>
-          <div class="exp-org"><a href="https://www.ku.dk/english/" target="_blank">University of Copenhagen (remote)</a></div>
-          <div class="exp-location">India · Denmark (remote collaboration)</div>
-          <ul class="exp-bullets">
-            <li>Contributing remotely to international research grants: Danish DFF1-2025 and Marie Sk&#322;odowska-Curie Actions (MSCA)</li>
-            <li>Projects focus on obesity, kidney disease, and metabolic disorders</li>
-            <li>Secured seal of excellence certificate in MSCA-2026 Postdoctoral fellowship application</li>
-            <li>Pursuing upskilling in computational biology, cryo-EM, drug development, and science communication</li>
+        </div>
+
+        <aside class="hero-side" aria-label="Profile summary">
+          <div class="profile-badge">
+            <h2>Advanced imaging meets translational biology.</h2>
+            <p>
+              Super-resolution microscopy, CLEM, 3D-TEM, STORM, SIM, FRAP, FRET, mouse models,
+              proteomics, and structural interpretation across disease-relevant systems.
+            </p>
+          </div>
+
+          <ul class="contact-list">
+            <li><a href="mailto:tooba.quidwai@bio.ku.dk">tooba.quidwai@bio.ku.dk</a></li>
+            <li><a href="https://scholar.google.com/citations?user=z7wjJ34AAAAJ&amp;hl=en" target="_blank" rel="noreferrer">Google Scholar</a></li>
+            <li><a href="https://www.linkedin.com/in/tooba-quidwai/" target="_blank" rel="noreferrer">LinkedIn</a></li>
+            <li><a href="https://www.researchgate.net/scientific-contributions/Tooba-Quidwai-2126076413" target="_blank" rel="noreferrer">ResearchGate</a></li>
           </ul>
-        </div>
 
-        <div class="exp-card">
-          <div class="exp-card-head">
-            <div class="exp-role">Postdoctoral Researcher</div>
-            <div class="exp-dates">Aug 2021 – Aug 2023</div>
-          </div>
-          <div class="exp-org"><a href="https://www.umassmed.edu/" target="_blank">UMass Chan Medical School</a></div>
-          <div class="exp-location">Worcester, Massachusetts, USA</div>
-          <ul class="exp-bullets">
-            <li>Investigated Central Apparatus role in functional <em>Chlamydomonas</em> flagella formation via IP-MS (Prof. George Witman)</li>
-            <li>Studied ADAMTS9-mediated TMEM67 cleavage in Transition Zone Assembly — kidney cyst formation (Dr. Sumeda Nandadasa)</li>
-            <li>Explored molecular mechanisms of Primary Cilia Biogenesis using mouse and cell culture models</li>
+          <ul class="tag-list" aria-label="Research areas">
+            <li><span>Cilia Biology</span></li>
+            <li><span>Advanced Imaging</span></li>
+            <li><span>Vesicular Trafficking</span></li>
+            <li><span>Translational Models</span></li>
           </ul>
+        </aside>
+      </section>
+
+      <section class="metrics" aria-label="Key metrics">
+        <article class="metric">
+          <span class="metric-value">218</span>
+          <span class="metric-label">Google Scholar citations</span>
+        </article>
+        <article class="metric">
+          <span class="metric-value">4</span>
+          <span class="metric-label">Google Scholar h-index</span>
+        </article>
+        <article class="metric">
+          <span class="metric-value">4</span>
+          <span class="metric-label">Google Scholar i10-index</span>
+        </article>
+        <article class="metric">
+          <span class="metric-value">8</span>
+          <span class="metric-label">Works listed on profile</span>
+        </article>
+      </section>
+
+      <section class="section-card" id="about">
+        <div class="section-heading">
+          <h2>Research profile</h2>
+          <p>Editorial overview of the work, training, and scientific focus areas drawn directly from the resume.</p>
         </div>
 
-        <div class="exp-card">
-          <div class="exp-card-head">
-            <div class="exp-role">Bridging PostDoc</div>
-            <div class="exp-dates">Dec 2019 – Jul 2021</div>
+        <div class="about-layout">
+          <div class="text-block">
+            <p class="lede">
+              Her PhD at the University of Edinburgh identified a <strong>coatomer-like vesicle transport role for WDR35/IFT121</strong>,
+              combining 3D-TEM, correlative microscopy, mouse genetics, and proteomics to resolve how membrane cargo reaches the cilium.
+            </p>
+            <p class="lede">
+              Postdoctoral work at UMass Chan Medical School expanded that program into <strong>mouse models, Chlamydomonas biology, kidney cystogenesis,
+              and central apparatus biology</strong>, while earlier training at EMBL Heidelberg and the Max Planck Institute of Molecular Physiology built
+              a strong foundation in super-resolution imaging, signaling, and quantitative cell biology.
+            </p>
           </div>
-          <div class="exp-org"><a href="https://www.ed.ac.uk/mrc-human-genetics-unit" target="_blank">MRC IGMM, University of Edinburgh</a></div>
-          <div class="exp-location">Edinburgh, Scotland, UK</div>
-          <ul class="exp-bullets">
-            <li>Used electron microscopy and CLEM to confirm coatomer function of IFT-A complex protein WDR35</li>
-            <li>Performed super-resolution imaging of cGAS protein localization in the nucleus</li>
-            <li>Trained senior researchers in Prof. Yanick Crow lab in electron microscopy techniques</li>
+
+          <aside class="note-panel">
+            <h3>Core strengths</h3>
+            <ul class="list-block">
+              <li>Advanced imaging with super-resolution microscopy, CLEM, and electron microscopy.</li>
+              <li>Cross-disciplinary research spanning ciliary biology, proteomics, genomics, and disease models.</li>
+              <li>International collaboration across India, Germany, the UK, the USA, and current Copenhagen-linked grant efforts.</li>
+              <li>Public engagement through invited scientific talks and outreach in India and abroad.</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section-card" id="highlights">
+        <div class="section-heading">
+          <h2>Selected highlights</h2>
+          <p>Key proof points for publication record, scientific reach, fellowships, and current trajectory.</p>
+        </div>
+
+        <div class="highlights-grid">
+          <article class="highlight-card">
+            <span class="highlight-label">Publication record</span>
+            <h3>2 eLife papers</h3>
+            <p>Includes first-author work on WDR35-dependent ciliary membrane cargo transport and contributing author work on ciliogenesis.</p>
+          </article>
+
+          <article class="highlight-card">
+            <span class="highlight-label">Recognition</span>
+            <h3>Competitive fellowships</h3>
+            <p>EMBO Short-Term Fellowship, Howard Hughes and Helmsley travel awards, ESRIC and MRC support, and a 2026 MSCA Seal of Excellence.</p>
+          </article>
+
+          <article class="highlight-card">
+            <span class="highlight-label">Scientific visibility</span>
+            <h3>Invited and selected talks</h3>
+            <p>Talks include ASCB 2022, EMBO-related meetings, the BSCB GenSoc cilia meeting, and invited lectures in India in 2025.</p>
+          </article>
+
+          <article class="highlight-card">
+            <span class="highlight-label">Current direction</span>
+            <h3>Grant-linked research contributions</h3>
+            <p>Currently contributing remotely to international grant efforts on obesity, kidney disease, and metabolic disorders with collaborators at the University of Copenhagen.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card" id="experience">
+        <div class="section-heading">
+          <h2>Experience timeline</h2>
+          <p>Research appointments spanning immunology, signaling, imaging innovation, cilia biology, and translational disease models.</p>
+        </div>
+
+        <div class="timeline-grid">
+          <article class="timeline-item">
+            <div class="timeline-date">Aug 2021 - Sep 2023</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role">Postdoctoral Research Associate</h3>
+              <p class="timeline-org">UMass Chan Medical School, Worcester, Massachusetts, USA</p>
+              <ul class="timeline-points">
+                <li>Studied ciliary biology in Chlamydomonas and mouse models.</li>
+                <li>Investigated the central apparatus in flagellum function and ADAMTS9-mediated TMEM67 cleavage in kidney cystogenesis.</li>
+                <li>Used mouse genetics, kidney histology, 3D whole-kidney imaging, immunoprecipitation, mass spectrometry, and structural modeling.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-date">Dec 2019 - Jul 2021</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role">Bridging Postdoctoral Fellow</h3>
+              <p class="timeline-org">MRC Institute of Genetics &amp; Molecular Medicine, University of Edinburgh, UK</p>
+              <ul class="timeline-points">
+                <li>Used electron microscopy and CLEM to study WDR35 function and cGAS nuclear localization defects.</li>
+                <li>Worked with 3D-TEM, correlative microscopy, confocal imaging, and Airyscan microscopy.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-date">Sep 2015 - Dec 2019</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role">PhD Researcher</h3>
+              <p class="timeline-org">MRC Institute of Genetics &amp; Cancer, University of Edinburgh, UK</p>
+              <ul class="timeline-points">
+                <li>Combined imaging, mouse genetics, CRISPR-based genome engineering, proteomics, and structural modeling.</li>
+                <li>Identified the coatomer-like vesicle transport function of WDR35/IFT121 in cilia biology.</li>
+                <li>Contributed to additional projects involving PCM-1 and PLAA-linked disease biology.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-date">Apr 2014 - Sep 2015</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role">Visiting Scientist</h3>
+              <p class="timeline-org">European Molecular Biology Laboratory, Heidelberg, Germany</p>
+              <ul class="timeline-points">
+                <li>Optimized buffers, dyes, and protein tags for STORM and PALM super-resolution imaging.</li>
+                <li>Worked on dual-color and 3D PALM imaging of the platelet cytoskeleton with MATLAB and ImageJ-based analysis.</li>
+                <li>Contributed to work on caged fluorophores for live-cell PALM imaging.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-date">Jun 2012 - Mar 2014</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role">Visiting Scientist</h3>
+              <p class="timeline-org">Max Planck Institute of Molecular Physiology, Dortmund, Germany</p>
+              <ul class="timeline-points">
+                <li>Studied Ras pathway signaling, ciliation assays, and protein-protein interactions in hepatic carcinoma and MDCK cells.</li>
+                <li>Applied imaging, stable cell line work, RNAi, and cell proliferation assays to signal transduction questions.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-date">Sep 2010 - May 2012</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role">Junior Research Fellow</h3>
+              <p class="timeline-org">National Institute of Immunology, India</p>
+              <ul class="timeline-points">
+                <li>Studied functional domains of human guanylate binding protein hGBP1.</li>
+                <li>Used site-directed mutagenesis, protein purification, circular dichroism, and radioactive isotope-based GTPase assays.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card" id="publications">
+        <div class="section-heading">
+          <h2>Selected publications</h2>
+          <p>Updated with the Google Scholar profile details you shared, including citation counts and additional research outputs.</p>
+        </div>
+
+        <div class="publication-visuals">
+          <figure class="publication-figure">
+            <img src="assets/paper-previews/wdr35-fig-02.png" alt="Figure panel from the 2021 eLife WDR35 paper showing immunoprecipitation and microscopy results.">
+            <figcaption>
+              <h3>WDR35 eLife paper</h3>
+              <p>Figure page from the 2021 first-author eLife paper on ciliary membrane cargo transport, rendered from the local PDF in this repository.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="publication-figure">
+            <img src="assets/paper-previews/caged-fig-03.png" alt="Figure panel from the 2017 Chemical Science paper showing PALM super-resolution microscopy images.">
+            <figcaption>
+              <h3>Chemical Science imaging work</h3>
+              <p>Figure page from the 2017 Chemical Science paper highlighting PALM-based super-resolution microscopy results.</p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="publication-list">
+          <article class="publication-item">
+            <h3 class="publication-title">
+              <a href="https://doi.org/10.7554/eLife.69786" target="_blank" rel="noreferrer">
+                A WDR35-dependent coat protein complex transports ciliary membrane cargo vesicles to cilia
+              </a>
+            </h3>
+            <p class="publication-authors"><strong>Tooba Quidwai</strong>, Jiaolong Wang, Emma A. Hall, Narcis Adrian Petriman, Weihua Leng, Petra Kiesel, Jonathan N. Wells, Laura C. Murphy, Margaret A. Keighren, Joseph A. Marsh, Esben Lorentzen, Gaia Pigino, Pleasantine Mill</p>
+            <div class="meta-list">
+              <span class="meta-chip">eLife</span>
+              <span class="meta-chip">2021</span>
+              <span class="meta-chip">First author</span>
+              <span class="meta-chip">43 citations</span>
+            </div>
+            <p class="publication-meta">Combined ultrastructure, genetics, and proteomics to define a coatomer-like trafficking role for WDR35/IFT121 in ciliary membrane cargo delivery.</p>
+          </article>
+
+          <article class="publication-item">
+            <h3 class="publication-title">
+              <a href="https://doi.org/10.7554/eLife.79299" target="_blank" rel="noreferrer">
+                Centriolar satellites expedite mother centriole remodeling to promote ciliogenesis
+              </a>
+            </h3>
+            <p class="publication-authors">Emma A. Hall, Dhivya Kumar, Suzanna L. Prosser, Patricia L. Yeyati, Vicente Herranz-Perez, Jose Manuel Garcia-Verdugo, Lorraine Rose, Lisa McKie, Daniel O. Dodd, Peter A. Tennant, Roly Megaw, Laura C. Murphy, Marisa F. Ferreira, Graeme Grimes, Lucy Williams, <strong>Tooba Quidwai</strong>, Laurence Pelletier, Jeremy F. Reiter, Pleasantine Mill</p>
+            <div class="meta-list">
+              <span class="meta-chip">eLife</span>
+              <span class="meta-chip">2023</span>
+              <span class="meta-chip">Contributing author</span>
+              <span class="meta-chip">50 citations</span>
+            </div>
+            <p class="publication-meta">Contributing-author work connected to ciliogenesis and centriole remodeling.</p>
+          </article>
+
+          <article class="publication-item">
+            <h3 class="publication-title">
+              <a href="https://doi.org/10.1039/C6SC02088G" target="_blank" rel="noreferrer">
+                Specific protein labeling with caged fluorophores for dual-color imaging and super-resolution microscopy in living cells
+              </a>
+            </h3>
+            <p class="publication-authors">Sebastian Hauke, Alexander Von Appen, <strong>Tooba Quidwai</strong>, Jonas Ries, Richard Wombacher</p>
+            <div class="meta-list">
+              <span class="meta-chip">Chemical Science</span>
+              <span class="meta-chip">2017</span>
+              <span class="meta-chip">Co-author</span>
+              <span class="meta-chip">69 citations</span>
+            </div>
+            <p class="publication-meta">Methods-focused work supporting dual-color and live-cell super-resolution microscopy workflows.</p>
+          </article>
+
+          <article class="publication-item">
+            <h3 class="publication-title">
+              <a href="https://doi.org/10.1016/j.ajhg.2017.03.008" target="_blank" rel="noreferrer">
+                PLAA Mutations Cause a Lethal Infantile Epileptic Encephalopathy by Disrupting Ubiquitin-Mediated Endolysosomal Degradation of Synaptic Proteins
+              </a>
+            </h3>
+            <p class="publication-authors">Emma A. Hall, Michael S. Nahorski, Lyndsay M. Murray, Ranad Shaheen, Emma Perkins, Kosala N. Dissanayake, Yosua Kristaryanto, Ross A. Jones, Julie Vogt, Manon Rivagorda, Mark T. Handley, Girish R. Mali, <strong>Tooba Quidwai</strong>, Dinesh C. Soares, Margaret A. Keighren, Lisa McKie, Richard L. Mort, Noor Gammoh, Amaya Garcia-Munoz, Tracey Davey, Matthieu Vermeren, Diana Walsh, Peter Budd, Irene A. Aligianis, Eissa Faqeih, Alan J. Quigley, Ian J. Jackson, Yogesh Kulathu, Mandy Jackson, Richard R. Ribchester, Alex von Kriegsheim, Fowzan S. Alkuraya, C. Geoffrey Woods, Eamonn R. Maher, Pleasantine Mill</p>
+            <div class="meta-list">
+              <span class="meta-chip">American Journal of Human Genetics</span>
+              <span class="meta-chip">2017</span>
+              <span class="meta-chip">Contributing author</span>
+              <span class="meta-chip">50 citations</span>
+            </div>
+            <p class="publication-meta">Disease-mechanism study connecting PLAA mutations with lethal infantile epileptic encephalopathy.</p>
+          </article>
+
+          <article class="publication-item">
+            <h3 class="publication-title">
+              <a href="https://doi.org/10.1101/413377" target="_blank" rel="noreferrer">
+                Cytoskeleton mechanics determine resting size and activation dynamics of platelets
+              </a>
+            </h3>
+            <p class="publication-authors">Aastha Mathur, Sandra Raquel Correia, Serge Dmitrieff, Romain Gibeaux, Iana Kalinina, <strong>Tooba Quidwai</strong>, Jonas Ries, Francois Nedelec</p>
+            <div class="meta-list">
+              <span class="meta-chip">bioRxiv</span>
+              <span class="meta-chip">2018</span>
+              <span class="meta-chip">Preprint</span>
+              <span class="meta-chip">3 citations</span>
+            </div>
+            <p class="publication-meta">Preprint on platelet cytoskeleton mechanics and activation dynamics informed by advanced imaging.</p>
+          </article>
+
+          <article class="publication-item">
+            <h3 class="publication-title">
+              <a href="https://www.biorxiv.org/content/10.1101/2020.12.22.423978v1" target="_blank" rel="noreferrer">
+                A WDR35-dependent coatomer transports ciliary membrane proteins from the Golgi to the cilia
+              </a>
+            </h3>
+            <p class="publication-authors"><strong>Tooba Quidwai</strong>, Emma A. Hall, Margaret A. Keighren, Weihua Leng, Petra Kiesel, Jonathan N. Wells, Laura C. Murphy and collaborators</p>
+            <div class="meta-list">
+              <span class="meta-chip">bioRxiv</span>
+              <span class="meta-chip">2020</span>
+              <span class="meta-chip">Preprint</span>
+              <span class="meta-chip">3 citations</span>
+            </div>
+            <p class="publication-meta">Preprint version of the WDR35 trafficking story that was later developed into the 2021 eLife first-author paper.</p>
+          </article>
+
+          <article class="publication-item">
+            <h3 class="publication-title">A WDR35-dependent coat protein complex transports ciliary membrane cargo vesicles to cilia</h3>
+            <p class="publication-authors"><strong>Tooba Quidwai</strong>, Jiaolong Wang, Emma A. Hall, Narcis Adrian Petriman, Weihua Leng, Petra Kiesel, Jonathan N. Wells and collaborators</p>
+            <div class="meta-list">
+              <span class="meta-chip">Molecular Biology of the Cell</span>
+              <span class="meta-chip">2023</span>
+              <span class="meta-chip">Meeting abstract</span>
+            </div>
+            <p class="publication-meta">Conference abstract listed on the Google Scholar profile for the WDR35 ciliary cargo transport work.</p>
+          </article>
+
+          <article class="publication-item">
+            <h3 class="publication-title">Role of WDR35 in the formation of functional cilia</h3>
+            <p class="publication-authors"><strong>Tooba Quidwai</strong></p>
+            <div class="meta-list">
+              <span class="meta-chip">University of Edinburgh</span>
+              <span class="meta-chip">2020</span>
+              <span class="meta-chip">PhD thesis</span>
+            </div>
+            <p class="publication-meta">Doctoral thesis on WDR35 function in ciliary biogenesis and trafficking.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card" id="talks-awards">
+        <div class="section-heading">
+          <h2>Talks, awards, and outreach</h2>
+          <p>Selected talks, recognitions, and public engagement activities highlighted in the resume.</p>
+        </div>
+
+        <div class="spotlight-grid">
+          <article class="spotlight-card">
+            <h3>Invited and selected talks</h3>
+            <ul class="spotlight-list">
+              <li>ASCB Cell Biology Conference, Washington, DC - selected talk, 2022.</li>
+              <li>International Virtual Membrane Trafficking Seminar - invited talk, 2021.</li>
+              <li>BSCB GenSoc UK Cilia Spring Meeting - selected talk, 2020.</li>
+              <li>National Institute of Oceanography and BITS Pilani Goa - invited talks, July 2025.</li>
+            </ul>
+          </article>
+
+          <article class="spotlight-card">
+            <h3>Fellowships and awards</h3>
+            <ul class="spotlight-list">
+              <li>MSCA postdoctoral fellowship Seal of Excellence, 2026.</li>
+              <li>EMBO Short-Term Fellowship, 2018.</li>
+              <li>Howard Hughes and Helmsley travel awards, 2016.</li>
+              <li>ESRIC and MRC PhD fellowship support, 2015 to 2018.</li>
+            </ul>
+          </article>
+
+          <article class="spotlight-card">
+            <h3>Teaching and outreach</h3>
+            <ul class="spotlight-list">
+              <li>Trained peers and senior researchers in electron microscopy and advanced imaging.</li>
+              <li>Assisted with STORM microscopy instruction at the EMBO Single Molecule Course at EMBL.</li>
+              <li>Contributed to public-facing ciliopathy content and interdisciplinary scientific outreach.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card" id="skills">
+        <div class="section-heading">
+          <h2>Technical skills</h2>
+          <p>Condensed from the resume into grouped capabilities for imaging, biology, analysis, and model systems.</p>
+        </div>
+
+        <div class="stack-grid">
+          <article class="stack-card">
+            <h3>Imaging</h3>
+            <p>Confocal, super-resolution, and electron microscopy workflows built for mechanistic cell biology.</p>
+            <h4>Methods</h4>
+            <p>STORM, PALM, STED, SIM, CLEM, 3D-TEM, Airyscan, Hyvolution, deconvolution, FRAP, FRET.</p>
+            <h4>Software</h4>
+            <p>ImageJ, Imaris, Huygens, IMOD, tomography and segmentation tools.</p>
+          </article>
+
+          <article class="stack-card">
+            <h3>Molecular and cell biology</h3>
+            <p>Hands-on experimental range from cloning to proteomics and cell engineering.</p>
+            <h4>Core workflows</h4>
+            <p>CRISPR, cloning, PCR and RT-PCR, immunoprecipitation, mass spectrometry, western blotting, protein purification, ELISA, site-directed mutagenesis.</p>
+            <h4>Cell systems</h4>
+            <p>MEF, human fibroblasts, IMCD3, MDCK, HepG2, RP2, platelets, hematopoietic stem cells, and Chlamydomonas culture.</p>
+          </article>
+
+          <article class="stack-card">
+            <h3>Bioinformatics and software</h3>
+            <p>Structural interpretation and analysis support for imaging and proteomics-heavy projects.</p>
+            <h4>Analysis tools</h4>
+            <p>AlphaFold, Swiss Model, Phyre2, HHblits, PyMOL, Coot, MATLAB, and basic Python.</p>
+            <h4>Design and communication</h4>
+            <p>Adobe Photoshop, Illustrator, InDesign, Microsoft Office, and science communication coursework.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card" id="education-status">
+        <div class="section-heading">
+          <h2>Education and current status</h2>
+          <p>Formal training, current research contributions, and ongoing upskilling.</p>
+        </div>
+
+        <div class="status-grid">
+          <article class="spotlight-card">
+            <h3>Education</h3>
+            <ul class="spotlight-list">
+              <li>PhD, Genetics and Molecular Medicine, University of Edinburgh, 2015 to 2020.</li>
+              <li>MSc, Biotechnology, University of Pune, 2008 to 2010.</li>
+              <li>BSc, Botany, Zoology, Chemistry, Dr. Ram Manohar Lohia Avadh University, 2004 to 2007.</li>
+            </ul>
+          </article>
+
+          <article class="spotlight-card">
+            <h3>Current status</h3>
+            <ul class="spotlight-list">
+              <li>Contributing remotely to grant development, including DFF1-2025 and MSCA-linked projects with collaborators at the University of Copenhagen.</li>
+              <li>Engaging in public and scientific outreach with institutions in India through seminars and interdisciplinary dialogue.</li>
+              <li>Continuing coursework in computational biology, disease mechanisms, imaging, and science communication.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="section-card" id="contact">
+      <div class="section-heading">
+        <h2>Contact</h2>
+        <p>Public-facing contact kept intentionally concise for a portfolio site.</p>
+      </div>
+
+      <div class="footer-grid">
+        <article class="contact-card">
+          <h3>Get in touch</h3>
+          <p>For research collaboration, speaking opportunities, and academic conversations, email is the best first point of contact.</p>
+          <ul class="contact-list-plain">
+            <li><a href="mailto:tooba.quidwai@bio.ku.dk">tooba.quidwai@bio.ku.dk</a></li>
+            <li><a href="https://scholar.google.com/citations?user=z7wjJ34AAAAJ&amp;hl=en" target="_blank" rel="noreferrer">Google Scholar profile</a></li>
+            <li><a href="https://www.linkedin.com/in/tooba-quidwai/" target="_blank" rel="noreferrer">LinkedIn profile</a></li>
+            <li><a href="https://www.researchgate.net/scientific-contributions/Tooba-Quidwai-2126076413" target="_blank" rel="noreferrer">ResearchGate profile</a></li>
           </ul>
-        </div>
+        </article>
 
-        <div class="exp-card">
-          <div class="exp-card-head">
-            <div class="exp-role">PhD Researcher</div>
-            <div class="exp-dates">Sep 2015 – Jun 2020</div>
-          </div>
-          <div class="exp-org"><a href="https://www.ed.ac.uk/mrc-human-genetics-unit" target="_blank">MRC Institute of Genetics &amp; Cancer, University of Edinburgh</a></div>
-          <div class="exp-location">Edinburgh, UK &middot; Supervisor: Prof. Pleasantine Mill</div>
-          <ul class="exp-bullets">
-            <li>Discovered novel vesicular trafficking role for WDR35/IFT121, integrating 3D-TEM, CLEM, mouse genetics, and proteomics</li>
-            <li>Resolved coatomer-like functions at the cilium — revealed mid-gestation lethality in mutants</li>
-            <li>Discovered disrupted vesicular trafficking between Golgi apparatus and cilia</li>
-            <li>Contributed to research on PCM-1 (centriolar satellites) and ciliogenesis</li>
-          </ul>
-        </div>
-
-        <div class="exp-card">
-          <div class="exp-card-head">
-            <div class="exp-role">Visiting Scientist</div>
-            <div class="exp-dates">Apr 2014 – Sep 2015</div>
-          </div>
-          <div class="exp-org"><a href="https://www.embl.org/" target="_blank">European Molecular Biology Laboratory (EMBL)</a></div>
-          <div class="exp-location">Heidelberg, Germany &middot; Supervisor: Prof. Jonas Ries</div>
-          <ul class="exp-bullets">
-            <li>Optimized buffers, dyes (photoactivatable/convertible/caged) and protein tags (SNAP/Halo) for STORM/PALM imaging</li>
-            <li>Resolved platelet cytoskeleton in 3D dual-color PALM</li>
-            <li>Published novel caged dyes for live-cell PALM (<em>Chemical Science</em> 2017) and platelet cytoskeleton (<em>bioRxiv</em>)</li>
-          </ul>
-        </div>
-
-        <div class="exp-card">
-          <div class="exp-card-head">
-            <div class="exp-role">Visiting Scientist</div>
-            <div class="exp-dates">Jun 2012 – Mar 2014</div>
-          </div>
-          <div class="exp-org"><a href="https://www.mpi-dortmund.mpg.de/" target="_blank">Max Planck Institute of Molecular Physiology</a></div>
-          <div class="exp-location">Dortmund, Germany &middot; Supervisor: Prof. Philippe Bastiaens</div>
-          <ul class="exp-bullets">
-            <li>Studied Ras pathway and signal transduction in cilia</li>
-            <li>Conducted gain-of-function and loss-of-function (RNAi) studies</li>
-            <li>Profiled endogenous H/N/K-Ras and PDE&delta; proteins in HepG2 and MDCK carcinoma cells</li>
-          </ul>
-        </div>
-
-        <div class="exp-card">
-          <div class="exp-card-head">
-            <div class="exp-role">Junior Research Fellow</div>
-            <div class="exp-dates">Sep 2010 – May 2012</div>
-          </div>
-          <div class="exp-org"><a href="https://www.nii.res.in/" target="_blank">National Institute of Immunology (NII)</a></div>
-          <div class="exp-location">New Delhi, India &middot; Supervisor: Dr. Apurba K. Sau</div>
-          <ul class="exp-bullets">
-            <li>Characterized functional domains of IFN&gamma;-induced GTPase human guanylate binding protein (hGBP-1)</li>
-            <li>Site-directed mutagenesis, HPLC, His-tag affinity chromatography, structural modeling</li>
-            <li>Radioactive isotope-based GTPase assays &middot; Acknowledged in <em>FEBS Journal</em> 2020</li>
-          </ul>
-        </div>
-
+        <article class="contact-card">
+          <h3>Site notes</h3>
+          <p>This site is prepared as a static GitHub Pages portfolio. Content is derived from the supplied resume and kept intentionally privacy-conscious.</p>
+          <p class="small-note">Last updated March 25, 2026.</p>
+        </article>
       </div>
-    </section>
+    </footer>
+  </div>
 
-    <!-- PUBLICATIONS -->
-    <section class="section" id="publications">
-      <div class="section-header">
-        <h2>Publications</h2>
-        <span class="count">7 papers</span>
-      </div>
+  <script>
+    const toggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelector("#nav-links");
 
-      <div class="pub-item">
-        <div class="pub-title"><a href="https://doi.org/10.7554/eLife.79299" target="_blank">Centriolar satellites expedite mother centriole remodeling to promote ciliogenesis</a></div>
-        <div class="pub-authors">Hall EA, Kumar D, Prosser SL, Yeyati PL, Herranz-P&eacute;rez V, Garc&iacute;a-Verdugo JM, Rose L, McKie L, Dodd DO, Tennant PA, Megaw R, Murphy LC, Ferreira MF, Grimes G, Williams L, <strong>Quidwai T</strong>, Pelletier L, Reiter JF, Mill P</div>
-        <div class="pub-meta">
-          <span class="pub-journal">eLife</span>
-          <span class="pub-year">2023</span>
-          <span class="pub-cited">Cited: 50</span>
-        </div>
-      </div>
+    if (toggle && navLinks) {
+      toggle.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
 
-      <div class="pub-item">
-        <div class="pub-title"><a href="https://doi.org/10.7554/eLife.69786" target="_blank">A WDR35-dependent coat protein complex transports ciliary membrane cargo vesicles to cilia</a></div>
-        <div class="pub-authors"><strong>Quidwai T</strong>, Wang J, Hall EA, Petriman NA, Leng W, Kiesel P, Wells JN, Murphy LC, Keighren MA, Marsh JA, Lorentzen E, Pigino G, Mill P</div>
-        <div class="pub-meta">
-          <span class="pub-journal">eLife</span>
-          <span class="pub-year">2021</span>
-          <span class="pub-cited">Cited: 43</span>
-          <span class="pub-type">First Author</span>
-        </div>
-      </div>
-
-      <div class="pub-item">
-        <div class="pub-title"><a href="https://doi.org/10.1039/C6SC02088G" target="_blank">Specific protein labeling with caged fluorophores for dual-color imaging and super-resolution microscopy in living cells</a></div>
-        <div class="pub-authors">Hauke S, Von Appen A, <strong>Quidwai T</strong>, Ries J, Wombacher R</div>
-        <div class="pub-meta">
-          <span class="pub-journal">Chemical Science</span>
-          <span class="pub-year">2017</span>
-          <span class="pub-cited">Cited: 69</span>
-        </div>
-      </div>
-
-      <div class="pub-item">
-        <div class="pub-title"><a href="https://doi.org/10.1016/j.ajhg.2017.03.008" target="_blank">PLAA mutations cause a lethal infantile epileptic encephalopathy by disrupting ubiquitin-mediated endolysosomal degradation</a></div>
-        <div class="pub-authors">Hall EA, Nahorski MS, Murray LM, Shaheen R, Perkins E, et al.</div>
-        <div class="pub-meta">
-          <span class="pub-journal">Am. J. Hum. Genetics</span>
-          <span class="pub-year">2017</span>
-          <span class="pub-cited">Cited: 50</span>
-        </div>
-      </div>
-
-      <div class="pub-item">
-        <div class="pub-title"><a href="https://doi.org/10.1101/2020.12.22.423978" target="_blank">A WDR35-dependent coatomer transports ciliary membrane proteins from the Golgi to the cilia</a></div>
-        <div class="pub-authors"><strong>Quidwai T</strong>, Hall EA, Keighren MA, Leng W, Kiesel P, Wells JN, Murphy LC, et al.</div>
-        <div class="pub-meta">
-          <span class="pub-journal">bioRxiv</span>
-          <span class="pub-year">2020</span>
-          <span class="pub-cited">Cited: 3</span>
-          <span class="pub-type">Preprint &middot; First Author</span>
-        </div>
-      </div>
-
-      <div class="pub-item">
-        <div class="pub-title"><a href="https://doi.org/10.1101/413377" target="_blank">Cytoskeleton mechanics determine resting size and activation dynamics of platelets</a></div>
-        <div class="pub-authors">Mathur A, Correia SR, Dmitrieff S, Gibeaux R, Kalinina I, <strong>Quidwai T</strong>, Ries J, et al.</div>
-        <div class="pub-meta">
-          <span class="pub-journal">bioRxiv</span>
-          <span class="pub-year">2018</span>
-          <span class="pub-cited">Cited: 3</span>
-          <span class="pub-type">Preprint</span>
-        </div>
-      </div>
-
-      <div class="pub-item">
-        <div class="pub-title"><a href="https://era.ed.ac.uk/" target="_blank">Role of WDR35 in the formation of functional cilia</a></div>
-        <div class="pub-authors"><strong>Quidwai T</strong></div>
-        <div class="pub-meta">
-          <span class="pub-journal">University of Edinburgh</span>
-          <span class="pub-year">2020</span>
-          <span class="pub-type">PhD Thesis</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- FELLOWSHIPS & AWARDS -->
-    <section class="section" id="fellowships">
-      <div class="section-header">
-        <h2>Fellowships &amp; Awards</h2>
-        <span class="count">6 awards</span>
-      </div>
-
-      <div class="fellowship-item">
-        <div class="fellowship-icon">&#9733;</div>
-        <div class="fellowship-body">
-          <div class="fellowship-name">MSCA Seal of Excellence Certificate</div>
-          <div class="fellowship-detail">Marie Sk&#322;odowska-Curie Actions Postdoctoral Fellowship application</div>
-          <div class="fellowship-year">2026</div>
-        </div>
-      </div>
-
-      <div class="fellowship-item">
-        <div class="fellowship-icon">&#9733;</div>
-        <div class="fellowship-body">
-          <div class="fellowship-name">EMBO Short-Term Fellowship</div>
-          <div class="fellowship-detail">Supporting EM and CLEM imaging at MPI-CBG Dresden, in the lab of Prof. Gaia Pigino</div>
-          <div class="fellowship-year">2018</div>
-        </div>
-      </div>
-
-      <div class="fellowship-item">
-        <div class="fellowship-icon">&#9733;</div>
-        <div class="fellowship-body">
-          <div class="fellowship-name">Moray Endorsement Fund</div>
-          <div class="fellowship-detail">Short fellowship supporting PhD work, University of Edinburgh</div>
-          <div class="fellowship-year">2017</div>
-        </div>
-      </div>
-
-      <div class="fellowship-item">
-        <div class="fellowship-icon">&#9733;</div>
-        <div class="fellowship-body">
-          <div class="fellowship-name">Howard Hughes &amp; Helmsley Travel Award</div>
-          <div class="fellowship-detail">Supporting Quantitative Imaging course at Cold Spring Harbor Laboratory, USA</div>
-          <div class="fellowship-year">2016</div>
-        </div>
-      </div>
-
-      <div class="fellowship-item">
-        <div class="fellowship-icon">&#9733;</div>
-        <div class="fellowship-body">
-          <div class="fellowship-name">ESRIC &amp; MRC PhD Fellowship</div>
-          <div class="fellowship-detail">Three-year PhD fellowship at Institute of Genetics and Cancer, University of Edinburgh</div>
-          <div class="fellowship-year">2015 – 2018</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONFERENCES & TALKS -->
-    <section class="section" id="conferences">
-      <div class="section-header">
-        <h2>Talks &amp; Conferences</h2>
-        <span class="count">12 events</span>
-      </div>
-
-      <!-- Podium talks -->
-      <div class="conf-item">
-        <div class="conf-icon talk">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">National Institute of Oceanography, India <span class="conf-tag invited">Invited</span></div>
-          <div class="conf-detail">Goa, India &middot; Jul 2025</div>
-          <div class="conf-desc">Diamond Jubilee Lecture: Visualizing Cellular Machines — Insights into Cilia Biology and Translational Imaging</div>
-        </div>
-      </div>
-
-      <div class="conf-item">
-        <div class="conf-icon talk">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">BITS Pilani, Goa, India <span class="conf-tag invited">Invited</span></div>
-          <div class="conf-detail">Goa, India &middot; Jul 2025</div>
-          <div class="conf-desc">Prospects of ciliary biology courses &middot; Visualizing Cellular Machines</div>
-        </div>
-      </div>
-
-      <div class="conf-item">
-        <div class="conf-icon talk">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">ASCB Cell Biology Conference <span class="conf-tag selected">Selected Talk</span></div>
-          <div class="conf-detail">Washington DC, USA &middot; Dec 2022</div>
-          <div class="conf-desc">A WDR35/IFT121-dependent vesicular transport to cilia</div>
-        </div>
-      </div>
-
-      <div class="conf-item">
-        <div class="conf-icon talk">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">International Virtual Membrane Trafficking Seminar <span class="conf-tag invited">Invited</span></div>
-          <div class="conf-detail">Virtual &middot; May 2021</div>
-          <div class="conf-desc">Role of WDR35 in vesicular transport to cilia</div>
-        </div>
-      </div>
-
-      <div class="conf-item">
-        <div class="conf-icon talk">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">BSCB GenSoc UK Cilia Spring Meeting <span class="conf-tag selected">Selected Talk</span></div>
-          <div class="conf-detail">Edinburgh, UK &middot; Apr 2020</div>
-          <div class="conf-desc">WDR35/IFT121-dependent coatomer transports ciliary membrane proteins from the Golgi to the cilia</div>
-        </div>
-      </div>
-
-      <div class="conf-item">
-        <div class="conf-icon talk">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name"><a href="https://meetings.embo.org/event/18-cilia" target="_blank">ESRIC Symposium</a> <span class="conf-tag invited">Invited</span></div>
-          <div class="conf-detail">Edinburgh, UK &middot; Jun 2018</div>
-          <div class="conf-desc">Imaging methods to study cilia dynamics</div>
-        </div>
-      </div>
-
-      <div class="conf-item">
-        <div class="conf-icon talk">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">Scottish Microscopy Conference <span class="conf-tag selected">Selected Talk</span></div>
-          <div class="conf-detail">Edinburgh, UK &middot; Nov 2016</div>
-          <div class="conf-desc">WDR35/IFT121 Regulates Entry of Membrane Proteins to Cilia</div>
-        </div>
-      </div>
-
-      <!-- Posters -->
-      <div class="conf-item">
-        <div class="conf-icon poster">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name"><a href="https://www.linkedin.com/pulse/cutting-edge-innovations-study-cilia-from-teamcilia-quidwai-phd-1h0xc" target="_blank">EMBO Workshop: In Situ Structural Biology 2025</a> <span class="conf-tag poster-tag">Poster</span></div>
-          <div class="conf-detail">EMBL Heidelberg, Germany &middot; Feb 2025</div>
-          <div class="conf-desc">Novel coatomer-like function of IFT-A in membrane protein trafficking to cilia &middot; #TeamCilia</div>
-        </div>
-      </div>
-
-      <div class="conf-item">
-        <div class="conf-icon poster">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">Focus on Microscopy (FOM) 2015 <span class="conf-tag poster-tag">Poster</span></div>
-          <div class="conf-detail">G&ouml;ttingen, Germany &middot; Mar 2015</div>
-          <div class="conf-desc">Platelet cytoskeleton imaged by STORM microscopy</div>
-        </div>
-      </div>
-
-      <!-- Courses -->
-      <div class="conf-item">
-        <div class="conf-icon course">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">Cold Spring Harbor Lab — Quantitative Imaging: Cells to Molecules</div>
-          <div class="conf-detail">New York, USA &middot; Apr 2016</div>
-          <div class="conf-desc">Quantitative imaging techniques applied to cellular and molecular biology</div>
-        </div>
-      </div>
-
-      <div class="conf-item">
-        <div class="conf-icon course">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">ESRIC Super-Resolution Summer School</div>
-          <div class="conf-detail">University of Edinburgh &amp; Heriot-Watt &middot; Aug 2016</div>
-          <div class="conf-desc">PhD program member — super-resolution microscopy training</div>
-        </div>
-      </div>
-
-      <div class="conf-item">
-        <div class="conf-icon course">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">EMBL Software Carpentry Course</div>
-          <div class="conf-detail">Heidelberg, Germany &middot; Nov 2015</div>
-          <div class="conf-desc">Unix shell, Python, Git/GitHub, scientific stack, unit testing, web development basics</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section class="section" id="skills">
-      <div class="section-header">
-        <h2>Technical Skills</h2>
-      </div>
-
-      <div class="skills-group">
-        <div class="skills-group-title">Imaging Techniques</div>
-        <div class="skills-list">
-          <span class="skill-tag highlight">STORM</span>
-          <span class="skill-tag highlight">STED</span>
-          <span class="skill-tag highlight">SIM</span>
-          <span class="skill-tag highlight">PALM</span>
-          <span class="skill-tag highlight">CLEM</span>
-          <span class="skill-tag">FRET</span>
-          <span class="skill-tag">FRAP</span>
-          <span class="skill-tag">Multiphoton</span>
-          <span class="skill-tag">Spinning Disk</span>
-          <span class="skill-tag">TIRF</span>
-          <span class="skill-tag">AIRY Scan</span>
-          <span class="skill-tag">Hyvolution</span>
-          <span class="skill-tag">TEM/SEM</span>
-          <span class="skill-tag">3D-TEM Tomography</span>
-          <span class="skill-tag">Confocal</span>
-        </div>
-      </div>
-
-      <div class="skills-group">
-        <div class="skills-group-title">Molecular &amp; Cell Biology</div>
-        <div class="skills-list">
-          <span class="skill-tag">Mouse Genetics</span>
-          <span class="skill-tag">Cell Culture</span>
-          <span class="skill-tag">Biochemistry</span>
-          <span class="skill-tag highlight">IP-MS</span>
-          <span class="skill-tag">CRISPR</span>
-          <span class="skill-tag">RNAi</span>
-          <span class="skill-tag">Site-directed Mutagenesis</span>
-          <span class="skill-tag">HPLC</span>
-          <span class="skill-tag">Affinity Chromatography</span>
-          <span class="skill-tag">Western Blot</span>
-          <span class="skill-tag">SDS-PAGE</span>
-          <span class="skill-tag">ELISA</span>
-          <span class="skill-tag">FACS</span>
-          <span class="skill-tag">MACS</span>
-        </div>
-      </div>
-
-      <div class="skills-group">
-        <div class="skills-group-title">Genomics &amp; Bioinformatics</div>
-        <div class="skills-list">
-          <span class="skill-tag">Proteomics</span>
-          <span class="skill-tag">Genomics</span>
-          <span class="skill-tag">Bioinformatics</span>
-          <span class="skill-tag">Data Analysis</span>
-          <span class="skill-tag">AlphaFold</span>
-          <span class="skill-tag">Swiss-Model</span>
-          <span class="skill-tag">Phyre2</span>
-          <span class="skill-tag">PyMol</span>
-        </div>
-      </div>
-
-      <div class="skills-group">
-        <div class="skills-group-title">Software &amp; Tools</div>
-        <div class="skills-list">
-          <span class="skill-tag">ImageJ</span>
-          <span class="skill-tag">Imaris</span>
-          <span class="skill-tag">Huygens</span>
-          <span class="skill-tag">IMOD</span>
-          <span class="skill-tag">MATLAB</span>
-          <span class="skill-tag">Python (basic)</span>
-          <span class="skill-tag">Adobe Photoshop</span>
-          <span class="skill-tag">Illustrator</span>
-          <span class="skill-tag">InDesign</span>
-        </div>
-      </div>
-
-      <div class="skills-group">
-        <div class="skills-group-title">Model Systems</div>
-        <div class="skills-list">
-          <span class="skill-tag">Mouse Models</span>
-          <span class="skill-tag"><em>C. reinhardtii</em> Flagella</span>
-          <span class="skill-tag">RPE1</span>
-          <span class="skill-tag">HepG2</span>
-          <span class="skill-tag">MDCK</span>
-          <span class="skill-tag">MEF</span>
-          <span class="skill-tag">IMCD3</span>
-          <span class="skill-tag">Platelets</span>
-          <span class="skill-tag">Yeast</span>
-          <span class="skill-tag"><em>P. falciparum</em></span>
-        </div>
-      </div>
-
-      <div class="skills-group">
-        <div class="skills-group-title">Training Institutions</div>
-        <div class="skills-list">
-          <span class="skill-tag">EMBL Heidelberg</span>
-          <span class="skill-tag">MPI-CBG Dresden</span>
-          <span class="skill-tag">Cold Spring Harbor Lab</span>
-          <span class="skill-tag">ESRIC Edinburgh</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section class="section" id="education">
-      <div class="section-header">
-        <h2>Education</h2>
-      </div>
-
-      <div class="edu-item">
-        <div class="edu-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        </div>
-        <div>
-          <div class="edu-degree">PhD — Genetics &amp; Molecular Medicine</div>
-          <div class="edu-school"><a href="https://www.ed.ac.uk/" target="_blank">MRC Institute of Genetics &amp; Cancer, University of Edinburgh</a></div>
-          <div class="edu-years">2015 – 2020</div>
-          <div class="edu-thesis">Thesis: The role of WDR35 in the formation of functional cilia &middot; Supervisor: Prof. Pleasantine Mill</div>
-        </div>
-      </div>
-
-      <div class="edu-item">
-        <div class="edu-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        </div>
-        <div>
-          <div class="edu-degree">MSc — Biotechnology</div>
-          <div class="edu-school"><a href="http://www.unipune.ac.in/" target="_blank">Savitribai Phule Pune University</a></div>
-          <div class="edu-years">2008 – 2010</div>
-        </div>
-      </div>
-
-      <div class="edu-item">
-        <div class="edu-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        </div>
-        <div>
-          <div class="edu-degree">BSc — Botany, Zoology, Chemistry</div>
-          <div class="edu-school">Dr. Ram Manohar Lohia Avadh University, India</div>
-          <div class="edu-years">2004 – 2007</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PUBLIC OUTREACH -->
-    <section class="section" id="outreach">
-      <div class="section-header">
-        <h2>Outreach &amp; Teaching</h2>
-      </div>
-
-      <div class="outreach-item">
-        <div class="outreach-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">Scientific Outreach — Indian Institutions</div>
-          <div class="conf-detail">2025 – Ongoing</div>
-          <div class="conf-desc">Sharing research journey through seminars and dialogue at NIO-Goa, BITS-Pilani, and more upcoming at Bangalore institutions</div>
-        </div>
-      </div>
-
-      <div class="outreach-item">
-        <div class="outreach-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">Trained Peers in EM &amp; Advanced Imaging</div>
-          <div class="conf-detail">2021</div>
-          <div class="conf-desc">Trained senior researchers in Prof. Yanick Crow lab in electron microscopy techniques</div>
-        </div>
-      </div>
-
-      <div class="outreach-item">
-        <div class="outreach-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">Celebrating BAME Women in Science</div>
-          <div class="conf-detail">Edinburgh &middot; 2020</div>
-          <div class="conf-desc">Speaker: My experiences with Microscopes and Biology</div>
-        </div>
-      </div>
-
-      <div class="outreach-item">
-        <div class="outreach-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name"><a href="https://www.cilialab.co.uk/pcd2018overview" target="_blank">PCD Patient Outreach Events</a></div>
-          <div class="conf-detail">University of Edinburgh &middot; 2018</div>
-          <div class="conf-desc">Public-facing content on ciliopathies with Cilia Lab</div>
-        </div>
-      </div>
-
-      <div class="outreach-item">
-        <div class="outreach-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <div class="conf-body">
-          <div class="conf-name">Instructor — EMBO Single Molecule Course</div>
-          <div class="conf-detail">EMBL Heidelberg &middot; 2015</div>
-          <div class="conf-desc">Assisted Prof. Jonas Ries in teaching STORM super-resolution microscopy technique</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COLLABORATORS -->
-    <section class="section" id="collaborators">
-      <div class="section-header">
-        <h2>Key Collaborators</h2>
-        <span class="count">8 labs</span>
-      </div>
-
-      <div class="collab-grid">
-        <div class="collab-item">
-          <div class="collab-dot" style="background: var(--accent);"></div>
-          <div>
-            <div class="collab-name">Pleasantine Mill</div>
-            <div class="collab-aff">MRC HGU, University of Edinburgh</div>
-          </div>
-        </div>
-        <div class="collab-item">
-          <div class="collab-dot" style="background: var(--sky);"></div>
-          <div>
-            <div class="collab-name">Jonas Ries</div>
-            <div class="collab-aff">University of Vienna / EMBL</div>
-          </div>
-        </div>
-        <div class="collab-item">
-          <div class="collab-dot" style="background: var(--highlight);"></div>
-          <div>
-            <div class="collab-name">Gaia Pigino</div>
-            <div class="collab-aff">Human Technopole, Milan</div>
-          </div>
-        </div>
-        <div class="collab-item">
-          <div class="collab-dot" style="background: var(--coral);"></div>
-          <div>
-            <div class="collab-name">Jeremy Reiter</div>
-            <div class="collab-aff">UC San Francisco</div>
-          </div>
-        </div>
-        <div class="collab-item">
-          <div class="collab-dot" style="background: var(--lavender);"></div>
-          <div>
-            <div class="collab-name">Laurence Pelletier</div>
-            <div class="collab-aff">University of Toronto</div>
-          </div>
-        </div>
-        <div class="collab-item">
-          <div class="collab-dot" style="background: var(--sky);"></div>
-          <div>
-            <div class="collab-name">George Witman</div>
-            <div class="collab-aff">UMass Chan Medical School</div>
-          </div>
-        </div>
-        <div class="collab-item">
-          <div class="collab-dot" style="background: var(--accent);"></div>
-          <div>
-            <div class="collab-name">Joseph A. Marsh</div>
-            <div class="collab-aff">University of Edinburgh</div>
-          </div>
-        </div>
-        <div class="collab-item">
-          <div class="collab-dot" style="background: var(--highlight);"></div>
-          <div>
-            <div class="collab-name">Philippe Bastiaens</div>
-            <div class="collab-aff">Max Planck, Dortmund</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RECOMMENDATIONS -->
-    <section class="section" id="recommendations">
-      <div class="section-header">
-        <h2>Recommendations</h2>
-      </div>
-
-      <div class="rec-card">
-        <div class="rec-text">Tooba has demonstrated exceptional resilience and perseverance&hellip; I can wholeheartedly recommend her for a postdoctoral position.</div>
-        <div class="rec-author">Patricia Yeyati</div>
-        <div class="rec-role">Senior Scientist, MRC Edinburgh &middot; Dec 2024</div>
-      </div>
-
-      <div class="rec-card">
-        <div class="rec-text">She is an extremely hard worker, very motivated, reads a lot and asks many questions&hellip; I can recommend her without any hesitation for a postdoc position in any lab.</div>
-        <div class="rec-author">Jonas Ries</div>
-        <div class="rec-role">Professor, University of Vienna / EMBL &middot; Nov 2024</div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <div class="footer">
-      <div class="footer-text">Last updated March 2026</div>
-      <div class="footer-theme">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        Jekyll Theme &middot; GitHub Pages
-      </div>
-    </div>
-
-  </main>
-</div>
-
-<script>
-  // Smooth scroll for nav links
-  document.querySelectorAll('.sidebar-nav a').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      document.querySelectorAll('.sidebar-nav a').forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-    });
-  });
-
-  // Active section tracking on scroll
-  const sections = document.querySelectorAll('.section, .hero, .metrics');
-  const navLinks = document.querySelectorAll('.sidebar-nav a');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        if (id) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          const active = document.querySelector(`.sidebar-nav a[href="#${id}"]`);
-          if (active) active.classList.add('active');
-        }
-      }
-    });
-  }, { rootMargin: '-20% 0px -60% 0px' });
-  sections.forEach(s => { if (s.id) observer.observe(s); });
-</script>
-
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+  </script>
 </body>
 </html>

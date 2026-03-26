@@ -1,0 +1,19 @@
+{
+  "name": "resume_portfolio",
+  "version": "1.0.0",
+  "description": "Static portfolio site prepared for GitHub Pages.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}
