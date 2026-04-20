@@ -54,10 +54,11 @@ test.describe("portfolio page", () => {
   test("about and appointments sections reflect the new academic information architecture", async ({ page }) => {
     await page.goto(pageUrl);
 
-    await expect(page.locator("#about")).toContainText("About Me");
-    await expect(page.locator("#about")).toContainText("international scientific journey");
-    await expect(page.locator("#about .theme-card")).toHaveCount(4);
-    await expect(page.locator("#about")).toContainText("Translational & Emerging Research");
+    await expect(page.locator("#about")).toContainText("Dr. Tooba Quidwai");
+    await expect(page.locator("#about")).toContainText("Advanced Imaging | Cilia Biology | Disease Mechanisms");
+    await expect(page.locator("#about")).toContainText("National Centre for Cell Science");
+    await expect(page.locator("#about")).toContainText("WDR35/IFT121");
+    await expect(page.locator("#about .about-copy p")).toHaveCount(8);
 
     await expect(page.locator("#experience .journey-step")).toHaveCount(5);
     await expect(page.locator("#experience")).toContainText("India");
