@@ -571,6 +571,19 @@
       max-width: 78ch;
     }
 
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(190px, 230px) minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .about-portrait {
+      position: sticky;
+      top: calc(var(--nav-offset) + 18px);
+      width: min(100%, 220px);
+    }
+
     .about-copy p {
       margin: 0 0 1rem;
       color: var(--muted);
@@ -917,6 +930,14 @@
       .hero-panel {
         max-width: none;
       }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .about-portrait {
+        position: static;
+      }
     }
 
     @media (max-width: 760px) {
@@ -1009,7 +1030,6 @@
     <nav class="nav" aria-label="Primary">
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
       <div class="nav-links" id="nav-links">
-        <a href="#top">Home</a>
         <a href="#about">About</a>
         <a href="#experience">Appointments</a>
         <a href="#publications">Publications</a>
@@ -1021,52 +1041,6 @@
     </nav>
   </header>
 
-  <section class="hero" id="top">
-    <div class="hero-inner">
-      <div class="hero-photo">
-        <img src="assets/portrait/tooba-quidwai-headshot.png" alt="Portrait of Dr. Tooba Quidwai in a white lab coat and white professional shirt.">
-      </div>
-
-      <div class="hero-copy">
-        <div class="eyebrow">Advanced imaging | Cilia biology | Disease mechanisms</div>
-        <span class="scholar-name">Dr. Tooba Quidwai</span>
-        <h1>Molecular &amp; Cell Biologist</h1>
-        <span class="scholar-role">Advanced Imaging | Cilia Biology | Disease Mechanisms</span>
-        <p class="hero-summary">
-          I am Dr. Tooba Quidwai, a molecular and cell biologist with more than a decade of research experience across India, Germany, the United Kingdom, and the United States. I study how defects in ciliary structure and function contribute to kidney disease, metabolic disorders, and related pathologies by combining <strong>advanced imaging, molecular biology, proteomics, genomics, and disease-focused model systems</strong>.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:tooba.quidwai@bio.ku.dk">Contact by email</a>
-          <a class="btn btn-secondary" href="#publications">View selected publications</a>
-        </div>
-      </div>
-
-      <aside class="hero-side">
-        <div class="hero-panel">
-          <div class="hero-side-block">
-            <h2>Research profile</h2>
-            <p>I build mechanistic stories at the intersection of cilia biology, membrane trafficking, microscopy, and disease-relevant cell biology.</p>
-          </div>
-          <div class="hero-side-block">
-            <h2>Current focus</h2>
-            <ul class="hero-list">
-              <li>Ciliary transport and cilium assembly.</li>
-              <li>Kidney disease and related ciliopathy mechanisms.</li>
-              <li>Super-resolution, correlative, and ultrastructural imaging.</li>
-            </ul>
-          </div>
-          <div class="hero-side-block">
-            <ul class="inline-links">
-              <li><a href="mailto:tooba.quidwai@bio.ku.dk">tooba.quidwai@bio.ku.dk</a></li>
-              <li><a href="https://scholar.google.com/citations?user=z7wjJ34AAAAJ&amp;hl=en" target="_blank" rel="noreferrer">Google Scholar</a></li>
-              <li><a href="https://www.linkedin.com/in/tooba-quidwai/" target="_blank" rel="noreferrer">LinkedIn</a></li>
-            </ul>
-          </div>
-        </div>
-      </aside>
-    </div>
-  </section>
-
   <div class="page-shell">
     <main>
       <section class="section-card" id="about" data-reveal>
@@ -1074,15 +1048,20 @@
           <h2>Dr. Tooba Quidwai</h2>
           <p>Advanced Imaging | Cilia Biology | Disease Mechanisms</p>
         </div>
-        <div class="about-copy">
-          <p>I am Dr. Tooba Quidwai, a molecular and cell biologist with more than a decade of research experience across India, Germany, the United Kingdom, and the United States, working across a range of disease-mechanism topics.</p>
-          <p>During my master's training in biotechnology at Pune University, I was introduced to stem cell biology at the National Centre for Cell Science, Pune, India, and to the life cycle of <em>Plasmodium falciparum</em> at the Central Drug Research Institute, India. Thereafter, as a Junior Research Fellow, I studied the biochemistry of the hGBP1 protein and later moved to the Max Planck Institute in Dortmund, Germany, where I explored links between the Ras pathway and cilia.</p>
-          <p>It was at Max Planck that I was first introduced to ciliopathies and became deeply interested in their remarkably broad impact on human physiology. Cilia are cellular antennae that support signaling and motility functions and are present in almost every cell type in the human body. Defects in cilia give rise to a wide spectrum of disorders, collectively termed ciliopathies, including blindness, kidney cysts, obesity, neurodevelopmental disorders, respiratory disease, infertility, developmental abnormalities, and cancer.</p>
-          <p>Because cilia are diffraction-limited structures, typically around 200 nm in diameter and 2 to 5 um in length, I became eager to build the imaging skill set needed to visualize them at higher structural resolution. That curiosity took me to the European Molecular Biology Laboratory in Heidelberg, where I worked in the lab of Professor Jonas Ries and developed expertise in a wide range of super-resolution imaging methods while studying platelet microtubules and advancing imaging workflows.</p>
-          <p>With training in advanced imaging and an emerging foundation in ciliopathy biology, I moved to the Medical Research Council Institute of Genetics and Cancer at the University of Edinburgh for my doctoral work. During this time, I discovered the role of WDR35/IFT121 in vesicular trafficking to cilia, a process critical for functional cilia formation and normal embryonic development, using proteomics, genomics, bioinformatics, and advanced imaging. My PhD was supported by MRC and Edinburgh Super-Resolution grants, and I also received an EMBO Short-Term Fellowship and Moray Endorsement Fund support to complete 3D-TEM and correlative light and electron microscopy in the lab of Professor Gaia Pigino at Max Planck Dresden, Germany.</p>
-          <p>My main PhD project evolved into an extensive international collaboration across laboratories in Dresden, Aarhus, and Edinburgh, and it remains one of the clearest demonstrations of my ability to deliver high-impact interdisciplinary science across institutions and countries. Alongside my main project on WDR35 and functional cilia, I also contributed to work on PCM1 and PLAA proteins and developed imaging methods that became integral to the research environment in the lab.</p>
-          <p>Following this, I contributed to imaging studies of cGAS in Professor Yanick Crow's lab at MRC-IGC and then moved to UMass Chan Medical School in Worcester, USA, to work with Professor George Witman and Dr. Sumeda Nandadasa on proteomics of central apparatus proteins in <em>Chlamydomonas</em> and imaging kidney cilia in <em>TMEM67</em> and <em>ADAMTS9</em> mutant systems.</p>
-          <p>Over the past decade, I have invested deeply in traveling across the globe to develop cutting-edge interdisciplinary expertise, and I aim to apply that training to fundamental biological questions that improve our understanding of disease mechanisms. More recently, I have contributed to research grants with Professor Lotte Pedersen at the University of Copenhagen, and I am currently exploring opportunities related to ciliopathies associated with obesity, diabetes, and kidney disorders. I am also open to industry roles.</p>
+        <div class="about-layout">
+          <div class="hero-photo about-portrait">
+            <img src="assets/portrait/tooba-quidwai-headshot.png" alt="Portrait of Dr. Tooba Quidwai in a white lab coat and white professional shirt.">
+          </div>
+          <div class="about-copy">
+            <p>I am Dr. Tooba Quidwai, a molecular and cell biologist with more than a decade of research experience across India, Germany, the United Kingdom, and the United States, working across a range of disease-mechanism topics.</p>
+            <p>During my master's training in biotechnology at Pune University, I was introduced to stem cell biology at the National Centre for Cell Science, Pune, India, and to the life cycle of <em>Plasmodium falciparum</em> at the Central Drug Research Institute, India. Thereafter, as a Junior Research Fellow, I studied the biochemistry of the hGBP1 protein and later moved to the Max Planck Institute in Dortmund, Germany, where I explored links between the Ras pathway and cilia.</p>
+            <p>It was at Max Planck that I was first introduced to ciliopathies and became deeply interested in their remarkably broad impact on human physiology. Cilia are cellular antennae that support signaling and motility functions and are present in almost every cell type in the human body. Defects in cilia give rise to a wide spectrum of disorders, collectively termed ciliopathies, including blindness, kidney cysts, obesity, neurodevelopmental disorders, respiratory disease, infertility, developmental abnormalities, and cancer.</p>
+            <p>Because cilia are diffraction-limited structures, typically around 200 nm in diameter and 2 to 5 um in length, I became eager to build the imaging skill set needed to visualize them at higher structural resolution. That curiosity took me to the European Molecular Biology Laboratory in Heidelberg, where I worked in the lab of Professor Jonas Ries and developed expertise in a wide range of super-resolution imaging methods while studying platelet microtubules and advancing imaging workflows.</p>
+            <p>With training in advanced imaging and an emerging foundation in ciliopathy biology, I moved to the Medical Research Council Institute of Genetics and Cancer at the University of Edinburgh for my doctoral work. During this time, I discovered the role of WDR35/IFT121 in vesicular trafficking to cilia, a process critical for functional cilia formation and normal embryonic development, using proteomics, genomics, bioinformatics, and advanced imaging. My PhD was supported by MRC and Edinburgh Super-Resolution grants, and I also received an EMBO Short-Term Fellowship and Moray Endorsement Fund support to complete 3D-TEM and correlative light and electron microscopy in the lab of Professor Gaia Pigino at Max Planck Dresden, Germany.</p>
+            <p>My main PhD project evolved into an extensive international collaboration across laboratories in Dresden, Aarhus, and Edinburgh, and it remains one of the clearest demonstrations of my ability to deliver high-impact interdisciplinary science across institutions and countries. Alongside my main project on WDR35 and functional cilia, I also contributed to work on PCM1 and PLAA proteins and developed imaging methods that became integral to the research environment in the lab.</p>
+            <p>Following this, I contributed to imaging studies of cGAS in Professor Yanick Crow's lab at MRC-IGC and then moved to UMass Chan Medical School in Worcester, USA, to work with Professor George Witman and Dr. Sumeda Nandadasa on proteomics of central apparatus proteins in <em>Chlamydomonas</em> and imaging kidney cilia in <em>TMEM67</em> and <em>ADAMTS9</em> mutant systems.</p>
+            <p>Over the past decade, I have invested deeply in traveling across the globe to develop cutting-edge interdisciplinary expertise, and I aim to apply that training to fundamental biological questions that improve our understanding of disease mechanisms. More recently, I have contributed to research grants with Professor Lotte Pedersen at the University of Copenhagen, and I am currently exploring opportunities related to ciliopathies associated with obesity, diabetes, and kidney disorders. I am also open to industry roles.</p>
+          </div>
         </div>
       </section>
 

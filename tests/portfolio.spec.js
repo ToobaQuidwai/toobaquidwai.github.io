@@ -26,11 +26,9 @@ test.describe("portfolio page", () => {
     await page.goto(pageUrl);
 
     await expect(page).toHaveTitle(/Tooba Quidwai/i);
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Molecular & Cell Biologist");
     await expect(page.getByText("Dr. Tooba Quidwai").first()).toBeVisible();
 
     const expectedNavOrder = [
-      "Home",
       "About",
       "Appointments",
       "Publications",
@@ -46,7 +44,7 @@ test.describe("portfolio page", () => {
     const navText = await navLinks.evaluateAll((nodes) => nodes.map((node) => node.textContent.trim()));
     expect(navText).toEqual(expectedNavOrder);
 
-    for (const sectionId of ["#top", "#about", "#experience", "#publications", "#talks", "#skills", "#images", "#contact"]) {
+    for (const sectionId of ["#about", "#experience", "#publications", "#talks", "#skills", "#images", "#contact"]) {
       await expect(page.locator(sectionId)).toHaveCount(1);
     }
   });
@@ -58,6 +56,7 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#about")).toContainText("Advanced Imaging | Cilia Biology | Disease Mechanisms");
     await expect(page.locator("#about")).toContainText("National Centre for Cell Science");
     await expect(page.locator("#about")).toContainText("WDR35/IFT121");
+    await expect(page.locator("#about .about-portrait img")).toBeVisible();
     await expect(page.locator("#about .about-copy p")).toHaveCount(8);
 
     await expect(page.locator("#experience .journey-step")).toHaveCount(5);
@@ -149,11 +148,10 @@ test.describe("portfolio page", () => {
     expect(anchorState.activeHref).toBe("#images");
   });
 
-  test("hero and figure assets load without broken local references", async ({ page }) => {
+  test("portrait and figure assets load without broken local references", async ({ page }) => {
     await page.goto(pageUrl);
 
-    await expect(page.locator(".hero-photo")).toBeVisible();
-    await expect(page.locator(".hero-panel")).toBeVisible();
+    await expect(page.locator("#about .hero-photo")).toBeVisible();
 
     const images = page.locator("img");
     await expect(images).toHaveCount(9);
