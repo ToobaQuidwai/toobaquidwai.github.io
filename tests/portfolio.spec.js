@@ -155,7 +155,7 @@ test.describe("portfolio page", () => {
     await expect(page.locator(".hero-panel")).toBeVisible();
 
     const images = page.locator("img");
-    await expect(images).toHaveCount(8);
+    await expect(images).toHaveCount(9);
 
     const imageStates = await images.evaluateAll((nodes) =>
       nodes.map((node) => ({
