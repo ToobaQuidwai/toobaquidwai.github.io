@@ -66,8 +66,7 @@ test.describe("portfolio page", () => {
   test("about and appointments sections reflect the new academic information architecture", async ({ page }) => {
     await page.goto(pageUrl);
 
-    await expect(page.locator("#about")).toContainText("Dr. Tooba Quidwai");
-    await expect(page.locator("#about .section-heading p")).toHaveCount(0);
+    await expect(page.locator("#about .section-heading")).toHaveCount(0);
     await expect(page.locator("#about")).toContainText("National Centre for Cell Science");
     await expect(page.locator("#about")).toContainText("WDR35/IFT121");
     await expect(page.locator("#about .about-portrait img")).toBeVisible();
@@ -172,6 +171,24 @@ test.describe("portfolio page", () => {
     }));
 
     expect(navMetrics.scrollHeight).toBeLessThanOrEqual(navMetrics.clientHeight + 1);
+  });
+
+  test("about portrait adapts between wrapped desktop flow and stacked smaller screens", async ({ page }) => {
+    await page.goto(pageUrl);
+
+    const portraitState = await page.locator("#about .about-portrait").evaluate((node) => {
+      const computed = window.getComputedStyle(node);
+      return {
+        float: computed.float,
+        viewportWidth: window.innerWidth,
+      };
+    });
+
+    if (portraitState.viewportWidth > 1100) {
+      expect(portraitState.float).toBe("left");
+    } else {
+      expect(portraitState.float).toBe("none");
+    }
   });
 
   test("portrait and figure assets load without broken local references", async ({ page }) => {
