@@ -39,7 +39,8 @@ test.describe("portfolio page", () => {
     await page.goto(pageUrl);
 
     await expect(page).toHaveTitle(/Tooba Quidwai/i);
-    await expect(page.getByText("Dr. Tooba Quidwai").first()).toBeVisible();
+    await expect(page.locator(".brand")).toContainText("Dr. Tooba Quidwai");
+    await expect(page.locator(".brand")).toContainText("Advanced Imaging | Cilia Biology | Disease Mechanisms");
 
     const expectedNavOrder = [
       "About",
