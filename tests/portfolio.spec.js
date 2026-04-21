@@ -119,8 +119,9 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#skills")).toContainText("FLIM");
     await expect(page.locator("#skills")).toContainText("Plasmodium falciparum culture");
     await expect(page.locator("#skills")).toContainText("BioRender");
-    await expect(page.locator("#images video")).toHaveCount(1);
+    await expect(page.locator("#images video")).toHaveCount(2);
     await expect(page.locator("#images")).toContainText("Kidney confocal walkthrough");
+    await expect(page.locator("#images")).toContainText("XYZT dual-channel walkthrough");
   });
 
   test("navigation anchors land at the right sections and stay in sync", async ({ page }) => {
@@ -213,14 +214,20 @@ test.describe("portfolio page", () => {
       expect(image.naturalWidth, `${image.src} should have width`).toBeGreaterThan(0);
     }
 
-    const videoState = await page.locator("#images video").evaluate((node) => ({
-      currentSrc: node.currentSrc,
-      readyState: node.readyState,
-      networkState: node.networkState,
-    }));
+    const videoStates = await page.locator("#images video").evaluateAll((nodes) =>
+      nodes.map((node) => ({
+        currentSrc: node.currentSrc,
+        readyState: node.readyState,
+        networkState: node.networkState,
+      }))
+    );
 
-    expect(videoState.currentSrc).toContain("assets/media/kidney-confocal-walkthrough.mp4");
-    expect(videoState.networkState).not.toBe(3);
+    expect(videoStates).toHaveLength(2);
+    expect(videoStates[0].currentSrc).toContain("assets/media/kidney-confocal-walkthrough.mp4");
+    expect(videoStates[1].currentSrc).toContain("assets/media/xyzt-dual-channel-walkthrough.mp4");
+    for (const video of videoStates) {
+      expect(video.networkState).not.toBe(3);
+    }
   });
 
   test("layout stays within the viewport on phone, tablet, and laptop", async ({ page }) => {
