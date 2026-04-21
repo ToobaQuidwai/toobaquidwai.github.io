@@ -67,7 +67,7 @@ test.describe("portfolio page", () => {
     await page.goto(pageUrl);
 
     await expect(page.locator("#about")).toContainText("Dr. Tooba Quidwai");
-    await expect(page.locator("#about")).toContainText("Advanced Imaging | Cilia Biology | Disease Mechanisms");
+    await expect(page.locator("#about .section-heading p")).toHaveCount(0);
     await expect(page.locator("#about")).toContainText("National Centre for Cell Science");
     await expect(page.locator("#about")).toContainText("WDR35/IFT121");
     await expect(page.locator("#about .about-portrait img")).toBeVisible();
@@ -161,6 +161,17 @@ test.describe("portfolio page", () => {
     expect(anchorState.targetTop).toBeGreaterThanOrEqual(anchorState.navHeight - 4);
     expect(anchorState.targetTop).toBeLessThanOrEqual(anchorState.navHeight + 60);
     expect(anchorState.activeHref).toBe("#images");
+  });
+
+  test("desktop header keeps navigation tabs on a single line", async ({ page }) => {
+    await page.goto(pageUrl);
+
+    const navMetrics = await page.locator(".nav-links").evaluate((node) => ({
+      clientHeight: node.clientHeight,
+      scrollHeight: node.scrollHeight,
+    }));
+
+    expect(navMetrics.scrollHeight).toBeLessThanOrEqual(navMetrics.clientHeight + 1);
   });
 
   test("portrait and figure assets load without broken local references", async ({ page }) => {
