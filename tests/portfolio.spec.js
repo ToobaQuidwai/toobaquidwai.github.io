@@ -84,24 +84,24 @@ test.describe("portfolio page", () => {
   test("publications remain newest first and keep paper figures with the matching featured paper", async ({ page }) => {
     await page.goto(pageUrl);
 
-    const publicationLeads = page.locator(".publication-lead");
-    await expect(publicationLeads).toHaveCount(2);
-    await expect(publicationLeads.nth(0)).toContainText("WDR35-dependent transport of ciliary membrane cargo");
-    await expect(publicationLeads.nth(0).locator("img[src*='wdr35-main-localization.png']")).toBeVisible();
-    await expect(publicationLeads.nth(0).locator("img[src*='wdr35-main-em.png']")).toBeVisible();
-    await expect(publicationLeads.nth(1)).toContainText("Caged fluorophores");
-    await expect(publicationLeads.nth(1).locator("img[src*='caged-main-activation.png']")).toBeVisible();
-    await expect(publicationLeads.nth(1).locator("img[src*='caged-main-palm.png']")).toBeVisible();
+    const entries = page.locator(".publication-reference-list .publication-entry");
+    await expect(entries).toHaveCount(8);
+    await expect(entries.nth(1).locator("img[src*='wdr35-main-localization.png']")).toBeVisible();
+    await expect(entries.nth(3).locator("img[src*='caged-main-palm.png']")).toBeVisible();
 
-    const peerReviewedTitles = await page
-      .locator(".publication-list .publication-item .publication-title")
-      .evaluateAll((nodes) => nodes.slice(0, 4).map((node) => node.textContent.trim()));
+    const titles = await page
+      .locator(".publication-reference-list .publication-entry .publication-title")
+      .evaluateAll((nodes) => nodes.map((node) => node.textContent.trim()));
 
-    expect(peerReviewedTitles).toEqual([
+    expect(titles).toEqual([
       "Centriolar satellites expedite mother centriole remodeling to promote ciliogenesis",
       "A WDR35-dependent coat protein complex transports ciliary membrane cargo vesicles to cilia",
       "PLAA Mutations Cause a Lethal Infantile Epileptic Encephalopathy by Disrupting Ubiquitin-Mediated Endolysosomal Degradation of Synaptic Proteins",
       "Specific protein labeling with caged fluorophores for dual-color imaging and super-resolution microscopy in living cells",
+      "A WDR35-dependent coat protein complex transports ciliary membrane cargo vesicles to cilia",
+      "Role of WDR35 in the formation of functional cilia",
+      "A WDR35-dependent coatomer transports ciliary membrane proteins from the Golgi to the cilia",
+      "Cytoskeleton mechanics determine resting size and activation dynamics of platelets",
     ]);
   });
 
@@ -197,7 +197,7 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#about .hero-photo")).toBeVisible();
 
     const images = page.locator("img");
-    await expect(images).toHaveCount(9);
+    await expect(images).toHaveCount(7);
 
     const imageStates = await images.evaluateAll((nodes) =>
       nodes.map((node) => ({
