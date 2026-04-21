@@ -86,8 +86,8 @@ test.describe("portfolio page", () => {
 
     const entries = page.locator(".publication-reference-list .publication-entry");
     await expect(entries).toHaveCount(8);
-    await expect(entries.nth(1).locator("img[src*='wdr35-main-localization.png']")).toBeVisible();
-    await expect(entries.nth(3).locator("img[src*='caged-main-palm.png']")).toBeVisible();
+    await expect(entries.nth(1).locator(".publication-thumb--text")).toContainText("eLife");
+    await expect(entries.nth(3).locator(".publication-thumb--text")).toContainText("Chemical Science");
 
     const titles = await page
       .locator(".publication-reference-list .publication-entry .publication-title")
@@ -197,7 +197,7 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#about .hero-photo")).toBeVisible();
 
     const images = page.locator("img");
-    await expect(images).toHaveCount(7);
+    await expect(images).toHaveCount(5);
 
     const imageStates = await images.evaluateAll((nodes) =>
       nodes.map((node) => ({
