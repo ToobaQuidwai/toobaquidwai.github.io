@@ -3,9 +3,22 @@ const path = require("path");
 
 const pageUrl = `file://${path.join(__dirname, "..", "index.html")}`;
 const externalExpectations = {
+  "https://beta.unipune.ac.in/dept/science/Biotechnology/default.htm": ["unipune.ac.in/dept/science/Biotechnology/default.htm"],
+  "https://www.nccs.res.in": ["nccs.res.in"],
+  "https://cdri.res.in/#gsc.tab=0": ["cdri.res.in"],
+  "https://www.nii.res.in": ["nii.res.in"],
+  "https://www.mpi-dortmund.mpg.de/en": ["mpi-dortmund.mpg.de/en"],
+  "https://www.embl.org/sites/heidelberg/": ["embl.org/sites/heidelberg"],
+  "https://www.maxperutzlabs.ac.at/research/research-groups/ries": ["maxperutzlabs.ac.at/research/research-groups/ries"],
+  "https://esric.org": ["esric.org"],
+  "https://institute-genetics-cancer.ed.ac.uk/research/funded-centres/mrc-human-genetics-unit": ["institute-genetics-cancer.ed.ac.uk/research/funded-centres/mrc-human-genetics-unit"],
   "https://scholar.google.com/citations?user=z7wjJ34AAAAJ&hl=en": ["scholar.google.com/citations"],
   "https://www.linkedin.com/in/tooba-quidwai/": ["linkedin.com/in/tooba-quidwai"],
   "https://www.cilialab.co.uk": ["cilialab.co.uk"],
+  "https://humantechnopole.it/en/people/gaia-pigino/": ["humantechnopole.it/en/people/gaia-pigino"],
+  "https://www.mpi-cbg.de": ["mpi-cbg.de"],
+  "https://mbg.au.dk/en/research/research-areas/protein-science/esben-lorentzen": ["mbg.au.dk/en/research/research-areas/protein-science/esben-lorentzen"],
+  "https://www1.bio.ku.dk/english/staff/?pure=en/persons/293381": ["bio.ku.dk/english/staff/"],
   "https://elifesciences.org/articles/69786": ["elifesciences.org/articles/69786"],
   "https://elifesciences.org/articles/79299": ["elifesciences.org/articles/79299"],
   "https://pubs.rsc.org/en/content/articlelanding/2017/sc/c6sc02088g": ["pubs.rsc.org/en/content/articlelanding/2017/sc/c6sc02088g"],
@@ -58,6 +71,7 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#about")).toContainText("WDR35/IFT121");
     await expect(page.locator("#about .about-portrait img")).toBeVisible();
     await expect(page.locator("#about .about-copy p")).toHaveCount(8);
+    await expect(page.locator("#about a[href^='https://']")).toHaveCount(14);
 
     await expect(page.locator("#experience .journey-step")).toHaveCount(5);
     await expect(page.locator("#experience")).toContainText("India");
