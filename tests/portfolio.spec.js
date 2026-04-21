@@ -71,7 +71,7 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#about")).toContainText("WDR35/IFT121");
     await expect(page.locator("#about .about-portrait img")).toBeVisible();
     await expect(page.locator("#about .about-copy p")).toHaveCount(8);
-    await expect(page.locator("#about a[href^='https://']")).toHaveCount(14);
+    await expect(page.locator("#about a[href^='https://']")).toHaveCount(16);
 
     await expect(page.locator("#experience .journey-step")).toHaveCount(5);
     await expect(page.locator("#experience")).toContainText("India");
