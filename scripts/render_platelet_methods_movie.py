@@ -18,13 +18,12 @@ SOURCES = [
 OUTPUT_VIDEO = Path("/Users/toobaquidwai/Downloads/resume_portfolio/assets/media/platelet-imaging-methods.mp4")
 FRAME_SIZE = (1280, 720)
 FPS = 10
-TOTAL_FRAMES = 120
-PANEL_SIZE = (560, 255)
+PANEL_SIZE = (640, 360)
 PANEL_POSITIONS = [
-    (48, 48),
-    (672, 48),
-    (48, 336),
-    (672, 336),
+    (0, 0),
+    (640, 0),
+    (0, 360),
+    (640, 360),
 ]
 
 
@@ -41,8 +40,12 @@ def load_font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFo
     return ImageFont.load_default()
 
 
-def open_reader(path: Path):
-    return imageio.get_reader(str(path))
+def load_frames(path: Path) -> list[np.ndarray]:
+    reader = imageio.get_reader(str(path))
+    try:
+        return [frame for frame in reader]
+    finally:
+        reader.close()
 
 
 def normalize_frame(frame: np.ndarray, label: str) -> Image.Image:
@@ -69,30 +72,25 @@ def normalize_frame(frame: np.ndarray, label: str) -> Image.Image:
         image = ImageEnhance.Brightness(image).enhance(1.08)
         image = ImageEnhance.Color(image).enhance(1.18)
 
-    return ImageOps.contain(image, PANEL_SIZE, Image.Resampling.LANCZOS)
+    return ImageOps.fit(image, PANEL_SIZE, Image.Resampling.LANCZOS, centering=(0.5, 0.5))
 
 
 def render_panel(draw: ImageDraw.ImageDraw, canvas: Image.Image, frame_image: Image.Image, position: tuple[int, int], label: str, chip_font) -> None:
     x, y = position
-    panel = Image.new("RGB", PANEL_SIZE, "#060a10")
-    px = (PANEL_SIZE[0] - frame_image.width) // 2
-    py = (PANEL_SIZE[1] - frame_image.height) // 2
-    panel.paste(frame_image, (px, py))
+    canvas.paste(frame_image, position)
 
-    canvas.paste(panel, position)
-    draw.rounded_rectangle((x, y, x + PANEL_SIZE[0], y + PANEL_SIZE[1]), radius=18, outline=(255, 255, 255, 28), width=1)
-
-    chip_box = (x + 14, y + 14, x + 14 + 220, y + 14 + 28)
-    draw.rounded_rectangle(chip_box, radius=14, fill=(9, 15, 24, 190), outline=(255, 255, 255, 35), width=1)
-    draw.text((x + 28, y + 21), label, font=chip_font, fill="#f7fbff")
+    chip_width = 230 if label == "alpha tubulin PALM" else 215
+    chip_box = (x + 16, y + 16, x + 16 + chip_width, y + 16 + 30)
+    draw.rounded_rectangle(chip_box, radius=15, fill=(9, 15, 24, 192), outline=(255, 255, 255, 38), width=1)
+    draw.text((x + 30, y + 23), label, font=chip_font, fill="#f7fbff")
 
 
 def render_movie() -> None:
     OUTPUT_VIDEO.parent.mkdir(parents=True, exist_ok=True)
 
     chip_font = load_font(15, bold=True)
-
-    readers = [(label, open_reader(path)) for label, path in SOURCES]
+    clips = [(label, load_frames(path)) for label, path in SOURCES]
+    total_frames = max(len(frames) for _, frames in clips)
 
     writer = imageio.get_writer(
         str(OUTPUT_VIDEO),
@@ -103,22 +101,17 @@ def render_movie() -> None:
     )
 
     try:
-        for frame_index in range(TOTAL_FRAMES):
-            canvas = Image.new("RGB", FRAME_SIZE, "#f4f6f8")
+        for frame_index in range(total_frames):
+            canvas = Image.new("RGB", FRAME_SIZE, "#060a10")
             draw = ImageDraw.Draw(canvas, "RGBA")
 
-            for (label, reader), position in zip(readers, PANEL_POSITIONS):
-                try:
-                    raw = reader.get_data(frame_index)
-                except Exception:
-                    raw = reader.get_data(frame_index % 30)
+            for (label, frames), position in zip(clips, PANEL_POSITIONS):
+                raw = frames[frame_index % len(frames)]
                 frame_image = normalize_frame(raw, label)
                 render_panel(draw, canvas, frame_image, position, label, chip_font)
 
             writer.append_data(np.asarray(canvas))
     finally:
-        for _, reader in readers:
-            reader.close()
         writer.close()
 
 
