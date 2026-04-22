@@ -511,47 +511,233 @@
 
     .media-showcase {
       display: grid;
-      gap: 1rem;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-auto-flow: dense;
+      gap: 0.9rem;
+      align-items: stretch;
     }
 
     .media-frame {
+      position: relative;
       margin: 0;
-      padding: 1rem;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(247, 249, 251, 0.96), rgba(240, 244, 248, 0.92));
+      grid-column: span 4;
+      min-height: 15rem;
+      border: 1px solid rgba(21, 42, 56, 0.12);
+      background: linear-gradient(180deg, rgba(247, 249, 251, 0.98), rgba(238, 243, 248, 0.94));
+      overflow: hidden;
     }
 
-    .media-frame video {
+    .media-frame--hero {
+      grid-column: span 6;
+      min-height: 21rem;
+    }
+
+    .media-frame--wide {
+      grid-column: span 6;
+      min-height: 17rem;
+    }
+
+    .media-frame--tall {
+      min-height: 20rem;
+    }
+
+    .media-frame--compact {
+      min-height: 13rem;
+    }
+
+    .media-open {
+      position: relative;
       display: block;
       width: 100%;
-      border: 1px solid rgba(21, 42, 56, 0.12);
-      background: #080d17;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      cursor: zoom-in;
+      color: inherit;
+      font: inherit;
     }
 
+    .media-surface {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      background: #081019;
+    }
+
+    .media-frame video,
     .media-frame img {
       display: block;
       width: 100%;
-      border: 1px solid rgba(21, 42, 56, 0.12);
+      height: 100%;
+      object-fit: cover;
+      background: #0a0f18;
+      transition: transform 260ms ease, filter 260ms ease;
+    }
+
+    .media-frame img {
       background: #ffffff;
     }
 
-    .media-caption {
-      display: grid;
-      gap: 0.45rem;
-      margin-top: 0.9rem;
+    .media-open:hover img,
+    .media-open:hover video,
+    .media-open:focus-visible img,
+    .media-open:focus-visible video {
+      transform: scale(1.025);
+      filter: saturate(1.02);
     }
 
-    .media-caption h3 {
+    .media-frame video {
+      pointer-events: none;
+    }
+
+    .media-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0.9rem;
+      background: linear-gradient(180deg, rgba(8, 12, 18, 0.04), rgba(8, 12, 18, 0.12) 40%, rgba(8, 12, 18, 0.72));
+      pointer-events: none;
+    }
+
+    .media-kicker {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      min-height: 1.9rem;
+      padding: 0.22rem 0.58rem;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      background: rgba(7, 11, 17, 0.42);
+      backdrop-filter: blur(10px);
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .media-overlay-copy {
+      display: grid;
+      gap: 0.35rem;
+      align-self: stretch;
+    }
+
+    .media-overlay h3 {
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(1rem, 1.45vw, 1.32rem);
+      font-weight: 700;
+      text-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+    }
+
+    .media-zoom {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .media-zoom::before {
+      content: "+";
+      display: inline-grid;
+      place-items: center;
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      font-size: 0.84rem;
+      line-height: 1;
+    }
+
+    .media-caption {
+      display: none;
+    }
+
+    .media-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem;
+      background: rgba(7, 10, 16, 0.8);
+      backdrop-filter: blur(18px);
+    }
+
+    .media-lightbox.is-open {
+      display: flex;
+    }
+
+    .media-lightbox-panel {
+      width: min(1120px, calc(100vw - 1.6rem));
+      max-height: calc(100vh - 1.6rem);
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.8fr);
+      background: linear-gradient(180deg, rgba(252, 252, 252, 0.98), rgba(245, 248, 250, 0.97));
+      border: 1px solid rgba(21, 42, 56, 0.12);
+      box-shadow: 0 32px 80px rgba(5, 12, 20, 0.24);
+      overflow: hidden;
+    }
+
+    .media-lightbox-stage {
+      position: relative;
+      min-height: 24rem;
+      background: #081019;
+      display: grid;
+      place-items: center;
+    }
+
+    .media-lightbox-stage img,
+    .media-lightbox-stage video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #081019;
+    }
+
+    .media-lightbox-copy {
+      position: relative;
+      overflow: auto;
+      padding: 1.25rem 1.2rem 1.2rem;
+      display: grid;
+      align-content: start;
+      gap: 0.95rem;
+    }
+
+    .media-lightbox-copy h3 {
       margin: 0;
       color: var(--text);
-      font-size: 1.12rem;
+      font-size: 1.3rem;
       font-weight: 700;
     }
 
-    .media-caption p {
+    .media-lightbox-copy p {
       margin: 0;
       color: var(--soft);
-      line-height: 1.65;
+      line-height: 1.68;
+    }
+
+    .media-lightbox-close {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      z-index: 2;
+      width: 2.3rem;
+      height: 2.3rem;
+      border: 1px solid rgba(21, 42, 56, 0.12);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
     }
 
     .media-meta {
@@ -1193,7 +1379,8 @@
     @media (max-width: 1100px) {
       .hero-inner,
       .about-grid,
-      .contact-grid {
+      .contact-grid,
+      .media-lightbox-panel {
         grid-template-columns: 1fr;
       }
 
@@ -1233,6 +1420,20 @@
         float: none;
         width: min(100%, 240px);
         margin: 0 0 1.1rem;
+      }
+
+      .media-showcase {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+      }
+
+      .media-frame,
+      .media-frame--hero,
+      .media-frame--wide {
+        grid-column: span 4;
+      }
+
+      .media-lightbox-stage {
+        min-height: 20rem;
       }
     }
 
@@ -1327,6 +1528,19 @@
         grid-template-columns: 1fr;
       }
 
+      .media-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .media-frame,
+      .media-frame--hero,
+      .media-frame--wide,
+      .media-frame--tall,
+      .media-frame--compact {
+        grid-column: auto;
+        min-height: 14rem;
+      }
+
       .timeline-item {
         grid-template-columns: 1fr;
       }
@@ -1342,6 +1556,23 @@
 
       .microscopy-scale-labels {
         grid-template-columns: 1fr;
+      }
+
+      .media-lightbox {
+        padding: 0.6rem;
+      }
+
+      .media-lightbox-panel {
+        width: min(100vw - 1.2rem, 100%);
+        max-height: calc(100vh - 1.2rem);
+      }
+
+      .media-lightbox-stage {
+        min-height: 15rem;
+      }
+
+      .media-lightbox-copy {
+        padding: 1rem 0.9rem 0.95rem;
       }
     }
   </style>
@@ -1733,11 +1964,21 @@
           <h2>Images</h2>
         </div>
         <div class="media-showcase">
-          <figure class="media-frame">
-            <video controls preload="metadata" playsinline aria-label="Kidney confocal walkthrough movie">
-              <source src="assets/media/kidney-confocal-walkthrough.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+          <figure class="media-frame media-frame--hero" data-lightbox-type="video" data-lightbox-src="assets/media/kidney-confocal-walkthrough.mp4" data-lightbox-label="Kidney confocal walkthrough movie">
+            <button class="media-open" type="button" aria-label="Open Kidney confocal walkthrough">
+              <div class="media-surface">
+                <video muted loop autoplay playsinline preload="metadata" aria-hidden="true">
+                  <source src="assets/media/kidney-confocal-walkthrough.mp4" type="video/mp4">
+                </video>
+                <div class="media-overlay">
+                  <span class="media-kicker">Movie</span>
+                  <div class="media-overlay-copy">
+                    <h3>Kidney confocal walkthrough</h3>
+                    <span class="media-zoom">Open full view</span>
+                  </div>
+                </div>
+              </div>
+            </button>
             <figcaption class="media-caption">
               <h3>Kidney confocal walkthrough</h3>
               <p>A guided time-lapse movie built from confocal overview slides and matched zoom-in regions, moving through different parts of the kidney while preserving the relationship between the wide field and the higher-magnification pop-up view.</p>
@@ -1748,23 +1989,44 @@
               </div>
             </figcaption>
           </figure>
-          <figure class="media-frame">
-            <video controls preload="metadata" playsinline aria-label="XYZT dual-channel walkthrough movie">
-              <source src="assets/media/xyzt-dual-channel-walkthrough.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+          <figure class="media-frame media-frame--compact" data-lightbox-type="video" data-lightbox-src="assets/media/xyzt-dual-channel-walkthrough.mp4" data-lightbox-label="XYZT dual-channel walkthrough movie">
+            <button class="media-open" type="button" aria-label="Open XYZT dual-channel walkthrough">
+              <div class="media-surface">
+                <video muted loop autoplay playsinline preload="metadata" aria-hidden="true">
+                  <source src="assets/media/xyzt-dual-channel-walkthrough.mp4" type="video/mp4">
+                </video>
+                <div class="media-overlay">
+                  <span class="media-kicker">Movie</span>
+                  <div class="media-overlay-copy">
+                    <h3>XYZT dual-channel</h3>
+                    <span class="media-zoom">Open full view</span>
+                  </div>
+                </div>
+              </div>
+            </button>
             <figcaption class="media-caption">
+              <h3>XYZT dual-channel</h3>
               <div class="media-meta" aria-label="Movie details">
                 <span class="channel-magenta">ARL13B</span>
                 <span class="channel-green">SIR-tubulin</span>
               </div>
             </figcaption>
           </figure>
-          <figure class="media-frame">
-            <video controls preload="metadata" playsinline aria-label="3D-TEM movie">
-              <source src="assets/media/3d-tem-movie.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+          <figure class="media-frame media-frame--wide" data-lightbox-type="video" data-lightbox-src="assets/media/3d-tem-movie.mp4" data-lightbox-label="3D-TEM movie">
+            <button class="media-open" type="button" aria-label="Open 3D-TEM movie">
+              <div class="media-surface">
+                <video muted loop autoplay playsinline preload="metadata" aria-hidden="true">
+                  <source src="assets/media/3d-tem-movie.mp4" type="video/mp4">
+                </video>
+                <div class="media-overlay">
+                  <span class="media-kicker">Movie</span>
+                  <div class="media-overlay-copy">
+                    <h3>3D-TEM movie</h3>
+                    <span class="media-zoom">Open full view</span>
+                  </div>
+                </div>
+              </div>
+            </button>
             <figcaption class="media-caption">
               <h3>3D-TEM movie</h3>
               <div class="media-meta" aria-label="Movie details">
@@ -1774,17 +2036,38 @@
               </div>
             </figcaption>
           </figure>
-          <figure class="media-frame">
-            <img src="assets/media/wdr35-null-mef-tem.png" alt="Transmission electron microscopy image from a Wdr35 null MEF sample with highlighted organelles and structures.">
+          <figure class="media-frame media-frame--compact" data-lightbox-type="image" data-lightbox-src="assets/media/wdr35-null-mef-tem.png" data-lightbox-label="Wdr35 null MEF figure">
+            <button class="media-open" type="button" aria-label="Open Wdr35 null MEF">
+              <div class="media-surface">
+                <img src="assets/media/wdr35-null-mef-tem.png" alt="Transmission electron microscopy image from a Wdr35 null MEF sample with highlighted organelles and structures.">
+                <div class="media-overlay">
+                  <span class="media-kicker">Figure</span>
+                  <div class="media-overlay-copy">
+                    <h3>Wdr35 null MEF</h3>
+                    <span class="media-zoom">Open full view</span>
+                  </div>
+                </div>
+              </div>
+            </button>
             <figcaption class="media-caption">
               <h3>Wdr35 null MEF</h3>
             </figcaption>
           </figure>
-          <figure class="media-frame">
-            <video controls preload="metadata" playsinline aria-label="Dync2h1 null movie">
-              <source src="assets/media/dync2h1null-movie.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+          <figure class="media-frame media-frame--tall" data-lightbox-type="video" data-lightbox-src="assets/media/dync2h1null-movie.mp4" data-lightbox-label="Dync2h1 null movie">
+            <button class="media-open" type="button" aria-label="Open Dync2h1 null movie">
+              <div class="media-surface">
+                <video muted loop autoplay playsinline preload="metadata" aria-hidden="true">
+                  <source src="assets/media/dync2h1null-movie.mp4" type="video/mp4">
+                </video>
+                <div class="media-overlay">
+                  <span class="media-kicker">Movie</span>
+                  <div class="media-overlay-copy">
+                    <h3>Dync2h1 null movie</h3>
+                    <span class="media-zoom">Open full view</span>
+                  </div>
+                </div>
+              </div>
+            </button>
             <figcaption class="media-caption">
               <h3>Dync2h1 null movie</h3>
               <div class="media-meta" aria-label="Movie details">
@@ -1794,8 +2077,19 @@
               </div>
             </figcaption>
           </figure>
-          <figure class="media-frame">
-            <img src="assets/media/wdr35-multiscale-panel.png" alt="Three-panel imaging figure showing confocal, single-color STED, and TEM views of the WDR35 ciliary transport context without in-image text labels.">
+          <figure class="media-frame media-frame--wide" data-lightbox-type="image" data-lightbox-src="assets/media/wdr35-multiscale-panel.png" data-lightbox-label="Multiscale imaging figure">
+            <button class="media-open" type="button" aria-label="Open Multiscale imaging">
+              <div class="media-surface">
+                <img src="assets/media/wdr35-multiscale-panel.png" alt="Three-panel imaging figure showing confocal, single-color STED, and TEM views of the WDR35 ciliary transport context without in-image text labels.">
+                <div class="media-overlay">
+                  <span class="media-kicker">Figure</span>
+                  <div class="media-overlay-copy">
+                    <h3>Multiscale imaging</h3>
+                    <span class="media-zoom">Open full view</span>
+                  </div>
+                </div>
+              </div>
+            </button>
             <figcaption class="media-caption">
               <h3>Multiscale imaging</h3>
               <p>Three aligned views are shown here as confocal imaging, single-color STED of WDR35, and a TEM 300 nm section, with the channel labels and scale context moved below the figure for cleaner presentation.</p>
@@ -1874,11 +2168,22 @@
               </div>
             </figcaption>
           </figure>
-          <figure class="media-frame">
-            <img src="assets/media/ift88-collage-rotated.png" alt="Rotated IFT88 collage showing alpha tubulin, gamma tubulin, and IFT88 antibody staining across Wdr35 wild type, Dync2h1 knockout, and Wdr35 knockout groups.">
+          <figure class="media-frame media-frame--tall" data-lightbox-type="image" data-lightbox-src="assets/media/ift88-collage-rotated.png" data-lightbox-label="IFT88 collage figure">
+            <button class="media-open" type="button" aria-label="Open IFT88 collage">
+              <div class="media-surface">
+                <img src="assets/media/ift88-collage-rotated.png" alt="Rotated IFT88 collage showing alpha tubulin, gamma tubulin, and IFT88 antibody staining across Wdr35 wild type, Dync2h1 knockout, and Wdr35 knockout groups.">
+                <div class="media-overlay">
+                  <span class="media-kicker">Figure</span>
+                  <div class="media-overlay-copy">
+                    <h3>IFT88 collage</h3>
+                    <span class="media-zoom">Open full view</span>
+                  </div>
+                </div>
+              </div>
+            </button>
             <figcaption class="media-caption">
               <h3>IFT88 collage</h3>
-              <p>IFT88 shows retrograde transport defect in the mutants. The collage groups shown in the figure are Wdr35+/+, Dync2h1-/-, and Wdr35-/-.</p>
+              <p>IFT88 shows retrograde transport defect in the mutants. The collage groups shown in the figure are Wdr35+/+, Dync2h1-/-, and Wdr35-/-. </p>
               <div class="media-meta" aria-label="Figure details">
                 <span>IFT88 Ab</span>
                 <span>Ac α tubulin</span>
@@ -1888,6 +2193,16 @@
           </figure>
         </div>
       </section>
+
+      <div class="media-lightbox" id="media-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Expanded media viewer">
+        <div class="media-lightbox-panel">
+          <div class="media-lightbox-stage" id="media-lightbox-stage"></div>
+          <aside class="media-lightbox-copy">
+            <button class="media-lightbox-close" type="button" aria-label="Close expanded media">Close</button>
+            <div id="media-lightbox-copy"></div>
+          </aside>
+        </div>
+      </div>
 
     </main>
 
@@ -1925,6 +2240,67 @@
     const trackedSections = navAnchors
       .map((link) => document.querySelector(link.getAttribute("href")))
       .filter(Boolean);
+    const mediaLightbox = document.getElementById("media-lightbox");
+    const mediaLightboxStage = document.getElementById("media-lightbox-stage");
+    const mediaLightboxCopy = document.getElementById("media-lightbox-copy");
+    const mediaClose = mediaLightbox ? mediaLightbox.querySelector(".media-lightbox-close") : null;
+    const mediaTiles = Array.from(document.querySelectorAll(".media-frame"));
+    let lastFocusedTile = null;
+
+    const openMediaLightbox = (frame) => {
+      if (!mediaLightbox || !mediaLightboxStage || !mediaLightboxCopy || !frame) {
+        return;
+      }
+
+      const type = frame.dataset.lightboxType;
+      const src = frame.dataset.lightboxSrc;
+      const label = frame.dataset.lightboxLabel || "Expanded media";
+      const caption = frame.querySelector(".media-caption");
+
+      if (!type || !src || !caption) {
+        return;
+      }
+
+      lastFocusedTile = frame.querySelector(".media-open");
+      mediaLightboxStage.innerHTML = "";
+      mediaLightboxCopy.innerHTML = caption.innerHTML;
+
+      const mediaNode = document.createElement(type === "video" ? "video" : "img");
+      if (type === "video") {
+        mediaNode.controls = true;
+        mediaNode.playsInline = true;
+        mediaNode.preload = "metadata";
+      } else {
+        mediaNode.alt = label;
+      }
+
+      mediaNode.src = src;
+      mediaNode.setAttribute("aria-label", label);
+      mediaLightboxStage.appendChild(mediaNode);
+
+      mediaLightbox.classList.add("is-open");
+      mediaLightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      mediaClose?.focus();
+    };
+
+    const closeMediaLightbox = () => {
+      if (!mediaLightbox || !mediaLightboxStage || !mediaLightboxCopy) {
+        return;
+      }
+
+      const activeVideo = mediaLightboxStage.querySelector("video");
+      if (activeVideo) {
+        activeVideo.pause();
+      }
+
+      mediaLightbox.classList.remove("is-open");
+      mediaLightbox.setAttribute("aria-hidden", "true");
+      mediaLightboxStage.innerHTML = "";
+      mediaLightboxCopy.innerHTML = "";
+      document.body.style.overflow = "";
+      lastFocusedTile?.focus();
+    };
 
     const syncNavOffset = () => {
       if (!nav) {
@@ -2024,6 +2400,25 @@
       });
     });
 
+    mediaTiles.forEach((frame) => {
+      const trigger = frame.querySelector(".media-open");
+      if (!trigger) {
+        return;
+      }
+
+      trigger.addEventListener("click", () => {
+        openMediaLightbox(frame);
+      });
+    });
+
+    mediaClose?.addEventListener("click", closeMediaLightbox);
+
+    mediaLightbox?.addEventListener("click", (event) => {
+      if (event.target === mediaLightbox) {
+        closeMediaLightbox();
+      }
+    });
+
     const reveals = document.querySelectorAll("[data-reveal]");
     const revealEarlyContent = () => {
       reveals.forEach((node) => {
@@ -2077,6 +2472,12 @@
       const id = window.location.hash.replace("#", "");
       if (id) {
         scrollToSection(id, false);
+      }
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && mediaLightbox?.classList.contains("is-open")) {
+        closeMediaLightbox();
       }
     });
 

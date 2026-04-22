@@ -136,13 +136,30 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#images")).toContainText("Ac α tubulin");
     await expect(page.locator("#images")).toContainText("γ tubulin");
 
-    const imageTitles = await page.locator("#images .media-frame h3").evaluateAll((nodes) =>
+    const imageTitles = await page.locator("#images .media-frame .media-caption h3").evaluateAll((nodes) =>
       nodes.map((node) => node.textContent.trim())
     );
 
-    expect(imageTitles[2]).toBe("Wdr35 null MEF");
-    expect(imageTitles[4]).toBe("Multiscale imaging");
-    expect(imageTitles[5]).toBe("IFT88 collage");
+    expect(imageTitles[3]).toBe("Wdr35 null MEF");
+    expect(imageTitles[5]).toBe("Multiscale imaging");
+    expect(imageTitles[6]).toBe("IFT88 collage");
+  });
+
+  test("images section opens a zoom view for figures and movies", async ({ page }) => {
+    await page.goto(pageUrl);
+
+    await page.getByRole("button", { name: "Open Multiscale imaging" }).click();
+    await expect(page.locator("#media-lightbox")).toHaveClass(/is-open/);
+    await expect(page.locator("#media-lightbox-stage img")).toHaveCount(1);
+    await expect(page.locator("#media-lightbox-copy")).toContainText("Multiscale imaging");
+    await expect(page.locator("#media-lightbox-copy")).toContainText("WDR35-EmGFP");
+
+    await page.getByRole("button", { name: "Close expanded media" }).click();
+    await expect(page.locator("#media-lightbox")).not.toHaveClass(/is-open/);
+
+    await page.getByRole("button", { name: "Open Dync2h1 null movie" }).click();
+    await expect(page.locator("#media-lightbox-stage video")).toHaveCount(1);
+    await expect(page.locator("#media-lightbox-copy")).toContainText("Dync2h1 null movie");
   });
 
   test("navigation anchors land at the right sections and stay in sync", async ({ page }) => {
