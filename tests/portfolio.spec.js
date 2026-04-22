@@ -125,6 +125,9 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#images")).toContainText("SIR-tubulin");
     await expect(page.locator("#images")).toContainText("3D-TEM movie");
     await expect(page.locator("#images")).toContainText("Dync2h1 null movie");
+    await expect(page.locator("#images")).toContainText("IFT88 collage");
+    await expect(page.locator("#images")).toContainText("Ac α tubulin");
+    await expect(page.locator("#images")).toContainText("γ tubulin");
   });
 
   test("navigation anchors land at the right sections and stay in sync", async ({ page }) => {
@@ -202,7 +205,7 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#about .hero-photo")).toBeVisible();
 
     const images = page.locator("img");
-    await expect(images).toHaveCount(1);
+    await expect(images).toHaveCount(2);
 
     const imageStates = await images.evaluateAll((nodes) =>
       nodes.map((node) => ({
