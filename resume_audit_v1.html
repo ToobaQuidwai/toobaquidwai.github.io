@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Audit — Dr. Tooba Quidwai v1</title>
+<style>
+  :root { --bg: #f8fafc; --card: #fff; --accent: #2563eb; --accent-light: #dbeafe; --green: #059669; --green-light: #d1fae5; --amber: #d97706; --amber-light: #fef3c7; --red: #dc2626; --red-light: #fee2e2; --text: #1e293b; --muted: #64748b; --border: #e2e8f0; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+  .subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+  .score-banner { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .score-card { flex: 1; min-width: 140px; padding: 1.25rem; border-radius: 12px; text-align: center; }
+  .score-card h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+  .score-card .num { font-size: 2rem; font-weight: 800; }
+  .score-green { background: var(--green-light); color: var(--green); }
+  .score-amber { background: var(--amber-light); color: var(--amber); }
+  .score-blue { background: var(--accent-light); color: var(--accent); }
+
+  .section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; }
+  .section h2 { font-size: 1.1rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+  .badge-pass { background: var(--green-light); color: var(--green); }
+  .badge-review { background: var(--amber-light); color: var(--amber); }
+  .badge-info { background: var(--accent-light); color: var(--accent); }
+
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { padding: 0.6rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.92rem; }
+  .checklist li:last-child { border-bottom: none; }
+  .icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 800; margin-top: 2px; }
+  .icon-pass { background: var(--green-light); color: var(--green); }
+  .icon-warn { background: var(--amber-light); color: var(--amber); }
+  .icon-info { background: var(--accent-light); color: var(--accent); }
+
+  .content-preview { background: #f1f5f9; border-radius: 8px; padding: 1rem 1.25rem; margin-top: 0.75rem; font-size: 0.88rem; color: var(--muted); white-space: pre-wrap; line-height: 1.7; }
+  .highlight { background: #fef08a; padding: 0 3px; border-radius: 3px; }
+  .link-out { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .link-out:hover { text-decoration: underline; }
+
+  details { margin-top: 0.5rem; }
+  details summary { cursor: pointer; color: var(--accent); font-weight: 600; font-size: 0.88rem; }
+  details summary:hover { text-decoration: underline; }
+
+  .footer-note { margin-top: 2rem; text-align: center; color: var(--muted); font-size: 0.82rem; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Resume Audit &mdash; Dr. Tooba Quidwai</h1>
+  <p class="subtitle">First draft (v1) &bull; Generated March 25, 2026 &bull; Portfolio link: <a href="https://toobaquidwai.github.io/" class="link-out" target="_blank">toobaquidwai.github.io</a></p>
+
+  <div class="score-banner">
+    <div class="score-card score-green"><h3>Completeness</h3><div class="num">9/10</div></div>
+    <div class="score-card score-green"><h3>Accuracy</h3><div class="num">10/10</div></div>
+    <div class="score-card score-amber"><h3>Impact Language</h3><div class="num">7/10</div></div>
+    <div class="score-card score-blue"><h3>Formatting</h3><div class="num">9/10</div></div>
+  </div>
+
+  <!-- STRUCTURE -->
+  <div class="section">
+    <h2><span class="badge badge-pass">Pass</span> Document Structure</h2>
+    <ul class="checklist">
+      <li><span class="icon icon-pass">&#10003;</span> Name and title prominently displayed at top</li>
+      <li><span class="icon icon-pass">&#10003;</span> Contact info includes email, LinkedIn, Google Scholar, and <strong>portfolio link</strong></li>
+      <li><span class="icon icon-pass">&#10003;</span> Clear section hierarchy: Profile &rarr; Research Programs &rarr; Appointments &rarr; Publications &rarr; Education &rarr; Skills &rarr; Talks/Honors</li>
+      <li><span class="icon icon-pass">&#10003;</span> US Letter format with clean margins (0.83" all sides)</li>
+      <li><span class="icon icon-pass">&#10003;</span> Consistent typography (Arial) with visual accent color (#2E75B6)</li>
+    </ul>
+  </div>
+
+  <!-- PORTFOLIO LINK -->
+  <div class="section">
+    <h2><span class="badge badge-pass">Pass</span> Portfolio Link Integration</h2>
+    <ul class="checklist">
+      <li><span class="icon icon-pass">&#10003;</span> Portfolio URL (<strong>toobaquidwai.github.io</strong>) is included as a clickable hyperlink in the header</li>
+      <li><span class="icon icon-pass">&#10003;</span> Displayed with bold styling to draw attention</li>
+      <li><span class="icon icon-info">i</span> Consider also mentioning the portfolio in the Research Profile paragraph for reinforcement</li>
+    </ul>
+  </div>
+
+  <!-- CONTENT ACCURACY -->
+  <div class="section">
+    <h2><span class="badge badge-pass">Pass</span> Content Accuracy (vs. Portfolio)</h2>
+    <ul class="checklist">
+      <li><span class="icon icon-pass">&#10003;</span> All 6 appointments match portfolio dates and institutions exactly</li>
+      <li><span class="icon icon-pass">&#10003;</span> All 4 selected publications match (eLife 2021, eLife 2023, AJHG 2017, Chem Sci 2017)</li>
+      <li><span class="icon icon-pass">&#10003;</span> Education degrees and dates verified against portfolio</li>
+      <li><span class="icon icon-pass">&#10003;</span> Research themes faithfully captured from portfolio</li>
+      <li><span class="icon icon-pass">&#10003;</span> Technical skills and methods comprehensive and matched</li>
+      <li><span class="icon icon-pass">&#10003;</span> Talks, honors, and teaching entries all confirmed</li>
+    </ul>
+  </div>
+
+  <!-- IMPACT LANGUAGE -->
+  <div class="section">
+    <h2><span class="badge badge-review">Review</span> Impact Language &amp; Action Verbs</h2>
+    <ul class="checklist">
+      <li><span class="icon icon-warn">!</span> Several bullet points begin with <span class="highlight">"Studied"</span> &mdash; consider stronger verbs like "Characterized," "Elucidated," or "Investigated"</li>
+      <li><span class="icon icon-warn">!</span> PhD bullet <span class="highlight">"Combined microscopy, mouse genetics..."</span> could be reframed to lead with the discovery outcome</li>
+      <li><span class="icon icon-pass">&#10003;</span> "Discovered the coatomer-like vesicle transport function" &mdash; strong, outcome-focused</li>
+      <li><span class="icon icon-pass">&#10003;</span> Research Profile paragraph effectively frames international scope and breadth</li>
+      <li><span class="icon icon-info">i</span> Adding quantifiable achievements where possible (e.g., number of collaborators, techniques mastered) could strengthen impact</li>
+    </ul>
+    <details>
+      <summary>Suggested verb upgrades</summary>
+      <div class="content-preview">"Studied central apparatus function" → "Characterized central apparatus function"
+"Studied ADAMTS9-mediated TMEM67 cleavage" → "Elucidated ADAMTS9-mediated TMEM67 cleavage mechanisms"
+"Studied Ras pathway signaling" → "Investigated Ras pathway signaling dynamics"
+"Studied functional domains" → "Mapped functional domains"</div>
+    </details>
+  </div>
+
+  <!-- COMPLETENESS -->
+  <div class="section">
+    <h2><span class="badge badge-review">Review</span> Completeness Check</h2>
+    <ul class="checklist">
+      <li><span class="icon icon-pass">&#10003;</span> Research Profile summary present</li>
+      <li><span class="icon icon-pass">&#10003;</span> All major career stages covered (India &rarr; Germany &rarr; UK &rarr; USA)</li>
+      <li><span class="icon icon-pass">&#10003;</span> Publications include first-author and contributing-author work</li>
+      <li><span class="icon icon-warn">!</span> <strong>Current status</strong> section from portfolio not included &mdash; grant development work with University of Copenhagen could be added</li>
+      <li><span class="icon icon-warn">!</span> Preprints and meeting abstracts (bioRxiv 2020, bioRxiv 2018, MBoC 2023) are omitted &mdash; consider adding if space permits</li>
+      <li><span class="icon icon-info">i</span> PhD thesis entry ("Role of WDR35 in the formation of functional cilia," Edinburgh, 2020) could be included under Education</li>
+    </ul>
+  </div>
+
+  <!-- FORMATTING -->
+  <div class="section">
+    <h2><span class="badge badge-pass">Pass</span> Formatting &amp; Readability</h2>
+    <ul class="checklist">
+      <li><span class="icon icon-pass">&#10003;</span> Section dividers use blue accent underline &mdash; clean and professional</li>
+      <li><span class="icon icon-pass">&#10003;</span> Job titles bold with right-aligned dates (tab stop pattern)</li>
+      <li><span class="icon icon-pass">&#10003;</span> Bullet points use proper Word numbering (not unicode)</li>
+      <li><span class="icon icon-pass">&#10003;</span> Hyperlinks functional for email, LinkedIn, Scholar, and portfolio</li>
+      <li><span class="icon icon-pass">&#10003;</span> Validation passed with 0 errors</li>
+    </ul>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="section">
+    <h2><span class="badge badge-info">Next</span> Recommended Actions for v2</h2>
+    <ul class="checklist">
+      <li><span class="icon icon-info">1</span> Upgrade weak verbs ("Studied" &rarr; more specific action verbs)</li>
+      <li><span class="icon icon-info">2</span> Add current status section (Copenhagen grant development, ongoing outreach)</li>
+      <li><span class="icon icon-info">3</span> Consider adding PhD thesis under Education</li>
+      <li><span class="icon icon-info">4</span> Optionally expand Publications to include preprints</li>
+      <li><span class="icon icon-info">5</span> Reinforce portfolio link mention in the Research Profile text</li>
+    </ul>
+  </div>
+
+  <p class="footer-note">This audit compares the resume draft against the live portfolio at toobaquidwai.github.io. All content verified as of March 25, 2026.</p>
+</div>
+</body>
+</html>
