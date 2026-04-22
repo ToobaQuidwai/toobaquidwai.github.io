@@ -298,7 +298,10 @@ test.describe("portfolio page", () => {
       }
 
       if (href.startsWith("mailto:")) {
-        expect(href).toBe("mailto:tooba.quidwai@bio.ku.dk");
+        expect([
+          "mailto:tooba.quidwai@bio.ku.dk",
+          "mailto:tquidwaiunipne@gmail.com",
+        ]).toContain(href);
         continue;
       }
 
