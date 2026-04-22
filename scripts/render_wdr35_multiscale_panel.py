@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "assets" / "media" / "wdr35-multiscale-panel.png"
 
 CONFOCAL_SOURCE = Path("/Users/toobaquidwai/Downloads/STED_WDR35.png")
-TEM_SOURCE = Path("/Users/toobaquidwai/Desktop/linkedln/linkedln/Z305_Movie6_figure6-figure supplement2.png")
+TEM_SOURCE = Path("/Users/toobaquidwai/Desktop/your-figure/EM.png")
 
 
 def fit_panel(image: Image.Image, width: int, height: int) -> Image.Image:
@@ -17,15 +17,15 @@ def fit_panel(image: Image.Image, width: int, height: int) -> Image.Image:
 def main() -> None:
     panel_width = 520
     panel_height = 360
-    gap = 26
-    outer = 34
+    gap = 0
+    outer = 0
 
     confocal_source = Image.open(CONFOCAL_SOURCE).convert("RGB")
     tem_source = Image.open(TEM_SOURCE).convert("RGB")
 
     confocal = confocal_source.crop((24, 92, 438, 430))
     sted = confocal_source.crop((460, 92, 874, 430))
-    tem = tem_source.crop((140, 90, 1640, 1185))
+    tem = tem_source.crop((0, 0, 714, 744))
 
     confocal = fit_panel(confocal, panel_width, panel_height)
     sted = fit_panel(sted, panel_width, panel_height)
@@ -38,8 +38,8 @@ def main() -> None:
     x = outer
     y = outer
     for panel in (confocal, sted, tem):
-      canvas.paste(panel, (x, y))
-      x += panel_width + gap
+        canvas.paste(panel, (x, y))
+        x += panel_width + gap
 
     canvas.save(OUTPUT, quality=95)
 
