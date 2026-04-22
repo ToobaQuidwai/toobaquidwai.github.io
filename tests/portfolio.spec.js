@@ -14,6 +14,8 @@ const externalExpectations = {
   "https://institute-genetics-cancer.ed.ac.uk/research/funded-centres/mrc-human-genetics-unit": ["institute-genetics-cancer.ed.ac.uk/research/funded-centres/mrc-human-genetics-unit"],
   "https://scholar.google.com/citations?user=z7wjJ34AAAAJ&hl=en": ["scholar.google.com/citations"],
   "https://www.linkedin.com/in/tooba-quidwai/": ["linkedin.com/in/tooba-quidwai"],
+  "https://bsky.app/profile/toobaquidwai.bsky.social": ["bsky.app/profile/toobaquidwai.bsky.social"],
+  "https://x.com/ToobaQuidwai": ["x.com/ToobaQuidwai", "twitter.com/ToobaQuidwai"],
   "https://www.cilialab.co.uk": ["cilialab.co.uk"],
   "https://humantechnopole.it/en/people/gaia-pigino/": ["humantechnopole.it/en/people/gaia-pigino"],
   "https://www.mpi-cbg.de": ["mpi-cbg.de"],
