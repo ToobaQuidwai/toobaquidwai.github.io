@@ -21,10 +21,10 @@ FPS = 10
 TOTAL_FRAMES = 120
 PANEL_SIZE = (560, 255)
 PANEL_POSITIONS = [
-    (48, 120),
-    (672, 120),
-    (48, 408),
-    (672, 408),
+    (48, 48),
+    (672, 48),
+    (48, 336),
+    (672, 336),
 ]
 
 
@@ -72,7 +72,7 @@ def normalize_frame(frame: np.ndarray, label: str) -> Image.Image:
     return ImageOps.contain(image, PANEL_SIZE, Image.Resampling.LANCZOS)
 
 
-def render_panel(draw: ImageDraw.ImageDraw, canvas: Image.Image, frame_image: Image.Image, position: tuple[int, int], label: str, body_font, chip_font) -> None:
+def render_panel(draw: ImageDraw.ImageDraw, canvas: Image.Image, frame_image: Image.Image, position: tuple[int, int], label: str, chip_font) -> None:
     x, y = position
     panel = Image.new("RGB", PANEL_SIZE, "#060a10")
     px = (PANEL_SIZE[0] - frame_image.width) // 2
@@ -90,8 +90,6 @@ def render_panel(draw: ImageDraw.ImageDraw, canvas: Image.Image, frame_image: Im
 def render_movie() -> None:
     OUTPUT_VIDEO.parent.mkdir(parents=True, exist_ok=True)
 
-    title_font = load_font(34, bold=True)
-    subtitle_font = load_font(16, bold=False)
     chip_font = load_font(15, bold=True)
 
     readers = [(label, open_reader(path)) for label, path in SOURCES]
@@ -109,16 +107,13 @@ def render_movie() -> None:
             canvas = Image.new("RGB", FRAME_SIZE, "#f4f6f8")
             draw = ImageDraw.Draw(canvas, "RGBA")
 
-            draw.text((48, 38), "Platelet Imaging Methods", font=title_font, fill="#203447")
-            draw.text((50, 80), "Confocal and PALM-based views combined into one comparative movie.", font=subtitle_font, fill="#627282")
-
             for (label, reader), position in zip(readers, PANEL_POSITIONS):
                 try:
                     raw = reader.get_data(frame_index)
                 except Exception:
                     raw = reader.get_data(frame_index % 30)
                 frame_image = normalize_frame(raw, label)
-                render_panel(draw, canvas, frame_image, position, label, subtitle_font, chip_font)
+                render_panel(draw, canvas, frame_image, position, label, chip_font)
 
             writer.append_data(np.asarray(canvas))
     finally:
