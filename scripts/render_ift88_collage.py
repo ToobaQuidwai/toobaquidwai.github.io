@@ -5,14 +5,14 @@ from collections import deque
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageFilter
+from PIL import Image
 
 
 INPUT_IMAGE = Path("/Users/data/4_MRC-IGMM/Mill lab/Thesis_06012021/chapter3ciliary phenotype of IFT121/figures/JPEGS/3.11_IFT88collage.png")
 OUTPUT_IMAGE = Path("/Users/toobaquidwai/Downloads/resume_portfolio/assets/media/ift88-collage-rotated.png")
 
-# Crop away only the outer page margin labels, keep the full collage.
 CROP_BOX = (240, 110, 2320, 2935)
+WORKING_SIZE = (1280, 824)
 OUTPUT_SIZE = (1280, 824)
 
 
@@ -48,7 +48,7 @@ def edge_connected_light_mask(arr: np.ndarray, threshold: int = 238) -> np.ndarr
     return visited
 
 
-def scale_bar_boxes(arr: np.ndarray, threshold: int = 230) -> list[tuple[int, int, int, int]]:
+def scale_bar_boxes(arr: np.ndarray, threshold: int = 228) -> list[tuple[int, int, int, int]]:
     bright = (arr[:, :, 0] >= threshold) & (arr[:, :, 1] >= threshold) & (arr[:, :, 2] >= threshold)
     h, w = bright.shape
     visited = np.zeros((h, w), dtype=bool)
@@ -79,11 +79,38 @@ def scale_bar_boxes(arr: np.ndarray, threshold: int = 230) -> list[tuple[int, in
             height = y2 - y1 + 1
             area = len(pts)
 
-            # Repeated scale bars inside the tiles are small, bright, horizontal rectangles.
-            if 20 <= width <= 36 and 4 <= height <= 10 and 120 <= area <= 260 and width / height >= 3.5:
+            if 18 <= width <= 40 and 4 <= height <= 12 and 90 <= area <= 320 and width / max(height, 1) >= 2.8:
                 boxes.append((x1, y1, x2, y2))
 
     return boxes
+
+
+def remove_scale_bars(arr: np.ndarray) -> np.ndarray:
+    result = arr.copy()
+    for x1, y1, x2, y2 in scale_bar_boxes(result):
+        pad_x = 4
+        pad_y = 6
+        sx1 = max(0, x1 - pad_x)
+        sx2 = min(result.shape[1], x2 + pad_x + 1)
+        sy1 = max(0, y1 - pad_y)
+        sy2 = min(result.shape[0], y2 + pad_y + 1)
+
+        above_y1 = max(0, sy1 - (sy2 - sy1))
+        above_y2 = sy1
+        below_y1 = sy2
+        below_y2 = min(result.shape[0], sy2 + (sy2 - sy1))
+
+        samples = []
+        if above_y2 > above_y1:
+            samples.append(result[above_y1:above_y2, sx1:sx2])
+        if below_y2 > below_y1:
+            samples.append(result[below_y1:below_y2, sx1:sx2])
+
+        if samples:
+            replacement = np.concatenate(samples, axis=0).mean(axis=0)
+            replacement = np.repeat(replacement[np.newaxis, :, :], sy2 - sy1, axis=0)
+            result[sy1:sy2, sx1:sx2] = replacement.astype(np.uint8)
+    return result
 
 
 def render() -> None:
@@ -92,63 +119,34 @@ def render() -> None:
     img = Image.open(INPUT_IMAGE).convert("RGB")
     img = img.crop(CROP_BOX)
     img = img.rotate(-90, expand=True)
-    img = img.resize(OUTPUT_SIZE, Image.LANCZOS)
+    img = img.resize(WORKING_SIZE, Image.Resampling.LANCZOS)
 
     arr = np.array(img)
     bg_mask = edge_connected_light_mask(arr)
     arr[bg_mask] = 0
 
-    # Rebuild the collage from the three tile groups only, removing the
-    # genotype labels that sit inside the separator bands while tightening
-    # the vertical spacing between groups.
-    collage = Image.fromarray(arr)
-    top = collage.crop((0, 10, OUTPUT_SIZE[0], 293))
-    middle = collage.crop((0, 381, OUTPUT_SIZE[0], 663))
-    bottom = collage.crop((0, 758, OUTPUT_SIZE[0], 944))
+    working = Image.fromarray(arr)
 
-    gap = 18
-    margin = 10
-    rebuilt = Image.new("RGB", OUTPUT_SIZE, "black")
+    # Two-row bands for each genotype, matching the simplified black-background layout.
+    top = working.crop((0, 0, 1280, 150))
+    middle = working.crop((0, 333, 1280, 484))
+    bottom = working.crop((0, 672, 1280, 824))
+
+    gap = 28
+    margin = 16
+    temp_height = top.height + middle.height + bottom.height + gap * 2 + margin * 2
+    rebuilt = Image.new("RGB", (OUTPUT_SIZE[0], temp_height), "black")
     y = margin
-    rebuilt.paste(top, (0, y))
-    y += top.height + gap
-    rebuilt.paste(middle, (0, y))
-    y += middle.height + gap
-    rebuilt.paste(bottom, (0, y))
+    for band in (top, middle, bottom):
+        rebuilt.paste(band, (0, y))
+        y += band.height + gap
+
     rebuilt_arr = np.array(rebuilt)
+    rebuilt_arr = remove_scale_bars(rebuilt_arr)
+    rebuilt_arr[338:385, 470:810] = 0
 
-    # Clear any residual genotype text sitting in the separator bands.
-    rebuilt_arr[270:302, 430:850] = 0
-    rebuilt_arr[570:602, 470:810] = 0
-    rebuilt_arr[588:612, 500:780] = 0
-
-    # Remove the repeated white scale bars from the rebuilt collage by
-    # replacing each small horizontal annotation with neighboring texture.
-    for x1, y1, x2, y2 in scale_bar_boxes(rebuilt_arr):
-        pad_x = 3
-        pad_y = 5
-        sx1 = max(0, x1 - pad_x)
-        sx2 = min(rebuilt_arr.shape[1], x2 + pad_x + 1)
-        sy1 = max(0, y1 - pad_y)
-        sy2 = min(rebuilt_arr.shape[0], y2 + pad_y + 1)
-
-        above_y1 = max(0, sy1 - (sy2 - sy1))
-        above_y2 = sy1
-        below_y1 = sy2
-        below_y2 = min(rebuilt_arr.shape[0], sy2 + (sy2 - sy1))
-
-        samples = []
-        if above_y2 > above_y1:
-            samples.append(rebuilt_arr[above_y1:above_y2, sx1:sx2])
-        if below_y2 > below_y1:
-            samples.append(rebuilt_arr[below_y1:below_y2, sx1:sx2])
-
-        if samples:
-            replacement = np.concatenate(samples, axis=0).mean(axis=0)
-            replacement = np.repeat(replacement[np.newaxis, :, :], sy2 - sy1, axis=0)
-            rebuilt_arr[sy1:sy2, sx1:sx2] = replacement.astype(np.uint8)
-
-    Image.fromarray(rebuilt_arr).save(OUTPUT_IMAGE, optimize=True)
+    final = Image.fromarray(rebuilt_arr).resize(OUTPUT_SIZE, Image.Resampling.LANCZOS)
+    final.save(OUTPUT_IMAGE, optimize=True)
     print(OUTPUT_IMAGE)
 
 
