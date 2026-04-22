@@ -587,6 +587,38 @@
       background: rgba(31, 143, 67, 0.08);
     }
 
+    .microscopy-scale {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.65rem;
+      margin-top: 0.15rem;
+    }
+
+    .microscopy-scale span {
+      display: grid;
+      gap: 0.18rem;
+      padding: 0.55rem 0.7rem;
+      border: 1px solid rgba(21, 42, 56, 0.12);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 249, 251, 0.72)),
+        linear-gradient(90deg, rgba(198, 63, 164, 0.08), rgba(31, 143, 67, 0.08));
+    }
+
+    .microscopy-scale strong {
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .microscopy-scale em {
+      color: var(--soft);
+      font-size: 0.84rem;
+      font-style: normal;
+      font-weight: 600;
+    }
+
     .section-card {
       padding: 2.1rem 0;
       border-top: 1px solid var(--line);
@@ -1191,6 +1223,10 @@
       .publication-rank {
         padding-top: 0;
       }
+
+      .microscopy-scale {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -1639,6 +1675,22 @@
                 <span>TEM</span>
                 <span>Legend removed</span>
                 <span>Dync2h1 null</span>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="media-frame">
+            <img src="assets/media/wdr35-multiscale-panel.png" alt="Three-panel imaging figure showing confocal, single-color STED, and TEM views of the WDR35 ciliary transport context without in-image text labels.">
+            <figcaption class="media-caption">
+              <h3>WDR35 multiscale panel</h3>
+              <p>Three aligned views are shown here as confocal imaging, single-color STED of WDR35, and a TEM 300 nm section, with the channel labels and scale context moved below the figure for cleaner presentation.</p>
+              <div class="media-meta" aria-label="Channel labels">
+                <span class="channel-magenta">ARL13B</span>
+                <span class="channel-green">WDR35-EmGFP</span>
+              </div>
+              <div class="microscopy-scale" aria-label="Microscopy scale overview">
+                <span><strong>Confocal</strong><em>2 um field scale</em></span>
+                <span><strong>Single-color STED</strong><em>2 um field scale</em></span>
+                <span><strong>TEM 300 nm section</strong><em>0.25 um ultrastructure scale</em></span>
               </div>
             </figcaption>
           </figure>

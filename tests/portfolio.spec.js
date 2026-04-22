@@ -125,6 +125,9 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#images")).toContainText("SIR-tubulin");
     await expect(page.locator("#images")).toContainText("3D-TEM movie");
     await expect(page.locator("#images")).toContainText("Dync2h1 null movie");
+    await expect(page.locator("#images")).toContainText("WDR35 multiscale panel");
+    await expect(page.locator("#images")).toContainText("WDR35-EmGFP");
+    await expect(page.locator("#images")).toContainText("TEM 300 nm section");
     await expect(page.locator("#images")).toContainText("IFT88 collage");
     await expect(page.locator("#images")).toContainText("Wdr35 null MEF");
     await expect(page.locator("#images")).toContainText("Ac α tubulin");
@@ -135,6 +138,8 @@ test.describe("portfolio page", () => {
     );
 
     expect(imageTitles[2]).toBe("Wdr35 null MEF");
+    expect(imageTitles[4]).toBe("WDR35 multiscale panel");
+    expect(imageTitles[5]).toBe("IFT88 collage");
   });
 
   test("navigation anchors land at the right sections and stay in sync", async ({ page }) => {
@@ -212,7 +217,7 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#about .hero-photo")).toBeVisible();
 
     const images = page.locator("img");
-    await expect(images).toHaveCount(3);
+    await expect(images).toHaveCount(4);
 
     const imageStates = await images.evaluateAll((nodes) =>
       nodes.map((node) => ({
