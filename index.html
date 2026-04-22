@@ -589,38 +589,109 @@
 
     .microscopy-scale {
       display: grid;
-      gap: 0.65rem;
+      gap: 0.8rem;
       margin-top: 0.2rem;
-      padding: 0.85rem 0.9rem 0.95rem;
+      padding: 0.9rem 0.95rem 1rem;
       border: 1px solid rgba(21, 42, 56, 0.12);
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 248, 250, 0.78)),
-        linear-gradient(90deg, rgba(79, 96, 255, 0.08), rgba(31, 143, 67, 0.05));
+        linear-gradient(90deg, rgba(79, 96, 255, 0.08), rgba(133, 168, 88, 0.06), rgba(119, 82, 173, 0.06));
     }
 
-    .microscopy-scale-track {
+    .microscopy-scale-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.7rem;
+      color: var(--soft);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .microscopy-scale-header span:first-child {
+      color: #345aa4;
+    }
+
+    .microscopy-scale-header span:last-child {
+      color: #7a5aa9;
+    }
+
+    .microscopy-scale-ruler {
       position: relative;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 0.35rem;
-      height: 68px;
-      align-items: end;
+      height: 3.3rem;
+      padding-top: 0.45rem;
     }
 
-    .microscopy-scale-track::before {
+    .microscopy-scale-ruler::before {
       content: "";
       position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(89, 100, 255, 0.22), rgba(89, 100, 255, 0.05));
-      opacity: 0.65;
-      pointer-events: none;
+      left: 0;
+      right: 0;
+      top: 1.2rem;
+      height: 0.85rem;
+      background: linear-gradient(90deg, #9ab3e5 0%, #b7cbdf 22%, #cadf9e 46%, #d7dc9f 60%, #d6cde2 80%, #cbb9df 100%);
+      border: 1px solid rgba(21, 42, 56, 0.08);
     }
 
-    .microscopy-scale-track i {
+    .microscopy-scale-axis {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1.15rem;
+      height: 2px;
+      background: rgba(17, 28, 39, 0.76);
+    }
+
+    .microscopy-scale-ticks {
+      position: absolute;
+      inset: 0;
+    }
+
+    .microscopy-scale-ticks i {
+      position: absolute;
+      bottom: 0.95rem;
       display: block;
-      height: 100%;
-      border-left: 1px solid rgba(18, 32, 44, 0.28);
-      opacity: 0.4;
+      width: 2px;
+      height: 0.55rem;
+      margin-left: -1px;
+      background: rgba(17, 28, 39, 0.78);
+      opacity: 0.7;
+    }
+
+    .microscopy-scale-ticks i.major {
+      height: 0.9rem;
+      opacity: 1;
+    }
+
+    .microscopy-scale-ticks i.minor {
+      height: 0.4rem;
+      opacity: 0.55;
+    }
+
+    .microscopy-scale-values {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1rem;
+    }
+
+    .microscopy-scale-values span {
+      position: absolute;
+      transform: translateX(-50%);
+      color: var(--text);
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .microscopy-scale-values span:first-child {
+      transform: translateX(0);
+    }
+
+    .microscopy-scale-values span:last-child {
+      transform: translateX(-100%);
     }
 
     .microscopy-scale-labels {
@@ -632,21 +703,34 @@
     .microscopy-scale-labels span {
       display: grid;
       gap: 0.16rem;
-      padding-top: 0.3rem;
-      border-top: 2px solid rgba(21, 42, 56, 0.14);
+      padding-top: 0.45rem;
+      position: relative;
     }
 
     .microscopy-scale-labels strong {
-      color: var(--text);
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
+    .microscopy-scale-labels span:nth-child(1) strong,
+    .microscopy-scale-labels span:nth-child(1) em {
+      color: #345aa4;
+    }
+
+    .microscopy-scale-labels span:nth-child(2) strong,
+    .microscopy-scale-labels span:nth-child(2) em {
+      color: #5c8b31;
+    }
+
+    .microscopy-scale-labels span:nth-child(3) strong,
+    .microscopy-scale-labels span:nth-child(3) em {
+      color: #7a5aa9;
+    }
+
     .microscopy-scale-labels em {
-      color: var(--soft);
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       font-style: normal;
       font-weight: 600;
     }
@@ -1720,13 +1804,72 @@
                 <span class="channel-green">WDR35-EmGFP</span>
               </div>
               <div class="microscopy-scale" aria-label="Microscopy scale overview">
-                <div class="microscopy-scale-track" aria-hidden="true">
-                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                <div class="microscopy-scale-header" aria-hidden="true">
+                  <span>Larger scale</span>
+                  <span>Smaller scale</span>
+                </div>
+                <div class="microscopy-scale-ruler" aria-hidden="true">
+                  <div class="microscopy-scale-values">
+                    <span style="left: 0%;">10 um</span>
+                    <span style="left: 22%;">1 um</span>
+                    <span style="left: 42%;">100 nm</span>
+                    <span style="left: 62%;">10 nm</span>
+                    <span style="left: 81%;">1 nm</span>
+                    <span style="left: 100%;">0.1 nm</span>
+                  </div>
+                  <div class="microscopy-scale-axis"></div>
+                  <div class="microscopy-scale-ticks">
+                    <i class="major" style="left: 0%;"></i>
+                    <i class="minor" style="left: 2.5%;"></i>
+                    <i class="minor" style="left: 4.8%;"></i>
+                    <i class="minor" style="left: 7.1%;"></i>
+                    <i class="minor" style="left: 9.4%;"></i>
+                    <i class="major" style="left: 11.7%;"></i>
+                    <i class="minor" style="left: 13.9%;"></i>
+                    <i class="minor" style="left: 16.1%;"></i>
+                    <i class="minor" style="left: 18.3%;"></i>
+                    <i class="minor" style="left: 20.1%;"></i>
+                    <i class="major" style="left: 22%;"></i>
+                    <i class="minor" style="left: 24%;"></i>
+                    <i class="minor" style="left: 26%;"></i>
+                    <i class="minor" style="left: 28%;"></i>
+                    <i class="minor" style="left: 30%;"></i>
+                    <i class="major" style="left: 32%;"></i>
+                    <i class="minor" style="left: 34%;"></i>
+                    <i class="minor" style="left: 36%;"></i>
+                    <i class="minor" style="left: 38%;"></i>
+                    <i class="minor" style="left: 40%;"></i>
+                    <i class="major" style="left: 42%;"></i>
+                    <i class="minor" style="left: 44.5%;"></i>
+                    <i class="minor" style="left: 47%;"></i>
+                    <i class="minor" style="left: 49.5%;"></i>
+                    <i class="minor" style="left: 52%;"></i>
+                    <i class="major" style="left: 54.5%;"></i>
+                    <i class="minor" style="left: 57%;"></i>
+                    <i class="minor" style="left: 59.5%;"></i>
+                    <i class="major" style="left: 62%;"></i>
+                    <i class="minor" style="left: 64.5%;"></i>
+                    <i class="minor" style="left: 67%;"></i>
+                    <i class="minor" style="left: 69.5%;"></i>
+                    <i class="minor" style="left: 72%;"></i>
+                    <i class="major" style="left: 74.5%;"></i>
+                    <i class="minor" style="left: 77%;"></i>
+                    <i class="minor" style="left: 79%;"></i>
+                    <i class="major" style="left: 81%;"></i>
+                    <i class="minor" style="left: 83.5%;"></i>
+                    <i class="minor" style="left: 86%;"></i>
+                    <i class="minor" style="left: 88.5%;"></i>
+                    <i class="minor" style="left: 91%;"></i>
+                    <i class="major" style="left: 93.5%;"></i>
+                    <i class="minor" style="left: 96%;"></i>
+                    <i class="minor" style="left: 98%;"></i>
+                    <i class="major" style="left: 100%;"></i>
+                  </div>
                 </div>
                 <div class="microscopy-scale-labels">
-                  <span><strong>Confocal</strong><em>Cell and tissue context</em></span>
-                  <span><strong>Super-resolution</strong><em>Subcellular detail</em></span>
-                  <span><strong>Electron microscopy</strong><em>Ultrastructural scale</em></span>
+                  <span><strong>Confocal microscopy</strong><em>~200-250 nm resolution</em></span>
+                  <span><strong>STED super-resolution</strong><em>~20-100 nm resolution</em></span>
+                  <span><strong>TEM</strong><em>~0.1-1 nm resolution</em></span>
                 </div>
               </div>
             </figcaption>
