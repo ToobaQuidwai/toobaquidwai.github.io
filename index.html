@@ -589,30 +589,62 @@
 
     .microscopy-scale {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 0.65rem;
-      margin-top: 0.15rem;
-    }
-
-    .microscopy-scale span {
-      display: grid;
-      gap: 0.18rem;
-      padding: 0.55rem 0.7rem;
+      margin-top: 0.2rem;
+      padding: 0.85rem 0.9rem 0.95rem;
       border: 1px solid rgba(21, 42, 56, 0.12);
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 249, 251, 0.72)),
-        linear-gradient(90deg, rgba(198, 63, 164, 0.08), rgba(31, 143, 67, 0.08));
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 248, 250, 0.78)),
+        linear-gradient(90deg, rgba(79, 96, 255, 0.08), rgba(31, 143, 67, 0.05));
     }
 
-    .microscopy-scale strong {
+    .microscopy-scale-track {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 0.35rem;
+      height: 68px;
+      align-items: end;
+    }
+
+    .microscopy-scale-track::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(89, 100, 255, 0.22), rgba(89, 100, 255, 0.05));
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .microscopy-scale-track i {
+      display: block;
+      height: 100%;
+      border-left: 1px solid rgba(18, 32, 44, 0.28);
+      opacity: 0.4;
+    }
+
+    .microscopy-scale-labels {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .microscopy-scale-labels span {
+      display: grid;
+      gap: 0.16rem;
+      padding-top: 0.3rem;
+      border-top: 2px solid rgba(21, 42, 56, 0.14);
+    }
+
+    .microscopy-scale-labels strong {
       color: var(--text);
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
-    .microscopy-scale em {
+    .microscopy-scale-labels em {
       color: var(--soft);
       font-size: 0.84rem;
       font-style: normal;
@@ -1224,7 +1256,7 @@
         padding-top: 0;
       }
 
-      .microscopy-scale {
+      .microscopy-scale-labels {
         grid-template-columns: 1fr;
       }
     }
@@ -1688,9 +1720,14 @@
                 <span class="channel-green">WDR35-EmGFP</span>
               </div>
               <div class="microscopy-scale" aria-label="Microscopy scale overview">
-                <span><strong>Confocal</strong><em>2 um field scale</em></span>
-                <span><strong>Single-color STED</strong><em>2 um field scale</em></span>
-                <span><strong>TEM 300 nm section</strong><em>0.25 um ultrastructure scale</em></span>
+                <div class="microscopy-scale-track" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                </div>
+                <div class="microscopy-scale-labels">
+                  <span><strong>Confocal</strong><em>Cell and tissue context</em></span>
+                  <span><strong>Super-resolution</strong><em>Subcellular detail</em></span>
+                  <span><strong>Electron microscopy</strong><em>Ultrastructural scale</em></span>
+                </div>
               </div>
             </figcaption>
           </figure>

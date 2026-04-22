@@ -127,7 +127,8 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#images")).toContainText("Dync2h1 null movie");
     await expect(page.locator("#images")).toContainText("Multiscale imaging");
     await expect(page.locator("#images")).toContainText("WDR35-EmGFP");
-    await expect(page.locator("#images")).toContainText("TEM 300 nm section");
+    await expect(page.locator("#images")).toContainText("Super-resolution");
+    await expect(page.locator("#images")).toContainText("Electron microscopy");
     await expect(page.locator("#images")).toContainText("IFT88 collage");
     await expect(page.locator("#images")).toContainText("Wdr35 null MEF");
     await expect(page.locator("#images")).toContainText("Ac α tubulin");
