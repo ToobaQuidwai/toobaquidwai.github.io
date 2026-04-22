@@ -129,10 +129,7 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#images")).toContainText("Dync2h1 null movie");
     await expect(page.locator("#images")).toContainText("Multiscale imaging");
     await expect(page.locator("#images")).toContainText("WDR35-EmGFP");
-    await expect(page.locator("#images")).toContainText("Larger scale");
-    await expect(page.locator("#images")).toContainText("Smaller scale");
-    await expect(page.locator("#images")).toContainText("STED super-resolution");
-    await expect(page.locator("#images")).toContainText("~0.1-1 nm resolution");
+    await expect(page.locator("#images")).toContainText("method scale and resolution comparison integrated directly into the composed figure");
     await expect(page.locator("#images")).toContainText("IFT88 collage");
     await expect(page.locator("#images")).toContainText("Wdr35 null MEF");
     await expect(page.locator("#images")).toContainText("Ac α tubulin");
