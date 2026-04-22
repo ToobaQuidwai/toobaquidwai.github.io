@@ -13,7 +13,7 @@ OUTPUT_IMAGE = Path("/Users/toobaquidwai/Downloads/resume_portfolio/assets/media
 
 # Crop away only the outer page margin labels, keep the full collage.
 CROP_BOX = (240, 110, 2320, 2935)
-OUTPUT_SIZE = (1280, 944)
+OUTPUT_SIZE = (1280, 824)
 
 
 def edge_connected_light_mask(arr: np.ndarray, threshold: int = 238) -> np.ndarray:
@@ -98,33 +98,57 @@ def render() -> None:
     bg_mask = edge_connected_light_mask(arr)
     arr[bg_mask] = 0
 
-    # Remove the repeated white scale bars from the individual tiles by
+    # Rebuild the collage from the three tile groups only, removing the
+    # genotype labels that sit inside the separator bands while tightening
+    # the vertical spacing between groups.
+    collage = Image.fromarray(arr)
+    top = collage.crop((0, 10, OUTPUT_SIZE[0], 293))
+    middle = collage.crop((0, 381, OUTPUT_SIZE[0], 663))
+    bottom = collage.crop((0, 758, OUTPUT_SIZE[0], 944))
+
+    gap = 18
+    margin = 10
+    rebuilt = Image.new("RGB", OUTPUT_SIZE, "black")
+    y = margin
+    rebuilt.paste(top, (0, y))
+    y += top.height + gap
+    rebuilt.paste(middle, (0, y))
+    y += middle.height + gap
+    rebuilt.paste(bottom, (0, y))
+    rebuilt_arr = np.array(rebuilt)
+
+    # Clear any residual genotype text sitting in the separator bands.
+    rebuilt_arr[270:302, 430:850] = 0
+    rebuilt_arr[570:602, 470:810] = 0
+    rebuilt_arr[588:612, 500:780] = 0
+
+    # Remove the repeated white scale bars from the rebuilt collage by
     # replacing each small horizontal annotation with neighboring texture.
-    for x1, y1, x2, y2 in scale_bar_boxes(arr):
+    for x1, y1, x2, y2 in scale_bar_boxes(rebuilt_arr):
         pad_x = 3
         pad_y = 5
         sx1 = max(0, x1 - pad_x)
-        sx2 = min(arr.shape[1], x2 + pad_x + 1)
+        sx2 = min(rebuilt_arr.shape[1], x2 + pad_x + 1)
         sy1 = max(0, y1 - pad_y)
-        sy2 = min(arr.shape[0], y2 + pad_y + 1)
+        sy2 = min(rebuilt_arr.shape[0], y2 + pad_y + 1)
 
         above_y1 = max(0, sy1 - (sy2 - sy1))
         above_y2 = sy1
         below_y1 = sy2
-        below_y2 = min(arr.shape[0], sy2 + (sy2 - sy1))
+        below_y2 = min(rebuilt_arr.shape[0], sy2 + (sy2 - sy1))
 
         samples = []
         if above_y2 > above_y1:
-            samples.append(arr[above_y1:above_y2, sx1:sx2])
+            samples.append(rebuilt_arr[above_y1:above_y2, sx1:sx2])
         if below_y2 > below_y1:
-            samples.append(arr[below_y1:below_y2, sx1:sx2])
+            samples.append(rebuilt_arr[below_y1:below_y2, sx1:sx2])
 
         if samples:
             replacement = np.concatenate(samples, axis=0).mean(axis=0)
             replacement = np.repeat(replacement[np.newaxis, :, :], sy2 - sy1, axis=0)
-            arr[sy1:sy2, sx1:sx2] = replacement.astype(np.uint8)
+            rebuilt_arr[sy1:sy2, sx1:sx2] = replacement.astype(np.uint8)
 
-    Image.fromarray(arr).save(OUTPUT_IMAGE, optimize=True)
+    Image.fromarray(rebuilt_arr).save(OUTPUT_IMAGE, optimize=True)
     print(OUTPUT_IMAGE)
 
 
