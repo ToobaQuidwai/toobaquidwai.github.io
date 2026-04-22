@@ -121,7 +121,7 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#skills")).toContainText("FLIM");
     await expect(page.locator("#skills")).toContainText("Plasmodium falciparum culture");
     await expect(page.locator("#skills")).toContainText("BioRender");
-    await expect(page.locator("#images video")).toHaveCount(4);
+    await expect(page.locator("#images video")).toHaveCount(5);
     await expect(page.locator("#images")).toContainText("Kidney confocal walkthrough");
     await expect(page.locator("#images")).toContainText("ARL13B");
     await expect(page.locator("#images")).toContainText("SIR-tubulin");
@@ -132,6 +132,7 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#images")).toContainText("method scale and resolution comparison integrated directly into the composed figure");
     await expect(page.locator("#images")).toContainText("IFT88 collage");
     await expect(page.locator("#images")).toContainText("Wdr35 null MEF");
+    await expect(page.locator("#images")).toContainText("Platelet imaging methods");
     await expect(page.locator("#images")).toContainText("Ac α tubulin");
     await expect(page.locator("#images")).toContainText("γ tubulin");
 
@@ -142,6 +143,7 @@ test.describe("portfolio page", () => {
     expect(imageTitles[3]).toBe("Wdr35 null MEF");
     expect(imageTitles[5]).toBe("Multiscale imaging");
     expect(imageTitles[6]).toBe("IFT88 collage");
+    expect(imageTitles[7]).toBe("Platelet imaging methods");
   });
 
   test("images section opens a zoom view for figures and movies", async ({ page }) => {
@@ -159,6 +161,10 @@ test.describe("portfolio page", () => {
     await page.getByRole("button", { name: "Open Dync2h1 null movie" }).click();
     await expect(page.locator("#media-lightbox-stage video")).toHaveCount(1);
     await expect(page.locator("#media-lightbox-copy")).toContainText("Dync2h1 null movie");
+
+    await page.getByRole("button", { name: "Close expanded media" }).click();
+    await page.getByRole("button", { name: "Open Platelet imaging methods" }).click();
+    await expect(page.locator("#media-lightbox-copy")).toContainText("Platelet imaging methods");
   });
 
   test("navigation anchors land at the right sections and stay in sync", async ({ page }) => {
@@ -259,11 +265,12 @@ test.describe("portfolio page", () => {
       }))
     );
 
-    expect(videoStates).toHaveLength(4);
+    expect(videoStates).toHaveLength(5);
     expect(videoStates[0].currentSrc).toContain("assets/media/kidney-confocal-walkthrough.mp4");
     expect(videoStates[1].currentSrc).toContain("assets/media/xyzt-dual-channel-walkthrough.mp4");
     expect(videoStates[2].currentSrc).toContain("assets/media/3d-tem-movie.mp4");
     expect(videoStates[3].currentSrc).toContain("assets/media/dync2h1null-movie.mp4");
+    expect(videoStates[4].currentSrc).toContain("assets/media/platelet-imaging-methods.mp4");
     for (const video of videoStates) {
       expect(video.networkState).not.toBe(3);
     }
