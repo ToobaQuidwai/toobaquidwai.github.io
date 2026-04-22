@@ -129,6 +129,12 @@ test.describe("portfolio page", () => {
     await expect(page.locator("#images")).toContainText("Wdr35 null MEF");
     await expect(page.locator("#images")).toContainText("Ac α tubulin");
     await expect(page.locator("#images")).toContainText("γ tubulin");
+
+    const imageTitles = await page.locator("#images .media-frame h3").evaluateAll((nodes) =>
+      nodes.map((node) => node.textContent.trim())
+    );
+
+    expect(imageTitles[2]).toBe("Wdr35 null MEF");
   });
 
   test("navigation anchors land at the right sections and stay in sync", async ({ page }) => {
