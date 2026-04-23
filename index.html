@@ -1263,12 +1263,10 @@
       position: relative;
       display: grid;
       place-items: center;
-      gap: 0.45rem;
-      padding: 1rem;
+      gap: 0.55rem;
+      padding: 0.8rem;
       text-align: center;
-      background:
-        radial-gradient(circle at 18% 18%, rgba(38, 104, 150, 0.11), transparent 32%),
-        linear-gradient(180deg, #ffffff, #f6f4ee);
+      background: linear-gradient(180deg, #ffffff, #f8f7f2);
     }
 
     .publication-logo::before {
@@ -1279,80 +1277,40 @@
       pointer-events: none;
     }
 
-    .publication-logo-mark {
+    .publication-logo img {
       position: relative;
       z-index: 1;
-      display: grid;
-      gap: 0.18rem;
-      justify-items: center;
-      color: var(--text);
-      line-height: 1;
+      display: block;
+      max-width: 86%;
+      max-height: 58%;
+      object-fit: contain;
     }
 
-    .publication-logo-name {
-      font-size: 1.08rem;
-      font-weight: 900;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+    .publication-logo--cover img {
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .publication-logo-sub {
-      color: var(--soft);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .publication-logo-year {
+    .publication-logo-caption {
+      position: relative;
+      z-index: 1;
       color: var(--muted);
       font-size: 0.82rem;
       font-weight: 800;
       letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
-    .publication-logo--elife {
-      background:
-        radial-gradient(circle at 50% 28%, rgba(23, 170, 143, 0.13), transparent 34%),
-        linear-gradient(180deg, #ffffff, #f4fbf8);
-    }
-
-    .publication-logo--elife .publication-logo-name {
-      color: #0a8f82;
-      letter-spacing: 0.04em;
-      text-transform: none;
-    }
-
-    .publication-logo--ajhg .publication-logo-name {
-      color: #2d5d8f;
-    }
-
-    .publication-logo--chem {
-      background:
-        radial-gradient(circle at 78% 22%, rgba(196, 71, 46, 0.12), transparent 34%),
-        linear-gradient(180deg, #ffffff, #fff6f1);
-    }
-
-    .publication-logo--chem .publication-logo-name {
-      color: #a34024;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-    }
-
-    .publication-logo--mboc .publication-logo-name {
-      color: #446c3f;
-    }
-
-    .publication-logo--edinburgh .publication-logo-name {
-      color: #153966;
-      font-size: 0.92rem;
-      letter-spacing: 0.07em;
-    }
-
-    .publication-logo--biorxiv .publication-logo-name {
-      color: #9a4c20;
-      letter-spacing: 0.03em;
-      text-transform: none;
+    .publication-logo--cover .publication-logo-caption {
+      position: absolute;
+      right: 0.45rem;
+      bottom: 0.45rem;
+      padding: 0.22rem 0.42rem;
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--text);
     }
 
     .figure-card {
@@ -1962,7 +1920,7 @@
                 </ul>
                 <p class="publication-summary">Work on mother centriole remodeling and ciliogenesis, contributing to a broader mechanistic understanding of how centriolar satellites support cilium assembly.</p>
               </div>
-              <div class="publication-thumb publication-logo publication-logo--elife" aria-label="eLife 2023"><div class="publication-logo-mark"><span class="publication-logo-name">eLife</span><span class="publication-logo-year">2023</span></div></div>
+              <div class="publication-thumb publication-logo" aria-label="eLife 2023"><img src="assets/logos/elife.svg" alt="eLife logo"><span class="publication-logo-caption">2023</span></div>
             </div>
           </article>
 
@@ -1980,7 +1938,7 @@
                 </ul>
                 <p class="publication-summary">Mechanistic study showing that WDR35/IFT121 functions in a coat-protein-like system required for transporting membrane cargo vesicles to cilia.</p>
               </div>
-              <div class="publication-thumb publication-logo publication-logo--elife" aria-label="eLife 2021"><div class="publication-logo-mark"><span class="publication-logo-name">eLife</span><span class="publication-logo-year">2021</span></div></div>
+              <div class="publication-thumb publication-logo" aria-label="eLife 2021"><img src="assets/logos/elife.svg" alt="eLife logo"><span class="publication-logo-caption">2021</span></div>
             </div>
           </article>
 
@@ -1998,7 +1956,7 @@
                 </ul>
                 <p class="publication-summary">Disease-mechanism study linking PLAA mutations to severe infantile encephalopathy through defects in ubiquitin-mediated endolysosomal degradation.</p>
               </div>
-              <div class="publication-thumb publication-logo publication-logo--ajhg" aria-label="American Journal of Human Genetics 2017"><div class="publication-logo-mark"><span class="publication-logo-name">AJHG</span><span class="publication-logo-sub">Cell Press</span><span class="publication-logo-year">2017</span></div></div>
+              <div class="publication-thumb publication-logo" aria-label="American Journal of Human Genetics 2017"><img src="assets/logos/elsevier.svg" alt="Elsevier logo"><span class="publication-logo-caption">AJHG · 2017</span></div>
             </div>
           </article>
 
@@ -2016,7 +1974,7 @@
                 </ul>
                 <p class="publication-summary">Methods paper developing specific caged-fluorophore labeling strategies for dual-color imaging and live-cell super-resolution microscopy.</p>
               </div>
-              <div class="publication-thumb publication-logo publication-logo--chem" aria-label="Chemical Science 2017"><div class="publication-logo-mark"><span class="publication-logo-name">Chemical<br>Science</span><span class="publication-logo-sub">RSC</span><span class="publication-logo-year">2017</span></div></div>
+              <div class="publication-thumb publication-logo" aria-label="Chemical Science 2017"><img src="assets/logos/rsc.svg" alt="Royal Society of Chemistry logo"><span class="publication-logo-caption">Chemical Science · 2017</span></div>
             </div>
           </article>
 
@@ -2034,7 +1992,7 @@
                 </ul>
                 <p class="publication-summary">Conference abstract representation of the WDR35 transport work that complements the peer-reviewed eLife study.</p>
               </div>
-              <div class="publication-thumb publication-logo publication-logo--mboc" aria-label="Molecular Biology of the Cell 2023"><div class="publication-logo-mark"><span class="publication-logo-name">MBoC</span><span class="publication-logo-sub">ASCB</span><span class="publication-logo-year">2023</span></div></div>
+              <div class="publication-thumb publication-logo" aria-label="Molecular Biology of the Cell 2023"><img src="assets/logos/mboc.png" alt="Molecular Biology of the Cell logo"><span class="publication-logo-caption">2023</span></div>
             </div>
           </article>
 
@@ -2052,7 +2010,7 @@
                 </ul>
                 <p class="publication-summary">Doctoral thesis centered on the role of WDR35 in ciliary biogenesis, trafficking, and formation of functional cilia.</p>
               </div>
-              <div class="publication-thumb publication-logo publication-logo--edinburgh" aria-label="University of Edinburgh PhD thesis 2020"><div class="publication-logo-mark"><span class="publication-logo-name">Edinburgh</span><span class="publication-logo-sub">PhD thesis</span><span class="publication-logo-year">2020</span></div></div>
+              <div class="publication-thumb publication-logo" aria-label="University of Edinburgh PhD thesis 2020"><img src="assets/logos/edinburgh.png" alt="University of Edinburgh logo"><span class="publication-logo-caption">PhD · 2020</span></div>
             </div>
           </article>
 
@@ -2070,7 +2028,7 @@
                 </ul>
                 <p class="publication-summary">Preprint version of the WDR35 trafficking story, describing coatomer-like transport of ciliary membrane proteins from the Golgi to the cilium.</p>
               </div>
-              <div class="publication-thumb publication-logo publication-logo--biorxiv" aria-label="bioRxiv 2020"><div class="publication-logo-mark"><span class="publication-logo-name">bioRxiv</span><span class="publication-logo-sub">Preprint</span><span class="publication-logo-year">2020</span></div></div>
+              <div class="publication-thumb publication-logo" aria-label="bioRxiv 2020"><img src="assets/logos/biorxiv.svg" alt="bioRxiv logo"><span class="publication-logo-caption">2020</span></div>
             </div>
           </article>
 
@@ -2088,7 +2046,7 @@
                 </ul>
                 <p class="publication-summary">Preprint combining imaging and quantitative analysis to study how cytoskeletal mechanics shape platelet size and activation dynamics.</p>
               </div>
-              <div class="publication-thumb publication-logo publication-logo--biorxiv" aria-label="bioRxiv 2018"><div class="publication-logo-mark"><span class="publication-logo-name">bioRxiv</span><span class="publication-logo-sub">Preprint</span><span class="publication-logo-year">2018</span></div></div>
+              <div class="publication-thumb publication-logo" aria-label="bioRxiv 2018"><img src="assets/logos/biorxiv.svg" alt="bioRxiv logo"><span class="publication-logo-caption">2018</span></div>
             </div>
           </article>
         </div>
