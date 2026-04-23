@@ -1482,6 +1482,33 @@
       margin-top: 1rem;
     }
 
+    .resume-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-height: 2.7rem;
+      margin-top: 1rem;
+      padding: 0.66rem 1rem;
+      border: 1px solid rgba(21, 42, 56, 0.16);
+      border-radius: 999px;
+      background: var(--text);
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .resume-cta:hover,
+    .resume-cta:focus-visible {
+      transform: translateY(-2px);
+      background: var(--accent);
+      box-shadow: 0 14px 26px rgba(9, 16, 24, 0.12);
+    }
+
     .social-link {
       display: inline-flex;
       align-items: center;
@@ -2346,6 +2373,7 @@
             <li><a href="mailto:tquidwaiunipne@gmail.com">tquidwaiunipne@gmail.com</a></li>
             <li><a href="mailto:tooba.quidwai@bio.ku.dk">tooba.quidwai@bio.ku.dk</a></li>
           </ul>
+          <a class="resume-cta" href="assets/dr-tooba-quidwai-detailed-resume.pdf" target="_blank" rel="noreferrer">Download resume</a>
           <div class="social-strip" aria-label="Social and academic profiles">
             <a class="social-link" href="https://scholar.google.com/citations?user=z7wjJ34AAAAJ&amp;hl=en" target="_blank" rel="noreferrer" aria-label="Google Scholar">
               <svg viewBox="0 0 24 24" aria-hidden="true">
