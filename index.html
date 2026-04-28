@@ -511,27 +511,13 @@
 
     .media-showcase {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 1rem 0.95rem;
       align-items: start;
     }
 
     .media-showcase > .media-frame {
       margin-top: 0;
-    }
-
-    @media (min-width: 1081px) {
-      #images .media-showcase > .media-frame:nth-child(5) {
-        margin-top: -10.55rem;
-      }
-
-      #images .media-showcase > .media-frame:nth-child(6) {
-        margin-top: -8rem;
-      }
-
-      #images .media-showcase > .media-frame:nth-child(7) {
-        margin-top: -2.75rem;
-      }
     }
 
     .media-frame {
