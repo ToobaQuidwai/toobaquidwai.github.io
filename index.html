@@ -767,14 +767,27 @@
       top: 0.8rem;
       right: 0.8rem;
       z-index: 2;
-      width: 2.3rem;
-      height: 2.3rem;
-      border: 1px solid rgba(21, 42, 56, 0.12);
-      background: rgba(255, 255, 255, 0.9);
+      display: inline-grid;
+      place-items: center;
+      width: 2.6rem;
+      height: 2.6rem;
+      border: 1px solid rgba(21, 42, 56, 0.14);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
       color: var(--text);
-      font-size: 1.1rem;
+      font-size: 1.45rem;
+      font-weight: 500;
       line-height: 1;
       cursor: pointer;
+      box-shadow: 0 10px 24px rgba(7, 12, 18, 0.1);
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .media-lightbox-close:hover,
+    .media-lightbox-close:focus-visible {
+      background: #ffffff;
+      border-color: rgba(21, 42, 56, 0.22);
+      transform: scale(1.03);
     }
 
     .media-meta {
@@ -2331,7 +2344,7 @@
         <div class="media-lightbox-panel">
           <div class="media-lightbox-stage" id="media-lightbox-stage"></div>
           <aside class="media-lightbox-copy">
-            <button class="media-lightbox-close" type="button" aria-label="Close expanded media">Close</button>
+            <button class="media-lightbox-close" type="button" aria-label="Close expanded media">&times;</button>
             <div id="media-lightbox-copy"></div>
           </aside>
         </div>
